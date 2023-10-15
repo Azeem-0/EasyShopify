@@ -1,0 +1,304 @@
+/* HOME PAGE CSS */
+#dashboard {
+    display: flex;
+    position: relative;
+    margin-top: 5em;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: space-between
+}
+
+#dashboard>* {
+    padding: 1.5em 0em;
+}
+
+.head-background {
+    position: relative;
+    width: 100vw;
+    height: 30em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.head-background img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+.home-heading {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1em;
+    color: white;
+    text-align: center;
+}
+
+.home-heading div h1 {
+    font-size: 3.5em;
+}
+
+.home-heading p {
+    width: 50em;
+}
+
+.home-heading h3 {
+    font-size: 2.5em;
+    font-weight: lighter;
+}
+
+.home-heading a {
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: coral;
+    font-size: 0.8em;
+    text-decoration: none;
+    color: white;
+}
+
+/* CARAOUSEL STYLING CUSTOM DESIGN FOR CAROUSEL */
+
+.carousel-root {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.carousel .slide .legend {
+    position: relative;
+    margin: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.slide div {
+    display: contents;
+}
+
+.carousel .thumbs-wrapper {
+    display: none;
+}
+
+.carousel.carousel-slider {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.legend {
+    color: black;
+    background: red;
+    z-index: 999;
+}
+
+.carousel .slider-wrapper.axis-horizontal .slider .slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel.carousel-slider .control-arrow {
+    display: none;
+}
+
+.carousel .slider-wrapper {
+    width: 100%;
+}
+
+.carousel.carousel-slider .control-arrow {
+    top: 50%;
+    position: absolute;
+    height: 2em;
+    color: black;
+    background: #FFC915;
+    opacity: .7;
+}
+
+.carousel.carousel-slider .control-arrow:hover {
+    transform: translate(0em);
+    background-color: #FFC915;
+}
+
+.carousel .control-next.control-arrow:before {
+    border-left: 8px solid black
+}
+
+.carousel .control-prev.control-arrow:before {
+    border-right: 8px solid black;
+}
+
+.carousel .slide img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel .slider-wrapper.axis-horizontal .slider .slide {
+    height: 100svh;
+}
+
+.carousel .carousel-status {
+    display: none;
+}
+
+.awssld__timer--run {
+    background-color: transparent;
+}
+
+/* TOP PICKS CSS */
+
+#top-picks {
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+#top-picks h2 {
+    margin: 1em 2em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.top-picks-cards {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.top-picks-card {
+    width: 13em;
+    height: 20em;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2em;
+    background: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.top-picks-card img {
+    width: 10em;
+    object-fit: contain;
+}
+
+.top-picks-card button {
+    width: 5em;
+    height: 1.5em;
+    margin-bottom: 1em;
+    background: coral;
+
+}
+
+/*Top-picks CONTENT SLIDER */
+.awssld__content {
+    margin-top: 2em;
+    height: fit-content;
+    background-color: transparent;
+    justify-content: center;
+}
+
+.awssld__container {
+    padding-bottom: 25em;
+}
+
+.awssld__bullets {
+    display: none;
+}
+
+/* NEW-ARRIVALS STYLING */
+#new-arrivals,
+#summer-sales {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#new-arrivals-head,
+#summer-sales-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 25em;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+#new-arrivals-head img,
+#summer-sales-head img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    z-index: -1;
+}
+
+#new-arrivals-head .blur-hash,
+#summer-sales-head .blur-hash {
+    position: absolute !important;
+    z-index: -1;
+}
+
+#new-arrivals-head div h1,
+#summer-sales-head div h1 {
+    font-size: 3.5em;
+}
+
+#new-arrivals-head div p,
+#summer-sales-head div p {
+    background-color: #ffb8b8;
+}
+
+/* SUMMER SALES STYLING */
+
+@media screen and (max-width:800px) {
+
+    #dashboard h1 {
+        font-size: 7vw !important;
+    }
+
+
+    #dashboard p {
+        font-size: 3.5vw;
+    }
+
+    .head-background {
+        height: 43em;
+    }
+
+    .home-heading a {
+        font-size: 0.7em;
+        padding: 5px 15px;
+        font-weight: lighter;
+    }
+
+    #logo img {
+        width: 3em;
+    }
+
+    .top-picks-card {
+        width: 10em;
+        height: 15em;
+    }
+
+    .top-picks-card img {
+        width: 6em;
+    }
+
+    #new-arrivals-head,
+    #summer-sales-head {
+        height: 15em;
+    }
+}

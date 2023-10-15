@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+/* LOGO STYLING */
+#logo img {
+    width: 4em;
+}
+
+#logo {
+    cursor: pointer;
+    padding: 1.5em;
+    padding-top: 2em;
+}
+
+/* NAVIGATION STYLING */
+#navigation {
+    height: 5em;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f7f7f7;
+    z-index: 999;
+}
+
+#navigation h2 {
+    margin: 1em;
+    transition: .5s ease;
+}
+
+.one-navigation {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: auto;
+    padding: 0em 2em;
+}
+
+.one-navigation div {
+    display: flex;
+    transition: 0.5s ease-in-outs;
+    gap: 20px;
+}
+
+.one-navigation div:first-child>* {
+    color: black;
+    text-decoration: none;
+    padding: 5px;
+    border: 0;
+    background: transparent;
+    font-size: 1em;
+    font-family: 'Poppins', sans-serif
+}
+
+/* MINI NAVIGATION STYLING */
+#mini-navigation {
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: fit-content;
+    position: absolute;
+    background-color: #ffd8c9;
+    display: flex;
+    align-items: flex-end;
+    z-index: 5;
+    justify-content: flex-start;
+}
+
+#mini-navigation div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    padding: 5em 20px 20px 20px;
+}
+
+.cross {
+    padding: 0 !important;
+    font-size: 1.5em;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    z-index: 999;
+    cursor: pointer;
+}
+
+.two-navigation .lottie {
+    width: 5em;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#mini-navigation div button {
+    padding: 8px 15px;
+    background-color: transparent;
+    color: black;
+    margin-top: 1em;
+    width: 100%;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+    text-align: left;
+    font-family: 'Poppins', sans-serif
+}
+
+#mini-navigation div form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+    padding: 10px 0px;
+}
+
+#mini-navigation div form button {
+    padding: 10px;
+    width: fit-content;
+    border-bottom: 0;
+    margin: 0;
+    background: black;
+    color: white;
+}
+
+.current {
+    border: 1.5px solid coral !important;
+}
+
+/* SEARCH BAR STYLING */
+#search-bar input {
+    margin: 0;
+    width: 25em;
+    border-radius: 0;
+}
+
+#search-bar button,
+.log-button {
+    padding: 10px;
+    background-color: black;
+}
+
+#search-bar button {
+    background-color: coral;
+}

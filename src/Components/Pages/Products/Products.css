@@ -1,0 +1,183 @@
+/* PRODUCTS SECTION STYLING */
+#products-section {
+    width: 100%;
+    padding-top: 5em;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+#products-section>* {
+    padding: 20px 0px;
+}
+
+#product-items-section {
+    flex: 1 1;
+    height: 100%;
+    overflow-y: auto;
+    min-height: 80svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#filter-products {
+    background-color: #d9d9d9;
+    padding: 20px;
+    height: 100%;
+}
+
+#filter-products button {
+    background-color: coral !important;
+}
+
+#product-item-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.products {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 10px;
+    padding: 0em 10px;
+}
+
+.product {
+    width: 12em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background: white;
+    margin: 1em;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    position: relative;
+}
+
+.product h2,
+.product p,
+.product button {
+    margin: 5px;
+    text-align: left;
+}
+
+.product button {
+    justify-content: center;
+    display: flex;
+    height: 2em;
+    align-items: center;
+    background-color: black;
+}
+
+.product img,
+.product .blur-hash {
+    width: 100% !important;
+    height: 12em !important;
+    object-fit: contain;
+}
+
+.products-message {
+    position: fixed;
+    top: 50%;
+}
+
+select,
+#filter-products button {
+    width: 15em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e7e7e7;
+    border: 0px;
+    padding: 10px;
+    margin: 5px;
+}
+
+
+/* PAGINATION STYLING */
+
+.containerButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.containerButtons li {
+    margin: 1em;
+}
+
+.containerButtons li a {
+    width: 2em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+    border-radius: 5px;
+    border: 0;
+}
+
+.previousButton,
+.nextButton {
+    background-color: #d4d4d4 !important;
+    border-radius: 5px;
+}
+
+.selected {
+    border-bottom: 1px solid coral;
+}
+
+.disabled {
+    opacity: .6;
+}
+
+
+/* MEDIAQUERIRES FOR PRODUCT PAGE */
+
+@media screen and (max-width:800px) {
+
+    select,
+    #filter-products button {
+        width: 25vw;
+        font-size: .6em;
+    }
+
+    .product,
+    .product button {
+        font-size: .7em;
+    }
+
+    .product img,
+    .product .blur-hash {
+        height: 8em !important;
+    }
+
+    .containerButtons {
+        position: sticky;
+        bottom: 0;
+        margin: auto;
+        background: white;
+        border-radius: 10px;
+    }
+
+    .containerButtons li a {
+        width: 1em;
+        height: 1em;
+        font-size: .7em;
+        padding: 10px;
+    }
+
+    .containerButtons li {
+        margin: 10px;
+    }
+
+    .products-message {
+        font-size: .7em;
+    }
+}

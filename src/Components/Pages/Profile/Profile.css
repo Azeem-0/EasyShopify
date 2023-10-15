@@ -1,0 +1,448 @@
+/* Profile Updates CSS */
+#profile-dashboard {
+    background: rgb(236, 236, 236);
+    width: 100vw;
+    height: 100svh;
+    padding: 5em 0em 0em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+#profile-dashboard #profile-side-bar {
+    background-color: #e6e6e6;
+    height: 100%;
+}
+
+#profile-dashboard #profile-side-bar div {
+    display: flex;
+    flex-direction: column;
+    width: 15em;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5em;
+}
+
+#profile-dashboard #profile-side-bar div button {
+    width: 80%;
+    border-radius: 0;
+    background-color: transparent;
+    color: black;
+    border-bottom: 1.5px solid black;
+    margin: 1em;
+    transition: .3s ease-in;
+}
+
+#profile-dashboard #profile-section {
+    flex: 1 1;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.active {
+    border: 2px solid coral !important;
+    border-radius: 10px;
+}
+
+/* USER DETAILS SECTION STYLING */
+#profile-info-head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    transform: translateY(-5em);
+}
+
+#profile-dp {
+    position: relative;
+    border-radius: 100%;
+    height: 10em;
+    width: 10em;
+    overflow: hidden;
+    margin: 0em 1em;
+}
+
+#profile-dp img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#cover-picture {
+    height: 11em;
+}
+
+#cover-picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-loader-lottie {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* USER DETAILS EDIT*/
+#profile-details-edit {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0em 5em;
+    transform: translateY(-2em);
+}
+
+#profile-details-edit>* {
+    margin: 0.5em;
+    flex: 0 0 calc(40% - 10px);
+    flex-direction: column;
+    align-items: self-start;
+    gap: 10px;
+}
+
+.profile {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1em;
+    overflow-x: hidden;
+}
+
+.user-section {
+    background-color: white;
+}
+
+.user-section>* {
+    padding: 1em 20px;
+}
+
+.message {
+    text-align: center;
+    padding: 0;
+}
+
+.user-product-section>* {
+    margin: 1em 20px;
+}
+
+
+.details,
+.updates {
+    display: flex;
+    width: 20em;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.details button,
+.updates button {
+    width: 3em;
+    height: 2em;
+    position: absolute;
+    right: 0;
+    background: black;
+    opacity: .7;
+    transition: .2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    top: 50%;
+}
+
+.deleteCart {
+    pointer-events: none;
+    color: white !important;
+}
+
+.details button:hover,
+.updates button:hover {
+    background-color: #FF5151;
+}
+
+.updates input {
+    height: 2.5em;
+    border-radius: 0;
+}
+
+/* USER PRODUCTS SECTION STYLING */
+
+#profile-product-section {
+    transform: translateY(-2em);
+    width: 100%;
+}
+
+#profile-product-section h3 {
+    padding: 10px;
+}
+
+#profile-product-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0em 2em;
+}
+
+.profile-orders-cart:last-child {
+    border-top: 1px solid black;
+}
+
+.profile-orders-cart {
+    width: 90%;
+    display: flex;
+    border-bottom: 1px solid black;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-orders-cart img {
+    width: 5em;
+    height: 5em;
+    object-fit: cover;
+}
+
+.profile-orders-cart .profile-orders-cart-innerchild {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    align-items: center;
+}
+
+
+.profile-orders-cart .profile-orders-cart-innerchild>* {
+    font-weight: lighter;
+    margin: 10px;
+}
+
+.profile-orders-cart button {
+    font-size: 0.6em;
+    padding: 5px 6px;
+    background-color: coral;
+}
+
+#order-cart-products-section {
+    justify-content: space-evenly;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 4em 2em;
+    flex-direction: column-reverse;
+}
+
+.extra-details {
+    cursor: pointer;
+    text-align: center;
+}
+
+/* SLID UP MESSAGE */
+#slid-up {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#slid-up-child {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background-color: white;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+#slid-up-child>* {
+    margin: 1em;
+}
+
+#slid-up-child img,
+#slid-up-child .blur-hash {
+    width: 25vw;
+    object-fit: cover;
+}
+
+#slid-up-child .blur-hash {
+    width: 20em !important;
+    height: 17em !important;
+}
+
+#slid-up-details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-right: 2em;
+}
+
+#slid-up-details>* {
+    margin: 10px 0em;
+}
+
+#close-slid-up {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+
+.line {
+    height: 15em;
+    width: 1px;
+    background-color: black;
+}
+
+#slid-up-details form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#slid-up-details form button {
+    padding: 10px;
+    background-color: coral;
+}
+
+#slid-up-details .product-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+/* PROFILE SECTION MEDIA QUERIES */
+@media screen and (max-width:800px) {
+    .profile {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-section {
+        width: 80%;
+    }
+
+    .details,
+    .updates {
+        width: inherit;
+        font-size: 3vw;
+    }
+
+    .updates input {
+        font-size: .7em;
+        padding: 10px 5px;
+    }
+
+    .details button,
+    .updates button {
+        font-size: .6em;
+        padding: 5px;
+        border-radius: 1px;
+    }
+
+    .user-product-section {
+        font-size: 3vw;
+        position: relative;
+        width: 80%;
+    }
+
+    #profile-product-section {
+        width: 100%;
+        font-size: .6em;
+    }
+
+    .slid-up {
+        font-size: 3vw;
+        width: 80%;
+    }
+
+    #profile-details-edit {
+        flex-wrap: unset;
+        flex-direction: column;
+    }
+
+    #profile-dp {
+        width: 7em;
+        height: 7em;
+    }
+
+    #profile-dashboard #profile-side-bar div {
+        width: 30vw;
+    }
+
+    #profile-dashboard #profile-side-bar div button {
+        width: 75%;
+        font-size: .6em;
+    }
+
+    #profile-details-edit {
+        padding: 0em 30px;
+    }
+
+    #order-cart-products-section {
+        padding: 2em 0em;
+    }
+
+    .profile-orders-cart .profile-orders-cart-innerchild>* {
+        margin: 0;
+    }
+
+    .profile-orders-cart button {
+        padding: 2px;
+        border-radius: 1px;
+    }
+
+    #slid-up-child {
+        width: 80%;
+        font-size: .6em;
+    }
+
+    #slid-up-child form input,
+    #slid-up-child form button {
+        font-size: .6em;
+        padding: 5px;
+        border-radius: 1px;
+    }
+
+    #slid-up-details>* {
+        margin: 5px;
+    }
+
+    #slid-up-child img {
+        width: 30vw;
+    }
+
+    #slid-up-details form select {
+        width: inherit;
+        margin: 0;
+        height: 3em;
+        padding: 0;
+    }
+
+    #filter-products {
+        padding: 20px 5px !important;
+    }
+}

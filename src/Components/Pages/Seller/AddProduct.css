@@ -1,0 +1,109 @@
+/* Adding Products */
+
+.adding-products {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f3f3;
+    position: relative;
+}
+
+.adding-products .adding-products-heading {
+    width: 140em;
+    height: 85%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-bottom-right-radius: 40px;
+    z-index: 4;
+}
+
+.adding-products .adding-products-heading img,
+.adding-products .adding-products-heading .blur-hash {
+    object-fit: cover;
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    border-bottom-right-radius: 40px !important;
+}
+
+.adding-products h1 {
+    font-size: 4em;
+}
+
+.adding-products h1,
+.adding-products p,
+.adding-form {
+    margin: 10px;
+    color: white;
+    z-index: 1;
+}
+
+.adding-form {
+    border-radius: 10px;
+    margin: auto;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 3em 4em 0em;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.adding-form input {
+    background: rgb(231, 231, 231);
+    border: 0;
+    padding: 10px 0px;
+    margin: 15px;
+    border-radius: 2px;
+}
+
+.adding-form button {
+    padding: 10px 5em;
+    background-color: black;
+}
+
+.file-input {
+    width: 13.5em;
+}
+
+@media screen and (max-width:800px) {
+    .adding-products {
+        flex-direction: column;
+        padding: 7em 0em;
+        height: unset;
+        gap: 3em;
+    }
+
+    .adding-products .adding-products-heading {
+        width: 100%;
+        position: unset;
+    }
+
+    .adding-form {
+        z-index: 5;
+        padding: 10px;
+        margin: auto;
+        width: fit-content;
+    }
+
+    .file-input {
+        width: 14em;
+    }
+
+    .adding-form button {
+        width: -webkit-fill-available;
+        margin: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
