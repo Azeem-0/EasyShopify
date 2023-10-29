@@ -13,7 +13,7 @@ function Filter(props) {
   );
 }
 function Price(props) {
-  const { value, name, filter } = props;
+  const { name, filter } = props;
   return (
     <select className="price-select" name={name} onChange={filter}>
       <option name={name} value="head">

@@ -1,27 +1,3 @@
-// import { FaInstagramSquare } from "react-icons/fa";
-// import {BsLinkedin} from "react-icons/bs";
-// import {AiFillFacebook,AiFillTwitterSquare} from "react-icons/ai";
-// import "./Footer.css";
-// const Footer = ()=>{
-//     return <div className="footer">
-//         <div className="footer-1"><h1>MILLENNIAL MART</h1></div>
-//         <div className="footer-2">
-//             <p>azeemshaik025@gmail.com</p>
-//             <div></div>
-//             <p>7995772042</p>
-//         </div>
-//         <h3>© MillennialMart 2023. All rights reserved.</h3>
-//         <div className="footer-3">
-//             <ul>
-//                 <li><FaInstagramSquare /></li>
-//                 <li><BsLinkedin /></li>
-//                 <li><AiFillFacebook /></li>
-//                 <li><AiFillTwitterSquare /></li>
-//             </ul>
-//         </div>
-//     </div>
-// }
-// export default Footer;
 import React from "react";
 import { FaInstagramSquare, FaLinkedin } from "react-icons/fa";
 import { AiFillFacebook, AiFillTwitterSquare } from "react-icons/ai";
@@ -37,9 +13,13 @@ const SocialIcons = () => {
 }
 function Footer() {
     const navigate = useNavigate();
+    const goTop = () => {
+        window.scrollTo(0, 0);
+        navigate("/");
+    }
     return <div id="footer-section">
         <div id="footer-description">
-            <h3 onClick={()=>{navigate("/")}}>EasyShopify</h3>
+            <h3 onClick={goTop}>EasyShopify</h3>
             <div className="footer-1">
                 <p>azeemshaik025@gmail.com</p>
                 <div></div>
