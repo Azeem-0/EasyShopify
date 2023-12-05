@@ -53,6 +53,8 @@ const ToppicksHead = (props) => {
     return <Carousel
         additionalTransfrom={0}
         arrows
+        autoPlay
+        autoPlaySpeed={5000}
         centerMode={true}
         className=""
         containerClass="container-with-dots"
@@ -78,7 +80,7 @@ const ToppicksHead = (props) => {
         swipeable
     >
         {topPicks.map((ele, ind) => {
-            return <div>
+            return <div key={ind}>
                 <Toppicks key={ind} heading={ele.heading} image={ele.img} />
             </div>
         })}
