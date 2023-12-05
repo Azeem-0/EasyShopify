@@ -30,10 +30,6 @@ export const summerData = [
         "heading": "Shirt (Half Sleeves)"
     },
     {
-        "img": image2,
-        "heading": "Shorts Men"
-    },
-    {
         "img": image3,
         "heading": "Gown For Women"
     },

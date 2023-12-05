@@ -9,7 +9,7 @@
 }
 
 #dashboard>* {
-    padding: 1.5em 0em;
+    padding: 2.5em 0em;
 }
 
 .head-background {
@@ -39,6 +39,7 @@
     color: white;
     text-align: center;
 }
+
 
 .home-heading div h1 {
     font-size: 3.5em;

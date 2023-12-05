@@ -2,7 +2,7 @@ import image1 from '../../Images/electronics1.webp';
 import image2 from '../../Images/electronics2.webp';
 import image3 from '../../Images/electronics3.webp';
 import image4 from '../../Images/electronics4.webp';
-import image5 from '../../Images/electronics1.webp';
+import image5 from '../../Images/electronics5.webp';
 
 export const electronicData = [
     {
@@ -36,10 +36,6 @@ export const electronicData = [
     {
         "img": image3,
         "heading": "Acer Laptop"
-    },
-    {
-        "img": image4,
-        "heading": "Keyboard and mouse"
     },
     {
         "img": image5,

@@ -41,8 +41,4 @@ export const winterData = [
         "img": image4,
         "heading": "Sweater (Women)"
     },
-    {
-        "img": image5,
-        "heading": "Kurta (Women)"
-    }
 ]

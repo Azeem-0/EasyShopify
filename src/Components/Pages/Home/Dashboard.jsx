@@ -2,6 +2,8 @@ import { React, useState, useEffect, useContext, useNavigate, AwesomeSlider, wit
 import 'react-awesome-slider/dist/styles.css';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import './Dashboard.css';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 
@@ -31,14 +33,14 @@ const ToppicksHead = (props) => {
         </div >
         <div>
             <div className="top-picks-cards">
-                {topPicks.slice(4, 7).map((ele, ind) => {
+                {topPicks.slice(3, 6).map((ele, ind) => {
                     return <Toppicks key={ind} heading={ele.heading} image={ele.img} />
                 })}
             </div>
         </div>
         <div>
             <div className="top-picks-cards">
-                {topPicks.slice(8, 11).map((ele, ind) => {
+                {topPicks.slice(6, 10).map((ele, ind) => {
                     return <Toppicks key={ind} heading={ele.heading} image={ele.img} />
                 })}
             </div>
@@ -52,6 +54,13 @@ const ToppicksHead = (props) => {
 
 function Dashboard() {
     const [screen, setScreen] = useState(false);
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
+    const headingStylings = {
+        transform: isInView ? "none" : "translateY(50px)",
+        opacity: isInView ? 1 : 0,
+        transition: "all 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+    }
     useEffect(() => {
         const screenWidth = window.innerWidth;
         if (screenWidth < 1000) {
@@ -75,12 +84,23 @@ function Dashboard() {
                 </div>
             </Carousel>
             <div className="home-heading">
-                <div>
+                <motion.div
+                    ref={ref}
+                    style={headingStylings}
+                >
                     <h1>Fashion, Tech, Lifestyle</h1>
                     <h1 style={{ backgroundColor: '#ffb8b8', display: 'inline' }}>All in One Place</h1>
-                </div>
-                <p>Your Ultimate Shopping Destination.</p>
-                <a href="#top-picks">Shop Now</a>
+                </motion.div>
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1 }}
+                >Your Ultimate Shopping Destination.</motion.p>
+                <motion.a
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5, ease: [0.17, 0.67, 0.83, 0.67] }}
+                    href="#top-picks">Shop Now</motion.a>
             </div>
         </div>
         <div id="top-picks">
@@ -134,7 +154,7 @@ function Dashboard() {
             </div>
         </div>
         <Footer />
-    </div>
+    </div >
 }
 
 export default Dashboard;

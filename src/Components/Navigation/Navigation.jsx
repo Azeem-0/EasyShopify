@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import miniNavBar from "../../assests/mini-navigation.json";
 import { RxCross1 } from "react-icons/rx";
 import Lottie from "lottie-react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import TokenValidity from "../Authentication/TokenValidity";
 import { sContext } from "../ContextApi/SearchBarContext";
 import Logo from "./Logo";
@@ -57,6 +57,10 @@ const MiniNavigation = (props) => {
 
 
 const MaxiNavigation = (props) => {
+    const ref = useRef(null);
+    const isInView = useInView(ref, {
+        once: true
+    })
     const navigate = useNavigate();
     const { loggedIn, changeComponent, showMiniNavBar } = props;
     const { pathname } = useLocation();
@@ -64,7 +68,15 @@ const MaxiNavigation = (props) => {
         const { name } = e.target;
         navigate(name);
     }
-    return <div className="one-navigation">
+    return <motion.div
+        ref={ref}
+        className="one-navigation"
+        style={{
+            transform: isInView ? "translateY(0)" : "translateY(-50px)",
+            opacity: isInView ? 1 : 0,
+            transition: "all 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 0.3s"
+        }}
+    >
         <div>
             <button className={pathname === '/' ? 'current' : null} name="/" onClick={changePage}>Home</button>
             {loggedIn && <button className={pathname === '/profile' ? 'current' : null} name="/profile" onClick={changePage}>Profile</button>}
@@ -76,7 +88,7 @@ const MaxiNavigation = (props) => {
             <SearchBar showMiniNavBar={showMiniNavBar} />
             <button name="log" className="log-button" onClick={changeComponent}>{loggedIn ? "Log Out" : "Log In"}</button>
         </div>
-    </div>
+    </motion.div>
 }
 
 

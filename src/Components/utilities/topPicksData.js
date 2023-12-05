@@ -3,7 +3,6 @@ import nightMen from '../../Images/home3.png';
 import saree from '../../Images/home2.png';
 import shoes from '../../Images/home4.png';
 import sunglasses from '../../Images/home5.png';
-import sandals from '../../Images/home6.png';
 import watches from '../../Images/home7.png';
 import nightWomen from "../../Images/home8.png";
 import kids from "../../Images/home9.png";
@@ -28,10 +27,6 @@ const data = [
     {
         "img": nightWomen,
         "heading": "Nightware Women"
-    },
-    {
-        "img": sandals,
-        "heading": "Sandals"
     },
     {
         "img": sunglasses,
