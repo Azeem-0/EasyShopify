@@ -1,20 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import AwesomeSlider from 'react-awesome-slider';
-import withAutoplay from 'react-awesome-slider/dist/autoplay';
+import { React, useState, useEffect, useContext, useNavigate, AwesomeSlider, withAutoplay, Footer, pData, image1, image2, image3, image4, image5, image6, image7, ImageComponent, Carousel, sContext, summerData, winterData, electronicData } from './DashboardImports';
 import 'react-awesome-slider/dist/styles.css';
-import Footer from "../Footer/Footer";
-import pData from "../../../Components/utilities/topPicksData";
-import image1 from "../../../Images/Dashboard1.jpg";
-import image2 from "../../../Images/Dashboard2.jpg";
-import image3 from "../../../Images/Dashboard3.jpg";
-import image4 from "../../../Images/Dashboard4.jpg";
-import image5 from "../../../Images/Dashboard5.jpg";
-import ImageComponent from "../../utilities/ImageComponent";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
 import './Dashboard.css';
-import { sContext } from "../../ContextApi/SearchBarContext";
 
 const AutoplaySlider = withAutoplay(AwesomeSlider);
 
@@ -34,7 +21,7 @@ function Toppicks(props) {
 }
 const ToppicksHead = (props) => {
     const { topPicks, screen } = props;
-    return screen ? <AutoplaySlider play={true} interval={5000}>
+    return screen ? <AutoplaySlider>
         < div >
             <div className="top-picks-cards">
                 {topPicks.slice(0, 3).map((ele, ind) => {
@@ -76,7 +63,7 @@ function Dashboard() {
     }, []);
     return <div id="dashboard">
         <div className="head-background">
-            <Carousel autoPlay={true} infiniteLoop={true} interval={2000}>
+            <Carousel autoPlay={true} infiniteLoop={true} interval={10000}>
                 <div>
                     <ImageComponent src={image1} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' />
                 </div>
@@ -100,8 +87,8 @@ function Dashboard() {
             <h1>TOP PICKS!</h1>
             <ToppicksHead screen={screen} topPicks={pData} />
         </div>
-        <div id="new-arrivals">
-            <div id="new-arrivals-head">
+        <div id="dashboard-dynamics">
+            <div id="dashboard-dynamics-head">
                 <ImageComponent src={image4} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' />
                 <div>
                     <h1>New Arrivals</h1>
@@ -110,8 +97,8 @@ function Dashboard() {
             </div>
             <ToppicksHead screen={screen} topPicks={pData} />
         </div>
-        <div id="summer-sales">
-            <div id="summer-sales-head">
+        <div id="dashboard-dynamics">
+            <div id="dashboard-dynamics-head">
                 <ImageComponent src={image5} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' />
                 <div>
                     <h1>Summer Sales</h1>
@@ -119,7 +106,31 @@ function Dashboard() {
                 </div>
             </div>
             <div id="top-picks">
-                <ToppicksHead screen={screen} topPicks={pData} />
+                <ToppicksHead screen={screen} topPicks={summerData} />
+            </div>
+        </div>
+        <div id="dashboard-dynamics">
+            <div id="dashboard-dynamics-head">
+                <ImageComponent src={image6} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' />
+                <div>
+                    <h1>Winter Sales</h1>
+                    <p>Save upto 50% on Winter Styles,Limited Offer.</p>
+                </div>
+            </div>
+            <div id="top-picks">
+                <ToppicksHead screen={screen} topPicks={winterData} />
+            </div>
+        </div>
+        <div id="dashboard-dynamics">
+            <div id="dashboard-dynamics-head">
+                <ImageComponent src={image7} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' />
+                <div>
+                    <h1>Electronics</h1>
+                    <p>Save upto 50% on Electronics,Limited Offer.</p>
+                </div>
+            </div>
+            <div id="top-picks">
+                <ToppicksHead screen={screen} topPicks={electronicData} />
             </div>
         </div>
         <Footer />

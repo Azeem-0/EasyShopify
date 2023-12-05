@@ -16,9 +16,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import ProductsContext from "./Components/ContextApi/ProductsContext";
 function App() {
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
   useEffect(() => {
-    setLoader(true);
+    setLoader(false);
     setTimeout(() => {
       setLoader(false);
     }, 3000);

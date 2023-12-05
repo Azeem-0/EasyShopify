@@ -11,54 +11,45 @@ import jeans from "../../Images/home10.png";
 const data = [
     {
         "img": kurta,
-        "heading": "Kurta",
-        "button": "Explore"
+        "heading": "Kurta"
     },
     {
         "img": nightMen,
-        "heading": "Nightware Men",
-        "button": "Explore"
+        "heading": "Nightware Men"
     },
     {
         "img": saree,
-        "heading": "Saree",
-        "button": "Explore"
+        "heading": "Saree"
     },
     {
         "img": shoes,
-        "heading": "Shoe",
-        "button": "Explore"
+        "heading": "Shoe"
     },
     {
         "img": nightWomen,
-        "heading": "Nightware Women",
-        "button": "Explore"
+        "heading": "Nightware Women"
     },
     {
         "img": sandals,
-        "heading": "Sandals",
-        "button": "Explore"
+        "heading": "Sandals"
     },
     {
         "img": sunglasses,
-        "heading": "Sun Glasses",
-        "button": "Explore"
+        "heading": "Sun Glasses"
     },
     {
         "img": watches,
-        "heading": "Watches",
-        "button": "Explore"
+        "heading": "Watches"
     },
     {
         "img": kids,
-        "heading": "Kids Section",
-        "button": "Explore"
+        "heading": "Kids Section"
     },
     {
         "img": jeans,
-        "heading": "Jeans",
-        "button": "Explore"
+        "heading": "Jeans"
 
     }
 ]
+
 export default data;
