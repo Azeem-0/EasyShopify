@@ -54,7 +54,7 @@
     font-weight: lighter;
 }
 
-.home-heading a {
+.home-heading button {
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
@@ -151,6 +151,14 @@
 
 .awssld__timer--run {
     background-color: transparent;
+}
+
+.react-multi-carousel-item {
+    width: fit-content !important;
+}
+
+.react-multi-carousel-list {
+    padding: 3em 0em 0em;
 }
 
 /* TOP PICKS CSS */
@@ -273,7 +281,7 @@
         height: 43em;
     }
 
-    .home-heading a {
+    .home-heading button {
         font-size: 0.7em;
         padding: 5px 15px;
         font-weight: lighter;

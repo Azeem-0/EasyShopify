@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import AwesomeSlider from 'react-awesome-slider';
-import withAutoplay from 'react-awesome-slider/dist/autoplay';
 import Footer from "../Footer/Footer";
 import pData from "../../../Components/utilities/topPicksData";
 import { summerData } from "../../utilities/summerPicks";
@@ -15,7 +13,7 @@ import image5 from "../../../Images/Dashboard5.jpg";
 import image6 from '../../../Images/Dashboard6.jpg';
 import image7 from '../../../Images/Dashboard7.jpg';
 import ImageComponent from "../../utilities/ImageComponent";
-import { Carousel } from 'react-responsive-carousel';
+import { Carousel as Carousel2 } from 'react-responsive-carousel';
 import { sContext } from "../../ContextApi/SearchBarContext";
 
-export { React, useState, useEffect, useContext, useNavigate, AwesomeSlider, withAutoplay, Footer, pData, image1, image2, image3, image4, image5, image6, image7, ImageComponent, Carousel, sContext, summerData, winterData,electronicData };
+export { React, useState, useEffect, useContext, useNavigate, Footer, pData, image1, image2, image3, image4, image5, image6, image7, ImageComponent, Carousel2, sContext, summerData, winterData, electronicData };
