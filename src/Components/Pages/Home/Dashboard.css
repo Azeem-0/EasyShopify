@@ -27,6 +27,9 @@
     left: 0;
     width: 100%;
     z-index: -1;
+    object-fit: cover;
+    height: 100%;
+    object-position: center;
 }
 
 .home-heading {
@@ -66,99 +69,38 @@
 
 /* CARAOUSEL STYLING CUSTOM DESIGN FOR CAROUSEL */
 
-.carousel-root {
-    position: absolute;
-    width: 100%;
+.head-background .swiper-horizontal {
+    position: absolute !important;
     height: 100%;
-    top: 0;
-}
-
-.carousel .slide .legend {
-    position: relative;
-    margin: 0;
-    left: 0;
-    bottom: 0;
-}
-
-.slide div {
-    display: contents;
-}
-
-.carousel .thumbs-wrapper {
-    display: none;
-}
-
-.carousel.carousel-slider {
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-
-.legend {
-    color: black;
-    background: red;
-    z-index: 999;
-}
-
-.carousel .slider-wrapper.axis-horizontal .slider .slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.carousel.carousel-slider .control-arrow {
-    display: none;
-}
-
-.carousel .slider-wrapper {
     width: 100%;
 }
 
-.carousel.carousel-slider .control-arrow {
-    top: 50%;
-    position: absolute;
-    height: 2em;
-    color: black;
-    background: #FFC915;
-    opacity: .7;
+#top-picks .swiper-pagination,
+.dashboard-dynamics .swiper-pagination {
+    display: none !important;
 }
 
-.carousel.carousel-slider .control-arrow:hover {
-    transform: translate(0em);
-    background-color: #FFC915;
-}
-
-.carousel .control-next.control-arrow:before {
-    border-left: 8px solid black
-}
-
-.carousel .control-prev.control-arrow:before {
-    border-right: 8px solid black;
-}
-
-.carousel .slide img {
-    height: 100%;
-    object-fit: cover;
-}
-
-.carousel .slider-wrapper.axis-horizontal .slider .slide {
-    height: 100svh;
-}
-
-.carousel .carousel-status {
-    display: none;
-}
-
-.awssld__timer--run {
-    background-color: transparent;
-}
-
-.react-multi-carousel-item {
-    width: fit-content !important;
-}
-
-.react-multi-carousel-list {
+#top-picks .swiper,
+.dashboard-dynamics .swiper {
     padding: 3em 0em 0em;
+}
+
+.swiper-button-next,
+.swiper-rtl .swiper-button-prev,
+.swiper-button-prev,
+.swiper-button-next {
+    color: black !important;
+}
+
+.swiper-backface-hidden .swiper-slide {
+    display: flex !important;
+    width: 100% !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: white !important;
 }
 
 /* TOP PICKS CSS */
@@ -179,6 +121,8 @@
     position: relative;
     display: flex;
     width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 .top-picks-card {
@@ -207,30 +151,14 @@
 
 }
 
-/*Top-picks CONTENT SLIDER */
-.awssld__content {
-    margin-top: 2em;
-    height: fit-content;
-    background-color: transparent;
-    justify-content: center;
-}
-
-.awssld__container {
-    padding-bottom: 25em;
-}
-
-.awssld__bullets {
-    display: none;
-}
-
 /* NEW-ARRIVALS STYLING */
-#dashboard-dynamics {
+.dashboard-dynamics {
     width: 100%;
     height: 100%;
     position: relative;
 }
 
-#dashboard-dynamics-head {
+.dashboard-dynamics-head {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -241,7 +169,7 @@
     position: relative;
 }
 
-#dashboard-dynamics-head img {
+.dashboard-dynamics-head img {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -251,16 +179,16 @@
     z-index: -1;
 }
 
-#dashboard-dynamics-head .blur-hash {
+.dashboard-dynamics-head .blur-hash {
     position: absolute !important;
     z-index: -1;
 }
 
-#dashboard-dynamics-head div h1 {
+.dashboard-dynamics-head div h1 {
     font-size: 3.5em;
 }
 
-#dashboard-dynamics-head div p {
+.dashboard-dynamics-head div p {
     background-color: #ffb8b8;
 }
 

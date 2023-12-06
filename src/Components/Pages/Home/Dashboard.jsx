@@ -1,38 +1,12 @@
-import { React, useContext, useNavigate, Footer, pData, image1, image2, image3, image4, image5, image6, image7, ImageComponent, sContext, summerData, winterData, electronicData, Carousel2 } from './DashboardImports';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { React, useContext, useNavigate, Footer, pData, image1, image2, image3, image4, image5, image6, image7, ImageComponent, sContext, summerData, winterData, electronicData } from './DashboardImports';
 import './Dashboard.css';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-
-
-const responsive = {
-    desktop: {
-        breakpoint: {
-            max: 3000,
-            min: 1024
-        },
-        items: 3,
-        partialVisibilityGutter: 40
-    },
-    mobile: {
-        breakpoint: {
-            max: 464,
-            min: 0
-        },
-        items: 1,
-        partialVisibilityGutter: 30
-    },
-    tablet: {
-        breakpoint: {
-            max: 1024,
-            min: 464
-        },
-        items: 1,
-        partialVisibilityGutter: 30
-    }
-};
+import { useEffect, useRef, useState } from 'react';
 
 function Toppicks(props) {
     const { setSearch } = useContext(sContext);
@@ -49,65 +23,98 @@ function Toppicks(props) {
     </div>
 }
 const ToppicksHead = (props) => {
-    const { topPicks } = props;
-    return <Carousel
-        additionalTransfrom={0}
-        arrows
-        autoPlay
-        autoPlaySpeed={5000}
-        centerMode={true}
-        className=""
-        containerClass="container-with-dots"
-        dotListClass=""
-        draggable
-        focusOnSelect={false}
-        infinite
-        itemClass=""
-        keyBoardControl
-        minimumTouchDrag={80}
-        pauseOnHover
-        renderArrowsWhenDisabled={false}
-        renderButtonGroupOutside={false}
-        renderDotsOutside={false}
-        responsive={responsive}
-        rewind={false}
-        rewindWithAnimation={false}
-        rtl={false}
-        shouldResetAutoplay
-        showDots={false}
-        sliderClass=""
-        slidesToSlide={1}
-        swipeable
-    >
-        {topPicks.map((ele, ind) => {
-            return <div key={ind}>
-                <Toppicks key={ind} heading={ele.heading} image={ele.img} />
+    const { topPicks, screen } = props;
+    return !screen ? <Swiper
+        slidesPerView={1}
+        spaceBetween={30}
+        loop={true}
+        pagination={{
+            clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper"
+        autoplay={{
+            delay: 5000,
+            disableOnInteraction: true,
+        }}>
+        <SwiperSlide>
+            <div className="top-picks-cards">
+                {topPicks.slice(0, 3).map((ele, ind) => {
+                    return <Toppicks key={ind} heading={ele.heading} image={ele.img} />
+                })}
             </div>
-        })}
-    </Carousel>
+        </SwiperSlide >
+        <SwiperSlide>
+            <div className="top-picks-cards">
+                {topPicks.slice(3, 6).map((ele, ind) => {
+                    return <Toppicks key={ind} heading={ele.heading} image={ele.img} />
+                })}
+            </div>
+        </SwiperSlide>
+        <SwiperSlide>
+            <div className="top-picks-cards">
+                {topPicks.slice(6, 10).map((ele, ind) => {
+                    return <Toppicks key={ind} heading={ele.heading} image={ele.img} />
+                })}
+            </div>
+        </SwiperSlide>
+    </Swiper > :
+        <Swiper
+            slidesPerView={1}
+            spaceBetween={30}
+            loop={true}
+            pagination={{
+                clickable: true,
+            }}
+            navigation={true}
+            modules={[Autoplay, Pagination, Navigation]}
+            className="mySwiper"
+            autoplay={{
+                delay: 5000,
+                disableOnInteraction: true,
+            }}>
+            {topPicks.map((ele, ind) => {
+                return <SwiperSlide key={ind}><Toppicks key={ind} heading={ele.heading} image={ele.img} /></SwiperSlide>
+            })}
+        </Swiper>
 }
 
 function Dashboard() {
     const ref = useRef(null);
+    const [screen, setScreen] = useState(false);
     const isInView = useInView(ref, { once: true });
     const headingStylings = {
         transform: isInView ? "none" : "translateY(50px)",
         opacity: isInView ? 1 : 0,
         transition: "all 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
     }
+    useEffect(() => {
+        const windowWidth = window.innerWidth;
+        if (windowWidth < 1000) {
+            setScreen(true);
+        }
+    })
     return <div id="dashboard">
         <div className="head-background">
-            <Carousel2 autoPlay={true} infiniteLoop={true} interval={10000}>
-                <div>
-                    <ImageComponent src={image1} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' />
-                </div>
-                <div>
-                    <ImageComponent src={image2} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' />
-                </div>
-                <div>
-                    <ImageComponent src={image3} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' />
-                </div>
-            </Carousel2>
+            <Swiper
+                slidesPerView={1}
+                spaceBetween={30}
+                loop={true}
+                pagination={{
+                    clickable: true,
+                }}
+                modules={[Autoplay, Pagination, Navigation]}
+                className="mySwiper"
+                autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: true,
+                }}
+            >
+                <SwiperSlide><ImageComponent src={image1} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' /></SwiperSlide>
+                <SwiperSlide><ImageComponent src={image2} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' /></SwiperSlide>
+                <SwiperSlide><ImageComponent src={image3} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' /></SwiperSlide>
+            </Swiper>
             <div className="home-heading">
                 <motion.div
                     ref={ref}
@@ -126,27 +133,27 @@ function Dashboard() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.5, ease: [0.17, 0.67, 0.83, 0.67] }}
                     onClick={() => {
-                        window.scrollTo(600, 600);
+                        window.scrollTo(500, 500);
                     }}
                 >Shop Now</motion.button>
             </div>
         </div>
         <div id="top-picks">
             <h1>TOP PICKS!</h1>
-            <ToppicksHead topPicks={pData} />
+            <ToppicksHead topPicks={pData} screen={screen} />
         </div>
-        <div id="dashboard-dynamics">
-            <div id="dashboard-dynamics-head">
+        <div className="dashboard-dynamics">
+            <div className="dashboard-dynamics-head">
                 <ImageComponent src={image4} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' />
                 <div>
                     <h1>New Arrivals</h1>
                     <p>Explore our latest collection of new arrivals.</p>
                 </div>
             </div>
-            <ToppicksHead topPicks={pData} />
+            <ToppicksHead topPicks={pData} screen={screen} />
         </div>
-        <div id="dashboard-dynamics">
-            <div id="dashboard-dynamics-head">
+        <div className="dashboard-dynamics">
+            <div className="dashboard-dynamics-head">
                 <ImageComponent src={image5} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' />
                 <div>
                     <h1>Summer Sales</h1>
@@ -154,11 +161,11 @@ function Dashboard() {
                 </div>
             </div>
             <div id="top-picks">
-                <ToppicksHead topPicks={summerData} />
+                <ToppicksHead topPicks={summerData} screen={screen} />
             </div>
         </div>
-        <div id="dashboard-dynamics">
-            <div id="dashboard-dynamics-head">
+        <div className="dashboard-dynamics">
+            <div className="dashboard-dynamics-head">
                 <ImageComponent src={image6} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' />
                 <div>
                     <h1>Winter Sales</h1>
@@ -166,11 +173,11 @@ function Dashboard() {
                 </div>
             </div>
             <div id="top-picks">
-                <ToppicksHead topPicks={winterData} />
+                <ToppicksHead topPicks={winterData} screen={screen} />
             </div>
         </div>
-        <div id="dashboard-dynamics">
-            <div id="dashboard-dynamics-head">
+        <div className="dashboard-dynamics">
+            <div className="dashboard-dynamics-head">
                 <ImageComponent src={image7} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' />
                 <div>
                     <h1>Electronics</h1>
@@ -178,7 +185,7 @@ function Dashboard() {
                 </div>
             </div>
             <div id="top-picks">
-                <ToppicksHead topPicks={electronicData} />
+                <ToppicksHead topPicks={electronicData} screen={screen} />
             </div>
         </div>
         <Footer />

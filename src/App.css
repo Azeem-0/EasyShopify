@@ -11,6 +11,10 @@
     overflow: hidden;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .loader-lottie {
     height: 100vh;
     display: flex;
