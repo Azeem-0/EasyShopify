@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import Authentication from "../src/Components/Authentication/Authentication";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navigation from "./Components/Navigation/Navigation";
-import Lottie from "lottie-react";
-import preLoader from "./assests/preLoader2.json";
 import Dashboard from "./Components/Pages/Home/Dashboard";
 import Profile from "./Components/Pages/Profile/Profile";
 import AddProduct from "./Components/Pages/Seller/AddProduct";
@@ -15,34 +13,17 @@ import NotificationContext from "./Components/ContextApi/NotificationContext";
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import ProductsContext from "./Components/ContextApi/ProductsContext";
+import PreLoader from "./Components/utilities/PreLoader";
 function App() {
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState(true);
   useEffect(() => {
-    setLoader(false);
     setTimeout(() => {
       setLoader(false);
-    }, 3000);
-    const handleScroll = () => {
-      const scrollEffectElement = document.querySelector('.navigation');
-      if (scrollEffectElement) {
-        const scrollPosition = window.scrollY;
-        if (scrollPosition > 0) {
-          scrollEffectElement.classList.add('navi-background');
-        }
-
-        else {
-          scrollEffectElement.classList.remove('navi-background');
-        }
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    }, 1500);
   }, []);
   return <div className="App">
     <NotificationContext>
-      {loader ? <Lottie className="loader-lottie" animationData={preLoader} loop={true} /> :
+      {loader ? <PreLoader /> :
         <ProductsContext>
           <BrowserRouter>
             <SearchBarContext>

@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import AuthUtility from "./AuthUtility";
-import Lottie from "lottie-react";
-import preLoader from "../../assests/preLoader2.json";
+import PreLoader from '../utilities/PreLoader';
 import { ToastContainer } from 'react-toastify';
 import axios from "axios";
 import "./Authentication.css";
@@ -112,42 +111,38 @@ function Authentication() {
   return (
     <div id="authentication-section">
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} theme="dark" />
-      {loader ? (
-        <Lottie
-          className="loader-lottie"
-          animationData={preLoader}
-          loop={true}
-        />
-      ) : (
-        <React.Fragment>
-          <div>
-            {changeAuth ? (
-              <AuthUtility
-                functionality={makeAuthenticate}
-                change={changeInput}
-                changeAuth={() => {
-                  setChangeAuth(!changeAuth);
-                }}
-                type="LOGIN"
-                to="REGISTER"
-                title="SIGN IN"
-              />
-            ) : (
-              <AuthUtility
-                functionality={makeAuthenticate}
-                change={changeInput}
-                changeAuth={() => {
-                  setChangeAuth(!changeAuth);
-                }}
-                type="REGISTER"
-                spinner={spinner}
-                to="LOGIN"
-                title="SIGN UP"
-              />
-            )}
-          </div>
-        </React.Fragment>
-      )}
+      <React.Fragment>
+        <div>
+          {
+            loader ? <PreLoader /> :
+              changeAuth ? (
+                <AuthUtility
+                  functionality={makeAuthenticate}
+                  change={changeInput}
+                  changeAuth={() => {
+                    setChangeAuth(!changeAuth);
+                  }}
+                  type="LOGIN"
+                  loader={loader}
+                  to="REGISTER"
+                  title="SIGN IN"
+                />
+              ) : (
+                <AuthUtility
+                  functionality={makeAuthenticate}
+                  change={changeInput}
+                  changeAuth={() => {
+                    setChangeAuth(!changeAuth);
+                  }}
+                  type="REGISTER"
+                  loader={loader}
+                  spinner={spinner}
+                  to="LOGIN"
+                  title="SIGN UP"
+                />
+              )}
+        </div>
+      </React.Fragment>
     </div>
   );
 }

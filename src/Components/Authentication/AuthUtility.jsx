@@ -5,11 +5,11 @@ import LoadingSpinner from "../../assests/imageSpinner.json";
 import 'react-phone-number-input/style.css';
 import React, { useState } from "react";
 const Login = (props) => {
-    const { functionality, type, change } = props;
+    const { functionality, type, change, loader } = props;
     return <form name={type} onSubmit={functionality}>
         <input name="email" type="email" placeholder="Enter Your Email" onChange={change} required></input>
         <input name='password' type="password" placeholder="Enter Your Password" onChange={change} required></input>
-        <button type="submit" name="auth">{type}</button>
+        <button type="submit" name="auth">{loader ? <Lottie className="image-spinner" animationData={LoadingSpinner} loop={true} /> : type}</button>
     </form>
 }
 const Register = (props) => {
