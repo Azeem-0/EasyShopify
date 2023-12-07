@@ -1,10 +1,11 @@
 import React from 'react'
 import faqs from "./FaqsData";
 import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion';
+import { motion } from 'framer-motion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 import "./Faqs.css";
 function Faqs() {
-  return <div id='faqs-section'>
+  return <motion.div id='faqs-section'>
     <div id='faqs'>
       <div id='faqs-heading'>
         <h1>FAQS</h1>
@@ -27,7 +28,7 @@ function Faqs() {
         </Accordion>
       </div>
     </div>
-  </div >
+  </motion.div >
 }
 
 export default Faqs

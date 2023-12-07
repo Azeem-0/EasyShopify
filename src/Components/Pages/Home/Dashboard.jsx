@@ -95,7 +95,12 @@ function Dashboard() {
             setScreen(true);
         }
     })
-    return <div id="dashboard">
+    return <motion.div
+        id="dashboard"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+    >
         <div className="head-background">
             <Swiper
                 slidesPerView={1}
@@ -189,7 +194,7 @@ function Dashboard() {
             </div>
         </div>
         <Footer />
-    </div >
+    </motion.div >
 }
 
 export default Dashboard;

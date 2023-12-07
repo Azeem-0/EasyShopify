@@ -6,6 +6,7 @@ import ProfileCover from "../../../Images/profileCover.jpg";
 import preLoader from '../../../assests/preLoader2.json'
 import { ToastContainer } from 'react-toastify';
 import UserDetails from "./UserDetails";
+import { motion } from 'framer-motion';
 import 'react-phone-number-input/style.css';
 import axios from "axios";
 import "./Profile.css";
@@ -174,7 +175,12 @@ function Profile() {
     });
   }, []);
   return (
-    <div id="profile-dashboard">
+    <motion.div
+      id="profile-dashboard"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       {spinner && <div className="overlay"></div>}
       {spinner && <Lottie className="profile-loader-lottie" animationData={preLoader} loop={true} />}
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} theme="dark" />
@@ -222,7 +228,7 @@ function Profile() {
           )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 export default Profile;

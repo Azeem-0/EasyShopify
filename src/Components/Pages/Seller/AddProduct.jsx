@@ -3,6 +3,7 @@ import seller from "../../../Images/seller.jpg";
 import Lottie from "lottie-react";
 import spinner from "../../../assests/imageSpinner.json";
 import axios from "axios";
+import { motion } from 'framer-motion';
 import { nContext } from "../../ContextApi/NotificationContext";
 import ImageComponent from "../../utilities/ImageComponent";
 import "./AddProduct.css";
@@ -69,7 +70,12 @@ function AddProduct() {
     });
   }
   return (
-    <div className="adding-products">
+    <motion.div
+      className="adding-products"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} theme="dark" />
       <div className="adding-products-heading" style={{ textAlign: "center" }}>
         <ImageComponent src={seller} blur="LXCjton$IVbH.TaeR*j[t-WWj[oL" />
@@ -120,7 +126,7 @@ function AddProduct() {
         <input className="file-input" type="file" onChange={postImage} required />
         <button type="submit">{loader ? <Lottie className="image-spinner" animationData={spinner} loop={true} /> : "Submit"}</button>
       </form>
-    </div>
+    </motion.div>
   );
 }
 

@@ -2,6 +2,7 @@ import ReactPaginate from "react-paginate";
 import { useState, useEffect, useContext } from "react";
 import { Filter } from "./Filter";
 import Product from "./Product";
+import { motion } from 'framer-motion';
 import "./Products.css";
 import { sContext } from "../../ContextApi/SearchBarContext";
 import { nContext } from "../../ContextApi/NotificationContext";
@@ -134,7 +135,11 @@ function Products() {
         })
     }, [search, products]);
 
-    return <div>
+    return <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+    >
         <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} theme="dark" />
         <div id="products-section">
             <div id="filter-products">
@@ -170,6 +175,6 @@ function Products() {
                 />
             </div>
         </div>
-    </div>
+    </motion.div>
 }
 export default Products;

@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Authentication from "../src/Components/Authentication/Authentication";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Navigation from "./Components/Navigation/Navigation";
-import Dashboard from "./Components/Pages/Home/Dashboard";
-import Profile from "./Components/Pages/Profile/Profile";
-import AddProduct from "./Components/Pages/Seller/AddProduct";
-import Products from "./Components/Pages/Products/Products";
-import Faqs from "./Components/Pages/Faqs/Faqs";
-import ProfileContext from "./Components/ContextApi/ProfileContext";
 import SearchBarContext from "./Components/ContextApi/SearchBarContext";
 import NotificationContext from "./Components/ContextApi/NotificationContext";
-import 'react-toastify/dist/ReactToastify.css';
-import './App.css';
 import ProductsContext from "./Components/ContextApi/ProductsContext";
 import PreLoader from "./Components/utilities/PreLoader";
+import AnimatePages from "./Components/utilities/AnimatePages";
+import 'react-toastify/dist/ReactToastify.css';
+import './App.css';
 function App() {
   const [loader, setLoader] = useState(true);
   useEffect(() => {
@@ -28,14 +22,7 @@ function App() {
           <BrowserRouter>
             <SearchBarContext>
               <Navigation />
-              <Routes>
-                <Route path="/" exact Component={Dashboard} />
-                <Route path="/auth" exact Component={Authentication} />
-                <Route path="/faqs" exact Component={Faqs} />
-                <Route path="/profile" exact element={<ProfileContext><Profile /></ProfileContext>} />
-                <Route path="/addproducts" exact Component={AddProduct} />
-                <Route path="/products" exact Component={Products} />
-              </Routes>
+              <AnimatePages />
             </SearchBarContext>
           </BrowserRouter>
         </ProductsContext>}

@@ -20,7 +20,7 @@ const Register = (props) => {
         <input name='password' type="password" placeholder="Enter Password" onChange={change} required></input>
         <PhoneInput className="PhoneInput" defaultCountry="IN" placeholder="Enter Number" onChange={change} />
         <input name="address" type="text" placeholder="Enter Address" onChange={change} required></input>
-        {/* <input name="image" placeholder="Choose profile" type="file" onChange={change}></input> */}
+        <input style={{ fontSize: '0.5em' }} name="image" placeholder="Choose profile" type="file" onChange={change}></input>
         <button name="auth" type="submit">{spinner ? <Lottie className="image-spinner" animationData={LoadingSpinner} loop={true} /> : type}</button>
     </form>
 }
