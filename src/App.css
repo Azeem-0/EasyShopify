@@ -63,11 +63,13 @@ button {
     cursor: pointer;
     border: 0;
     opacity: .9;
+    transition: .2s ease;
 }
 
 button:hover,
 a:hover {
-    scale: 1.05;
+    transition: .2s ease;
+    scale: 1.01;
     opacity: 1;
 }
 

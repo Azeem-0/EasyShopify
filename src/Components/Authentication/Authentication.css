@@ -7,6 +7,7 @@
     align-items: center;
     justify-content: center;
     background: #f7f7f7;
+    position: relative;
 }
 
 .authentication-utility {
@@ -19,6 +20,21 @@
     border-radius: 10px;
     margin-bottom: 10px;
     padding: 5px;
+}
+
+#or-section {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#or-section .underline {
+    height: 1px;
+    border: 0.1px solid rgb(60, 58, 58);
+    flex: 1 1;
+    margin: 0px 10px;
 }
 
 .auth-lottie {
@@ -38,6 +54,12 @@
     margin: 10px 0px;
 }
 
+.authentication-utility .authentication-form h1 {
+    font-size: 2em;
+    font-family: 'noto sans';
+    font-weight: 200;
+}
+
 .authentication-utility .authentication-form form button {
     padding: 8px;
     background-color: coral;
@@ -54,20 +76,96 @@
     margin: 5%;
 }
 
-.change-authentication button {
-    padding: 8px;
-    background-color: coral;
-    opacity: .8;
-    border-radius: 5px;
-    margin-left: 5px;
+.change-authentication {
+    font-family: 'poppins';
+    font-size: .9em;
 }
+
+.change-authentication button {
+    color: #FF8C61;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    opacity: .8;
+    margin-left: 5px;
+    border-bottom: 1px solid #FF8C61;
+    font-family: 'poppins';
+    font-size: .9em;
+}
+
+
+/* REGISTER FORM UNIQUE STYLING */
+#register-form {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row !important;
+    align-items: flex-start;
+    gap: 3em;
+}
+
+#register-form .register-child {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 13em;
+}
+
+#register-form span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .8em;
+    background: rgb(231, 231, 231);
+    padding: 6px 15px;
+}
+
+#register-form span button {
+    background: transparent;
+    width: fit-content;
+    height: 80%;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+#register-form span button img {
+    width: 2em;
+}
+
+
+/* OAUTH STYLING */
+#oauth-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.oauth-child {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 5px;
+    font-size: 2em;
+}
+
+.oauth-child img {
+    width: 20px;
+    cursor: pointer;
+}
+
 
 @media screen and (max-width:800px) {
     .authentication-utility .authentication-form>* {
-        padding: 3vw 10vw;
+        padding: 2vw 10vw;
     }
 
     .PhoneInput {
         width: inherit;
+    }
+
+    #register-form {
+        flex-direction: column !important;
+        gap: 0em;
     }
 }

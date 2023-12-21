@@ -6,6 +6,7 @@ import { ToastContainer } from 'react-toastify';
 import axios from "axios";
 import "./Authentication.css";
 import { nContext } from "../ContextApi/NotificationContext";
+import Oauth from "./Oauth";
 const Regex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32}$/;
 function Authentication() {
   const { notify } = useContext(nContext);
@@ -41,7 +42,6 @@ function Authentication() {
             })
               .then((res) => res.json())
               .then((data) => {
-                console.log(data.url.toString());
                 setAuthInfo((prevValue) => {
                   return { ...prevValue, profileUrl: data.url.toString() };
                 });
@@ -116,17 +116,19 @@ function Authentication() {
           {
             loader ? <PreLoader /> :
               changeAuth ? (
-                <AuthUtility
-                  functionality={makeAuthenticate}
-                  change={changeInput}
-                  changeAuth={() => {
-                    setChangeAuth(!changeAuth);
-                  }}
-                  type="LOGIN"
-                  loader={loader}
-                  to="REGISTER"
-                  title="SIGN IN"
-                />
+                <div>
+                  <AuthUtility
+                    functionality={makeAuthenticate}
+                    change={changeInput}
+                    changeAuth={() => {
+                      setChangeAuth(!changeAuth);
+                    }}
+                    type="LOGIN"
+                    loader={loader}
+                    to="Register"
+                    title="Login"
+                  />
+                </div>
               ) : (
                 <AuthUtility
                   functionality={makeAuthenticate}
@@ -137,8 +139,8 @@ function Authentication() {
                   type="REGISTER"
                   loader={loader}
                   spinner={spinner}
-                  to="LOGIN"
-                  title="SIGN UP"
+                  to="Login"
+                  title="Register"
                 />
               )}
         </div>
