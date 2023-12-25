@@ -1,14 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import seller from "../../../Images/seller.jpg";
 import Lottie from "lottie-react";
 import spinner from "../../../assests/imageSpinner.json";
 import axios from "axios";
 import { motion } from 'framer-motion';
 import { nContext } from "../../ContextApi/NotificationContext";
+import productPicture from '../../../Images/productPicture.png';
 import ImageComponent from "../../utilities/ImageComponent";
 import "./AddProduct.css";
 import { ToastContainer } from "react-toastify";
 function AddProduct() {
+  const fileRef = useRef(null);
+  const [fileChoosed, setFileChoosed] = useState('Choose Image');
   const { notify } = useContext(nContext);
   const [loader, setLoader] = useState(false);
   const [product, setProduct] = useState({
@@ -69,6 +72,10 @@ function AddProduct() {
       return { ...prevValue, [name]: value };
     });
   }
+  const handleFileClick = () => {
+    fileRef.current.click();
+    setFileChoosed('Image Selected');
+  }
   return (
     <motion.div
       className="adding-products"
@@ -123,7 +130,13 @@ function AddProduct() {
           onChange={change}
           required
         ></input>
-        <input className="file-input" type="file" onChange={postImage} required />
+        <input ref={fileRef} className="file-input" type="file" onChange={postImage} required />
+        <span id="image-input">
+          <button type="button" onClick={handleFileClick}>
+            <img src={productPicture} alt="productPicture" />
+          </button>
+          <p>{fileChoosed}</p>
+        </span>
         <button type="submit">{loader ? <Lottie className="image-spinner" animationData={spinner} loop={true} /> : "Submit"}</button>
       </form>
     </motion.div>

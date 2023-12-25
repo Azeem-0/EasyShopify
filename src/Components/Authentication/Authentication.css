@@ -116,7 +116,7 @@
     align-items: center;
     font-size: .8em;
     background: rgb(231, 231, 231);
-    padding: 6px 15px;
+    padding: 6px 15px 6px 8px;
 }
 
 #register-form span button {
@@ -129,6 +129,11 @@
 
 #register-form span button img {
     width: 2em;
+}
+
+.PhoneInput {
+    background: rgb(231, 231, 231);
+    padding-left: 15px;
 }
 
 

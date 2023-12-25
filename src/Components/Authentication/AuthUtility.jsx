@@ -30,16 +30,17 @@ const Register = (props) => {
             }
 
         }
-    }, [fileRef && fileRef.current && fileRef.current.value])
+    }, [fileRef && fileRef.current && fileRef.current.value]);
     const { functionality, type, change, spinner } = props;
     return <form id="register-form" name={type} onSubmit={functionality}>
         <div className="register-child">
             <input name="name" type="text" placeholder="Enter Name" onChange={change} required></input>
             <input name="email" type="email" placeholder="Enter Email" onChange={change} required></input>
             <input name='password' type="password" placeholder="Enter Password" onChange={change} required></input>
-            <PhoneInput className="PhoneInput" defaultCountry="IN" placeholder="Enter Number" onChange={change} />
+            <input name="confirm" type="password" placeholder="Confirm Password" onChange={change} required></input>
         </div>
         <div className="register-child">
+            <PhoneInput className="PhoneInput" defaultCountry="IN" placeholder="Enter Number" onChange={change} />
             <input name="address" type="text" placeholder="Enter Address" onChange={change} required></input>
             <span><button type="button" onClick={fileActivate}><img src={profileImage} alt="profile" /></button>{fileChoosed}</span>
             <input ref={fileRef} style={{ display: 'none' }} name="image" placeholder="Choose profile" type="file" onChange={change}></input>
@@ -66,13 +67,13 @@ function AuthUtility(props) {
             {type === 'REGISTER' ? <Register functionality={functionality} type={type} spinner={spinner} change={change} /> : <Login functionality={functionality} type={type} change={change} />}
             <div className="change-authentication">{type === "LOGIN" ? "New Here ? " : "Already Registered ?  "} <button onClick={changeAuth}>{to}</button>
             </div>
-            {type === "LOGIN" && <React.Fragment><div id="or-section">
+            {/* {type !== "LOGIN" && <React.Fragment><div id="or-section">
                 <div className="underline"></div>
                 <div>Or</div>
                 <div className="underline"></div>
             </div>
                 <Oauth />
-            </React.Fragment>}
+            </React.Fragment>} */}
         </div>
     </div>
 }

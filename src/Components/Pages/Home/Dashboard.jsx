@@ -126,7 +126,7 @@ function Dashboard() {
                     style={headingStylings}
                 >
                     <h1>Fashion, Tech, Lifestyle</h1>
-                    <h1 style={{ backgroundColor: '#ffb8b8', display: 'inline' }}>All in One Place</h1>
+                    <h1 style={{ backgroundColor: '#ffb8b8', padding: '0em 15px', display: 'inline' }}>All in One Place</h1>
                 </motion.div>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}

@@ -23,6 +23,7 @@ function Authentication() {
     phNumber: null,
     address: "",
     profileUrl: "",
+    confirm: ""
   });
   function changeInput(event) {
     try {
@@ -71,12 +72,18 @@ function Authentication() {
     var route;
     var passwordValidation = true;
     !changeAuth ? (route = "/auth/register") : (route = "/auth/login");
+    var passwordConfimation = true;
     if (route === "/auth/register") {
       passwordValidation = Regex.test(authInfo.password);
+      passwordConfimation = authInfo.password === authInfo.confirm;
     }
-    if (!passwordValidation) {
+    if (!passwordConfimation) {
+      notify("Passwords do not match.Please ensure they are the same.");
+    }
+    else if (!passwordValidation) {
       notify("Password must contain atleast one Special,Lowercase,Uppercase and Number");
-    } else {
+    }
+    else {
       setLoader(true);
       try {
         const response = await axios.post(

@@ -8,6 +8,7 @@
     align-items: center;
     background-color: #f3f3f3;
     position: relative;
+
 }
 
 .adding-products .adding-products-heading {
@@ -61,7 +62,7 @@
 .adding-form input {
     background: rgb(231, 231, 231);
     border: 0;
-    padding: 10px 0px;
+    padding: 10px 15px;
     margin: 15px;
     border-radius: 2px;
 }
@@ -69,11 +70,45 @@
 .adding-form button {
     padding: 10px 5em;
     background-color: black;
+    width: -webkit-fill-available;
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+
 .file-input {
-    width: 13.5em;
+    display: none;
 }
+
+#image-input {
+    display: flex;
+    align-items: center;
+    background: rgb(231, 231, 231);
+    padding: 3px 30px 3px 10px;
+    margin: 15px;
+    border-radius: 2px;
+    gap: 1em;
+}
+
+#image-input button {
+    width: fit-content;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+}
+
+#image-input button img {
+    width: 2em;
+}
+
+#image-input p {
+    color: black;
+    opacity: .5;
+    font-size: .8em;
+}
+
 
 @media screen and (max-width:800px) {
     .adding-products {
