@@ -42,7 +42,7 @@ const Register = (props) => {
         <div className="register-child">
             <PhoneInput className="PhoneInput" defaultCountry="IN" placeholder="Enter Number" onChange={change} />
             <input name="address" type="text" placeholder="Enter Address" onChange={change} required></input>
-            <span><button type="button" onClick={fileActivate}><img src={profileImage} alt="profile" /></button>{fileChoosed}</span>
+            <span><button type="button" onClick={fileActivate}><img src={profileImage} alt="profile" /></button><p>{fileChoosed}</p></span>
             <input ref={fileRef} style={{ display: 'none' }} name="image" placeholder="Choose profile" type="file" onChange={change}></input>
             <button name="auth" type="submit">{spinner ? <Lottie className="image-spinner" animationData={LoadingSpinner} loop={true} /> : type}</button>
         </div>

@@ -61,6 +61,7 @@ function AddProduct() {
           return { ...prevValue, imageUrl: data.url.toString() };
         });
         setLoader(false);
+        setFileChoosed('Image Selected');
       }).catch((err) => {
         setLoader(false);
         notify(err);
@@ -74,7 +75,6 @@ function AddProduct() {
   }
   const handleFileClick = () => {
     fileRef.current.click();
-    setFileChoosed('Image Selected');
   }
   return (
     <motion.div

@@ -111,8 +111,8 @@
 }
 
 #register-form span {
+    gap: 15px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     font-size: .8em;
     background: rgb(231, 231, 231);
@@ -129,6 +129,13 @@
 
 #register-form span button img {
     width: 2em;
+}
+
+#register-form span p {
+    padding: 0;
+    margin: 0;
+    opacity: .5;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 .PhoneInput {

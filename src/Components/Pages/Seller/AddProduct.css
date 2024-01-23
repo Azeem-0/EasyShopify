@@ -34,6 +34,10 @@
     border-bottom-right-radius: 40px !important;
 }
 
+.adding-products .adding-products-heading .blur-hash canvas {
+    border-bottom-right-radius: 40px !important;
+}
+
 .adding-products h1 {
     font-size: 4em;
 }
@@ -86,9 +90,11 @@
     display: flex;
     align-items: center;
     background: rgb(231, 231, 231);
-    padding: 3px 30px 3px 10px;
     margin: 15px;
+    width: 11.7em;
+    height: 40px;
     border-radius: 2px;
+    padding: 0em 10px;
     gap: 1em;
 }
 
