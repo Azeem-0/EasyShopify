@@ -9,9 +9,9 @@ import { pContest } from "../../ContextApi/ProfileContext";
 function Updates(props) {
     const { change, update, spinner } = useContext(pContest);
     return <form id={props.route} className="updates" onSubmit={update}>
-        <div>
+        <div className={props.tar === 'newPassword' ? 'password-class-for-styling' : 'no-styling'}>
             {props.tar === 'newPassword' ? <input name="oldPassword" type="text" placeholder="Old password" onChange={change} autoFocus required></input> : null}
-            {props.tar === 'phNumber' ? <PhoneInput className="PhoneInput" name={props.tar} defaultCountry="IN" placeholder="Enter Mobile Number" onChange={change} /> : <input className={props.route} name={props.tar} type="text" placeholder={props.name} onChange={change} required></input>}
+            {props.tar === 'phNumber' ? <PhoneInput className="PhoneInput" name={props.tar} defaultCountry="IN" placeholder="Enter Mobile Number" autoFocus onChange={change} /> : <input className={props.route} name={props.tar} type="text" placeholder={props.name} onChange={change} autoFocus required></input>}
         </div>
         <button type="submit">{spinner ? <Lottie className="image-spinner" animationData={LoadingSpinnner} loop={true} /> : <MdOutlineDone className="icons" />}</button>
     </form>

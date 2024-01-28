@@ -224,7 +224,7 @@ function Profile() {
           ) : profileState === "2" ? (
             <Cart removeProduct={removeProduct} orderProduct={orderProduct} />
           ) : (
-            <Orders removeProduct={removeProduct} rateProduct={rateProduct} />
+            <Orders orderProduct={orderProduct} removeProduct={removeProduct} rateProduct={rateProduct} />
           )}
         </div>
       </div>

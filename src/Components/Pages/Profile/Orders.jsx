@@ -55,7 +55,7 @@ const OrderSlidUp = (props) => {
 }
 function Orders(props) {
     const { userDetails: { orders }, userDetails: { ordersPrice } } = useContext(pContest);
-    const { removeProduct, rateProduct } = props;
+    const { removeProduct, rateProduct, orderProduct } = props;
     const [sm, setSm] = useState(false);
     const [slidUp, setSlidUp] = useState(false);
     const [slidUpDetails, setSlidUpDetails] = useState({
@@ -108,6 +108,11 @@ function Orders(props) {
                                     {ele?.product?.name && <h3>{ele?.product?.name}</h3>}
                                     {!sm && ele?.price && <h6>Price : {ele?.price}</h6>}
                                     {!sm && ele?.quantity && <h6>Quantity : {ele?.quantity}</h6>}
+                                    <form name={ele?.product?._id} data-price={ele?.price} data-address={ele?.address} data-pattern="cart" data-request={ele?.quantity} data-quantity={ele?.product?.quantity} onSubmit={(e) => {
+                                        orderProduct(e);
+                                    }}>
+                                        <button type='submit' id='re-order-button'>Re-order</button>
+                                    </form>
                                     <button name={ele?.product?._id} data-address={ele?.address} data-heading={ele?.product?.name} data-ddate={ele?.dDate} data-cancelled={ele?.cancelled} data-delivered={ele?.delivered} data-quantity={ele?.quantity} data-price={ele?.price} data-imageurl={ele?.product?.imageUrl} data-description={ele?.product?.description} data-odate={ele?.oDate} onClick={ToggleSlid}>Get More Details</button>
                                 </div>
                             </div>

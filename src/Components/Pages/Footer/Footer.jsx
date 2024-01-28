@@ -19,7 +19,7 @@ function Footer() {
     }
     return <div id="footer-section">
         <div id="footer-description">
-            <h3 onClick={goTop}>EasyShopify</h3>
+            <h3 onClick={goTop}>EASYSHOPIFY</h3>
             <div className="footer-1">
                 <p>azeemshaik025@gmail.com</p>
                 <div></div>

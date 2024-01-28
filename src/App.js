@@ -9,7 +9,7 @@ import AnimatePages from "./Components/utilities/AnimatePages";
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 function App() {
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState(true);
   useEffect(() => {
     setTimeout(() => {
       setLoader(false);
