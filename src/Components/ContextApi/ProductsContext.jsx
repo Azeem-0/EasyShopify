@@ -19,7 +19,7 @@ const ProductsContext = ({ children }) => {
         populate();
     }, []);
     return (
-        <productContext.Provider value={{ products }}>
+        <productContext.Provider value={{ products, setProducts }}>
             {children}
         </productContext.Provider>
     )

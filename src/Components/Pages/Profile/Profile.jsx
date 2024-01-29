@@ -15,14 +15,17 @@ import Cart from "./Cart";
 import { pContest } from "../../ContextApi/ProfileContext";
 import { nContext } from "../../ContextApi/NotificationContext";
 import Lottie from "lottie-react";
+import { productContext } from "../../ContextApi/ProductsContext";
 
 function Profile() {
   const { notify } = useContext(nContext)
   const { userDetails, setUserDetails, getUserDetails, } = useContext(pContest);
+  const { products, setProducts } = useContext(productContext);
   const navigate = useNavigate();
   const [profileState, setProfileState] = useState("1");
   const [spinner, setSpinner] = useState(false);
 
+  console.log(products);
   async function removeProduct(event) {
     event.preventDefault();
     const { name } = event.target;
@@ -32,12 +35,11 @@ function Profile() {
       setSpinner(true);
       if (pattern === "orders") {
         const { price, quantity, orderid } = event.target.dataset;
-        console.log(orderid);
         try {
           const response = await axios.post(
             `${process.env.REACT_APP_DATABASE_URL}/dashboard/product/removeUserProduct`,
             {
-              id: name,
+              pId: name,
               orderId: orderid,
               quantity: quantity,
               price: price,
@@ -51,6 +53,14 @@ function Profile() {
             }
           );
           data = await response.data;
+          setProducts((prevValue) => {
+            return prevValue.map((product) => {
+              if (product._id === name) {
+                product.quantity = data.quantity;
+              }
+              return product;
+            })
+          });
           setUserDetails((prevValue) => {
             return {
               ...prevValue,
@@ -120,6 +130,14 @@ function Profile() {
         );
         const data = response.data;
         if (data.status === true) {
+          setProducts((prevValue) => {
+            return prevValue.map((product) => {
+              if (product._id === name) {
+                product.quantity = data.quantity;
+              }
+              return product;
+            })
+          });
           setUserDetails((prevValue) => {
             return {
               ...prevValue,
