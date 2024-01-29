@@ -12,7 +12,7 @@ function Faqs() {
         <p>We're are here and ready to help!, See some of our customers FAQ's below.</p>
       </div>
       <div id='faqs-items'>
-        <Accordion>
+        <Accordion allowZeroExpanded>
           {faqs && faqs.map((ele, ind) => {
             return <AccordionItem key={ind}>
               <AccordionItemHeading>

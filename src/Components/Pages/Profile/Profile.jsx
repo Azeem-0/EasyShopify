@@ -31,12 +31,14 @@ function Profile() {
     if (pattern) {
       setSpinner(true);
       if (pattern === "orders") {
-        const { price, quantity } = event.target.dataset;
+        const { price, quantity, orderid } = event.target.dataset;
+        console.log(orderid);
         try {
           const response = await axios.post(
             `${process.env.REACT_APP_DATABASE_URL}/dashboard/product/removeUserProduct`,
             {
-              pId: name,
+              id: name,
+              orderId: orderid,
               quantity: quantity,
               price: price,
               email: userDetails.email,
