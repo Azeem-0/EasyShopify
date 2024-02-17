@@ -6,7 +6,6 @@ import { ToastContainer } from 'react-toastify';
 import axios from "axios";
 import "./Authentication.css";
 import { nContext } from "../ContextApi/NotificationContext";
-import Oauth from "./Oauth";
 const Regex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32}$/;
 function Authentication() {
   const { notify } = useContext(nContext);

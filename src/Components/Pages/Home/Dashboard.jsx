@@ -1,4 +1,4 @@
-import { React, useContext, useNavigate, Footer, pData, image1, image2, image3, image4, image5, image6, image7, ImageComponent, sContext, summerData, winterData, electronicData } from './DashboardImports';
+import { React, useContext, useNavigate, Footer, pData, image1, image2, image3, image4, image5, image6, image7, image8, ImageComponent, sContext, summerData, winterData, electronicData } from './DashboardImports';
 import './Dashboard.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -7,6 +7,10 @@ import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { motion, useInView } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import TokenValidity from '../../utilities/TokenValidity';
+import { pContext } from '../../ContextApi/ProfileContext';
+import { useOutlet } from 'react-router-dom';
+import axios from 'axios';
 
 function Toppicks(props) {
     const { setSearch } = useContext(sContext);
@@ -38,27 +42,33 @@ const ToppicksHead = (props) => {
             delay: 5000,
             disableOnInteraction: true,
         }}>
-        <SwiperSlide>
-            <div className="top-picks-cards">
-                {topPicks.slice(0, 3).map((ele, ind) => {
-                    return <Toppicks key={ind} heading={ele.heading} image={ele.img} />
-                })}
-            </div>
-        </SwiperSlide >
-        <SwiperSlide>
-            <div className="top-picks-cards">
-                {topPicks.slice(3, 6).map((ele, ind) => {
-                    return <Toppicks key={ind} heading={ele.heading} image={ele.img} />
-                })}
-            </div>
-        </SwiperSlide>
-        <SwiperSlide>
-            <div className="top-picks-cards">
-                {topPicks.slice(6, 10).map((ele, ind) => {
-                    return <Toppicks key={ind} heading={ele.heading} image={ele.img} />
-                })}
-            </div>
-        </SwiperSlide>
+        {
+            topPicks?.slice(0, 3)?.length !== 0 && <SwiperSlide>
+                <div className="top-picks-cards">
+                    {topPicks?.slice(0, 3)?.map((ele, ind) => {
+                        return <Toppicks key={ind} heading={ele?.name} image={ele?.imageUrl} />
+                    })}
+                </div>
+            </SwiperSlide >
+        }
+        {
+            topPicks?.slice(3, 6)?.length !== 0 && <SwiperSlide>
+                <div className="top-picks-cards">
+                    {topPicks?.slice(3, 6)?.map((ele, ind) => {
+                        return <Toppicks key={ind} heading={ele?.name} image={ele?.imageUrl} />
+                    })}
+                </div>
+            </SwiperSlide>
+        }
+        {
+            topPicks?.slice(6, 10)?.length !== 0 && <SwiperSlide>
+                <div className="top-picks-cards">
+                    {topPicks?.slice(6, 10)?.map((ele, ind) => {
+                        return <Toppicks key={ind} heading={ele?.name} image={ele?.imageUrl} />
+                    })}
+                </div>
+            </SwiperSlide>
+        }
     </Swiper > :
         <Swiper
             slidesPerView={1}
@@ -74,27 +84,57 @@ const ToppicksHead = (props) => {
                 delay: 5000,
                 disableOnInteraction: true,
             }}>
-            {topPicks.map((ele, ind) => {
-                return <SwiperSlide key={ind}><Toppicks key={ind} heading={ele.heading} image={ele.img} /></SwiperSlide>
-            })}
+            {
+                topPicks?.length !== 0 && topPicks.map((ele, ind) => {
+                    return <SwiperSlide key={ind}><Toppicks key={ind} heading={ele.name} image={ele.imageUrl} /></SwiperSlide>
+                })
+            }
         </Swiper>
 }
 
 function Dashboard() {
     const ref = useRef(null);
     const [screen, setScreen] = useState(false);
+    const [logged, setLogged] = useState(false);
+    const [recentlyPurchased, setRecentlyPurchased] = useState([]);
     const isInView = useInView(ref, { once: true });
     const headingStylings = {
         transform: isInView ? "none" : "translateY(50px)",
         opacity: isInView ? 1 : 0,
         transition: "all 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
     }
+    const updateRecentlyPurchased = async () => {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_DATABASE_URL}/dashboard/product/getOrderedProducts`, {
+                headers: {
+                    authorization: localStorage.getItem('token')
+                }
+            });
+            const data = response.data;
+            if (data.status) {
+                setRecentlyPurchased(data.products);
+                console.log(data.products);
+            }
+            else {
+                console.log("ERROR");
+            }
+        }
+        catch (err) {
+            console.log("ERROR");
+        }
+    }
     useEffect(() => {
         const windowWidth = window.innerWidth;
         if (windowWidth < 1000) {
             setScreen(true);
         }
-    })
+        TokenValidity().then((res) => {
+            if (res) {
+                updateRecentlyPurchased();
+                setLogged(true);
+            }
+        })
+    }, [])
     return <motion.div
         id="dashboard"
         initial={{ opacity: 0 }}
@@ -157,6 +197,17 @@ function Dashboard() {
             </div>
             <ToppicksHead topPicks={pData} screen={screen} />
         </div>
+        {/* ONLY TO BE SHOWED WHEN THE USER IS LOGGED IN */}
+        {logged && <div className="dashboard-dynamics">
+            <div className="dashboard-dynamics-head">
+                <ImageComponent src={image8} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' />
+                <div>
+                    <h1>Recent Purchases</h1>
+                    <p>Stay up-to-date with your latest purchases</p>
+                </div>
+            </div>
+            <ToppicksHead topPicks={recentlyPurchased} screen={screen} />
+        </div>}
         <div className="dashboard-dynamics">
             <div className="dashboard-dynamics-head">
                 <ImageComponent src={image5} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' />

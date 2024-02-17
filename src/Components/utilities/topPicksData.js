@@ -9,40 +9,40 @@ import kids from "../../Images/home9.png";
 import jeans from "../../Images/home10.png";
 const data = [
     {
-        "img": kurta,
-        "heading": "Kurta"
+        "imageUrl": kurta,
+        "name": "Kurta"
     },
     {
-        "img": nightMen,
-        "heading": "Nightware Men"
+        "imageUrl": nightMen,
+        "name": "Nightware Men"
     },
     {
-        "img": saree,
-        "heading": "Saree"
+        "imageUrl": saree,
+        "name": "Saree"
     },
     {
-        "img": shoes,
-        "heading": "Shoe"
+        "imageUrl": shoes,
+        "name": "Shoe"
     },
     {
-        "img": nightWomen,
-        "heading": "Nightware Women"
+        "imageUrl": nightWomen,
+        "name": "Nightware Women"
     },
     {
-        "img": sunglasses,
-        "heading": "Sun Glasses"
+        "imageUrl": sunglasses,
+        "name": "Sun Glasses"
     },
     {
-        "img": watches,
-        "heading": "Watches"
+        "imageUrl": watches,
+        "name": "Watches"
     },
     {
-        "img": kids,
-        "heading": "Kids Section"
+        "imageUrl": kids,
+        "name": "Kids Section"
     },
     {
-        "img": jeans,
-        "heading": "Jeans"
+        "imageUrl": jeans,
+        "name": "Jeans"
 
     }
 ]

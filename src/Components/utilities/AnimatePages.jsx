@@ -16,9 +16,9 @@ const AnimatePages = () => {
         <AnimatePresence>
             <Routes location={location} key={location.pathname}>
                 <Route path="/" exact Component={Dashboard} />
+                <Route path="/profile" exact element={<ProfileContext><Profile /></ProfileContext>} />
                 <Route path="/auth" exact Component={Authentication} />
                 <Route path="/faqs" exact Component={Faqs} />
-                <Route path="/profile" exact element={<ProfileContext><Profile /></ProfileContext>} />
                 <Route path="/addproducts" exact Component={AddProduct} />
                 <Route path="/products" exact Component={Products} />
             </Routes>

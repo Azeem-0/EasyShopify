@@ -6,39 +6,39 @@ import image5 from '../../Images/electronics5.webp';
 
 export const electronicData = [
     {
-        "img": image1,
-        "heading": "Apple Watch"
+        "imageUrl": image1,
+        "name": "Apple Watch"
     },
     {
-        "img": image2,
-        "heading": "Head Phones"
+        "imageUrl": image2,
+        "name": "Head Phones"
     },
     {
-        "img": image3,
-        "heading": "Acer Laptop"
+        "imageUrl": image3,
+        "name": "Acer Laptop"
     },
     {
-        "img": image4,
-        "heading": "Keyboard and mouse"
+        "imageUrl": image4,
+        "name": "Keyboard and mouse"
     },
     {
-        "img": image5,
-        "heading": "Tablet"
+        "imageUrl": image5,
+        "name": "Tablet"
     },
     {
-        "img": image1,
-        "heading": "Apple Watch"
+        "imageUrl": image1,
+        "name": "Apple Watch"
     },
     {
-        "img": image2,
-        "heading": "Head Phones"
+        "imageUrl": image2,
+        "name": "Head Phones"
     },
     {
-        "img": image3,
-        "heading": "Acer Laptop"
+        "imageUrl": image3,
+        "name": "Acer Laptop"
     },
     {
-        "img": image5,
-        "heading": "Tablet"
+        "imageUrl": image5,
+        "name": "Tablet"
     },
 ]

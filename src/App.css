@@ -120,6 +120,10 @@ p {
         width: 15px;
     }
 
+    .blur-hash {
+        height: 10em !important;
+    }
+
     .Toastify__toast {
         right: 0;
         position: absolute;

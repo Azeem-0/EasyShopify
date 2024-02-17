@@ -4,10 +4,10 @@ import { MdOutlineDone } from "react-icons/md";
 import PhoneInput from 'react-phone-number-input';
 import Lottie from "lottie-react";
 import LoadingSpinnner from "../../../assests/imageSpinner.json";
-import { pContest } from "../../ContextApi/ProfileContext";
+import { pContext } from "../../ContextApi/ProfileContext";
 
 function Updates(props) {
-    const { change, update, spinner } = useContext(pContest);
+    const { change, update, spinner } = useContext(pContext);
     return <form id={props.route} className="updates" onSubmit={update}>
         <div className={props.tar === 'newPassword' ? 'password-class-for-styling' : 'no-styling'}>
             {props.tar === 'newPassword' ? <input name="oldPassword" type="text" placeholder="Old password" onChange={change} autoFocus required></input> : null}
@@ -17,7 +17,7 @@ function Updates(props) {
     </form>
 }
 function Details(props) {
-    const { changeState } = useContext(pContest);
+    const { changeState } = useContext(pContext);
     return <div className="details">
         <p style={{ color: 'coral' }} className="details-title">{props.title ? props.title : 'Loading...'}</p>
         <p>{props.title === 'Wallet' && '₹'} {props.name ? props.name : 'Loading...'}</p>
@@ -25,7 +25,7 @@ function Details(props) {
     </div>
 }
 const UserDetails = () => {
-    const { userDetails, state, changeState, } = useContext(pContest);
+    const { userDetails, state, changeState, } = useContext(pContext);
     return (
         <div id="profile-details-edit">
             <Details title="Email" name={userDetails.email} changeState={changeState} />

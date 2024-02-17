@@ -6,39 +6,39 @@ import image5 from '../../Images/winterWear5.webp';
 
 export const winterData = [
     {
-        "img": image1,
-        "heading": "Wool Sweater"
+        "imageUrl": image1,
+        "name": "Wool Sweater"
     },
     {
-        "img": image2,
-        "heading": "Nightdress men"
+        "imageUrl": image2,
+        "name": "Nightdress men"
     },
     {
-        "img": image3,
-        "heading": "Jacket (men)"
+        "imageUrl": image3,
+        "name": "Jacket (men)"
     },
     {
-        "img": image4,
-        "heading": "Sweater (Women)"
+        "imageUrl": image4,
+        "name": "Sweater (Women)"
     },
     {
-        "img": image5,
-        "heading": "Kurta (Women)"
+        "imageUrl": image5,
+        "name": "Kurta (Women)"
     },
     {
-        "img": image1,
-        "heading": "Wool Sweater"
+        "imageUrl": image1,
+        "name": "Wool Sweater"
     },
     {
-        "img": image2,
-        "heading": "Nightdress men"
+        "imageUrl": image2,
+        "name": "Nightdress men"
     },
     {
-        "img": image3,
-        "heading": "Jacket (men)"
+        "imageUrl": image3,
+        "name": "Jacket (men)"
     },
     {
-        "img": image4,
-        "heading": "Sweater (Women)"
+        "imageUrl": image4,
+        "name": "Sweater (Women)"
     },
 ]

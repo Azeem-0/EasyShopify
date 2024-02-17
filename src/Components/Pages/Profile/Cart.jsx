@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ImCross } from 'react-icons/im';
 import { motion } from 'framer-motion';
-import { pContest } from '../../ContextApi/ProfileContext';
+import { pContext } from '../../ContextApi/ProfileContext';
 import ImageComponent from '../../utilities/ImageComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 const CartSlidUp = (props) => {
-    const { userDetails: { address } } = useContext(pContest);
+    const { userDetails: { address } } = useContext(pContext);
     const { name, description, price, quantity, id, imageUrl } = props;
     const { ToggleSlid, orderProduct } = props;
     const [order, setOrder] = useState({
@@ -52,7 +52,7 @@ const CartSlidUp = (props) => {
 
 
 function Cart(props) {
-    const { userDetails: { cart } } = useContext(pContest);
+    const { userDetails: { cart } } = useContext(pContext);
     const { orderProduct, removeProduct } = props;
     const [slidUp, setSlidUp] = useState(false);
     const [sm, setSm] = useState(false);

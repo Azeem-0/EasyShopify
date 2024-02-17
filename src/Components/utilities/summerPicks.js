@@ -6,39 +6,39 @@ import image5 from '../../Images/summerwear5.webp';
 
 export const summerData = [
     {
-        "img": image1,
-        "heading": "Shirt (Half Sleeves)"
+        "imageUrl": image1,
+        "name": "Shirt (Half Sleeves)"
     },
     {
-        "img": image2,
-        "heading": "Shorts Men"
+        "imageUrl": image2,
+        "name": "Shorts Men"
     },
     {
-        "img": image3,
-        "heading": "Gown For Women"
+        "imageUrl": image3,
+        "name": "Gown For Women"
     },
     {
-        "img": image4,
-        "heading": "Printed Tshirt"
+        "imageUrl": image4,
+        "name": "Printed Tshirt"
     },
     {
-        "img": image5,
-        "heading": "Nightware Women"
+        "imageUrl": image5,
+        "name": "Nightware Women"
     },
     {
-        "img": image1,
-        "heading": "Shirt (Half Sleeves)"
+        "imageUrl": image1,
+        "name": "Shirt (Half Sleeves)"
     },
     {
-        "img": image3,
-        "heading": "Gown For Women"
+        "imageUrl": image3,
+        "name": "Gown For Women"
     },
     {
-        "img": image4,
-        "heading": "Printed Tshirt"
+        "imageUrl": image4,
+        "name": "Printed Tshirt"
     },
     {
-        "img": image5,
-        "heading": "Nightware Women"
+        "imageUrl": image5,
+        "name": "Nightware Women"
     },
 ]

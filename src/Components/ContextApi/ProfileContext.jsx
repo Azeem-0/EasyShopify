@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { createContext, useContext, useState } from 'react';
 import { nContext } from './NotificationContext';
 
-export const pContest = createContext();
+export const pContext = createContext();
 const ProfileContext = ({ children }) => {
     const { notify } = useContext(nContext);
     const [spinner, setSpinner] = useState(false);
@@ -127,10 +127,11 @@ const ProfileContext = ({ children }) => {
         }
         setSpinner(false);
     }
+    console.log(userDetails);
     return (
-        <pContest.Provider value={{ userDetails, setUserDetails, getUserDetails, update, state, spinner, change, changeState }}>
+        <pContext.Provider value={{ userDetails, setUserDetails, getUserDetails, update, state, spinner, change, changeState }}>
             {children}
-        </pContest.Provider>
+        </pContext.Provider>
     )
 }
 

@@ -12,20 +12,19 @@ import axios from "axios";
 import "./Profile.css";
 import Orders from "./Orders";
 import Cart from "./Cart";
-import { pContest } from "../../ContextApi/ProfileContext";
+import { pContext } from "../../ContextApi/ProfileContext";
 import { nContext } from "../../ContextApi/NotificationContext";
 import Lottie from "lottie-react";
 import { productContext } from "../../ContextApi/ProductsContext";
 
 function Profile() {
   const { notify } = useContext(nContext)
-  const { userDetails, setUserDetails, getUserDetails, } = useContext(pContest);
+  const { userDetails, setUserDetails, getUserDetails, } = useContext(pContext);
   const { products, setProducts } = useContext(productContext);
   const navigate = useNavigate();
   const [profileState, setProfileState] = useState("1");
   const [spinner, setSpinner] = useState(false);
 
-  console.log(products);
   async function removeProduct(event) {
     event.preventDefault();
     const { name } = event.target;
@@ -189,7 +188,8 @@ function Profile() {
       if (!res) {
         const msg = "Oops..! Login Session Expired";
         navigate("/auth", { state: { m2: msg } });
-      } else {
+      }
+      else {
         getUserDetails();
       }
     });
