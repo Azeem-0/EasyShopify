@@ -4,7 +4,7 @@ export const productContext = createContext();
 const ProductsContext = ({ children }) => {
     const [products, setProducts] = useState([]);
     async function populate() {
-        const response = await fetch(process.env.REACT_APP_DATABASE_URL + "/dashboard/product/getProducts", {
+        const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/dashboard/product/getProducts", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

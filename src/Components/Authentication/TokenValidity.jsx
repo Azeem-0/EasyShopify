@@ -6,7 +6,7 @@ async function TokenValidity() {
             'Authorization': `Bearer ${token}`,
             'Content-Type': "application/json"
         }
-        const response = await axios.post(process.env.REACT_APP_DATABASE_URL + "/auth/authorize", {}, { headers });
+        const response = await axios.post(process.env.REACT_APP_BACKEND_URL + "/auth/authorize", {}, { headers });
         const data = await response.data;
         return data.status;
     }

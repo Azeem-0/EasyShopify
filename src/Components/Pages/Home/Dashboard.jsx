@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { motion, useInView } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import TokenValidity from '../../utilities/TokenValidity';
+import TokenValidity from '../../Authentication/TokenValidity';
 import { pContext } from '../../ContextApi/ProfileContext';
 import { useOutlet } from 'react-router-dom';
 import axios from 'axios';
@@ -105,7 +105,7 @@ function Dashboard() {
     }
     const updateRecentlyPurchased = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_DATABASE_URL}/dashboard/product/getOrderedProducts`, {
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/dashboard/product/getOrderedProducts`, {
                 headers: {
                     authorization: localStorage.getItem('token')
                 }

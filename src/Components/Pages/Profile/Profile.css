@@ -260,6 +260,67 @@
     color: white;
 }
 
+/* STYLINGS FOR USERS LISTING POPUP */
+
+.send-to-friends {
+    background-color: black !important;
+}
+
+.users-listing-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    z-index: 9999;
+}
+
+.users-listing-section-child {
+    background-color: white;
+    height: fit-content;
+    width: fit-content;
+    padding: 2em 4em;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+    position: relative;
+    gap: 2em;
+}
+
+.users-listing-section-child .users-search-input {
+    width: 35em;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+}
+
+.users-listing-section-child button {
+    padding: 10px 2em;
+    background-color: coral !important;
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+}
+
+.users-search-results {
+    width: 90%;
+    height: 15em;
+    background-color: #f3f3f3;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    overflow-x: auto;
+}
+
 .extra-details {
     cursor: pointer;
     text-align: center;

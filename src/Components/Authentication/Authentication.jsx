@@ -86,7 +86,7 @@ function Authentication() {
       setLoader(true);
       try {
         const response = await axios.post(
-          process.env.REACT_APP_DATABASE_URL + route,
+          process.env.REACT_APP_BACKEND_URL + route,
           { authInfo },
           {
             headers: {

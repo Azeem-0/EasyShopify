@@ -29,7 +29,6 @@ const CartSlidUp = (props) => {
         >
             <ImCross id="close-slid-up" onClick={ToggleSlid} />
             <ImageComponent src={`${imageUrl}`} blur="LXCjton$IVbH.TaeR*j[t-WWj[oL" />
-            {/* <img src={`${imageUrl}`} alt="userProduct"></img> */}
             <div className="line"></div>
             <div id='slid-up-details'>
                 <h1>{name}</h1>
@@ -55,6 +54,9 @@ function Cart(props) {
     const { userDetails: { cart } } = useContext(pContext);
     const { orderProduct, removeProduct } = props;
     const [slidUp, setSlidUp] = useState(false);
+    const [usersWindow, setUsersWindow] = useState(false);
+    const [userSearch, setUserSearch] = useState('');
+    const [users, setUsers] = useState([]);
     const [sm, setSm] = useState(false);
     const [slidUpDetails, setSlidUpDetails] = useState({
         heading: "",
@@ -63,7 +65,8 @@ function Cart(props) {
         price: "",
         oDate: "",
         imageUrl: "",
-    })
+    });
+
     const ToggleSlid = (e) => {
         if (e) {
             const { name } = e.target;
@@ -72,15 +75,27 @@ function Cart(props) {
             setSlidUp(!slidUp);
         }
     }
+
     const ToggleSlipException = () => {
         setSlidUp(!slidUp);
     }
+
+    const openUsersList = (e) => {
+        const { name } = e.target;
+        setUsersWindow(!usersWindow);
+    }
+
+    const changeUserSearch = (e) => {
+        const { value } = e.target;
+    }
+
     useEffect(() => {
         const screenWidth = window.innerWidth;
         if (screenWidth < 1000) {
             setSm(true);
         }
-    }, [])
+    }, []);
+
     return <React.Fragment>
         {slidUp && <CartSlidUp id={slidUpDetails.id} name={slidUpDetails.heading} description="Good Product" price={slidUpDetails.price} quantity={slidUpDetails.quantity} imageUrl={slidUpDetails.imageUrl}
             orderProduct={orderProduct} ToggleSlid={ToggleSlipException} />}
@@ -100,12 +115,24 @@ function Cart(props) {
                                     {!sm && ele?.product?.price && <h6>Price : {ele?.product?.price}</h6>}
                                     <button name={ele?.product?._id} data-heading={ele?.product?.name} data-quantity={ele?.product?.quantity} data-price={ele?.product?.price} data-odate={ele?.oDate} data-imageurl={ele?.product?.imageUrl} onClick={ToggleSlid}>Order</button>
                                     <button name={ele?.product?._id} data-pattern="cart" onClick={removeProduct}>Delete</button>
+                                    <button name={ele?.product?._id} className='send-to-friends' onClick={openUsersList}>Send</button>
                                 </div>
                             </div>
                         )
                     })}
             </div>
         </div>
+        {usersWindow && <div className='users-listing-section'>
+            <div className='users-listing-section-child'>
+                <form onSubmit={null}>
+                    <input className='users-search-input' name='users-search' type="text" placeholder="Enter Your Friend's Email" onChange={changeUserSearch} />
+                    <button type='submit'>Search</button>
+                </form>
+                <div className='users-search-results'>
+                    {users.length === 0 ? <p>Search Your Friend.</p> : null}
+                </div>
+            </div>
+        </div>}
     </React.Fragment>
 }
 

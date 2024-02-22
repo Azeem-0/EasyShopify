@@ -9,7 +9,7 @@ const Oauth = () => {
     const navigate = useNavigate();
     const handleOauth = async (credentialResponse) => {
         try {
-            const response = await axios.post(process.env.REACT_APP_DATABASE_URL + '/auth/oauth/login', { credentialResponse });
+            const response = await axios.post(process.env.REACT_APP_BACKEND_URL + '/auth/oauth/login', { credentialResponse });
             const data = response.data;
             if (data.user) {
                 localStorage.setItem("token", data.user);

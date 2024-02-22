@@ -6,10 +6,11 @@ import NotificationContext from "./Components/ContextApi/NotificationContext";
 import ProductsContext from "./Components/ContextApi/ProductsContext";
 import PreLoader from "./Components/utilities/PreLoader";
 import AnimatePages from "./Components/utilities/AnimatePages";
+import SocketContext from "./Components/ContextApi/SocketContext";
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 function App() {
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       setLoader(false);
@@ -18,14 +19,17 @@ function App() {
   return <div className="App">
     <NotificationContext>
       {loader ? <PreLoader /> :
-        <ProductsContext>
-          <BrowserRouter>
-            <SearchBarContext>
-              <Navigation />
-              <AnimatePages />
-            </SearchBarContext>
-          </BrowserRouter>
-        </ProductsContext>}
+        <SocketContext>
+          <ProductsContext>
+            <BrowserRouter>
+              <SearchBarContext>
+                <Navigation />
+                <AnimatePages />
+              </SearchBarContext>
+            </BrowserRouter>
+          </ProductsContext>
+        </SocketContext>
+      }
     </NotificationContext>
   </div >
 }

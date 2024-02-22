@@ -29,7 +29,7 @@ function AddProduct() {
     setLoader(true);
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_DATABASE_URL}/dashboard/product/addproducts`,
+        `${process.env.REACT_APP_BACKEND_URL}/dashboard/product/addproducts`,
         product
       );
       formElement.reset();

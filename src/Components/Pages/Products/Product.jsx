@@ -12,7 +12,7 @@ function Product(props) {
     try {
       setSpinner(true);
       const response = await axios.post(
-        `${process.env.REACT_APP_DATABASE_URL}/dashboard/product/addUserProducts`,
+        `${process.env.REACT_APP_BACKEND_URL}/dashboard/product/addUserProducts`,
         {
           pId: props.productId,
           from: "cart",

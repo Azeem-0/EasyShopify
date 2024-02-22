@@ -55,7 +55,7 @@ const ProfileContext = ({ children }) => {
     async function getUserDetails() {
         try {
             const response = await axios.get(
-                `${process.env.REACT_APP_DATABASE_URL}/dashboard/product/getUserProducts`,
+                `${process.env.REACT_APP_BACKEND_URL}/dashboard/product/getUserProducts`,
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -90,7 +90,7 @@ const ProfileContext = ({ children }) => {
         const name = event.target.id;
         try {
             const response = await axios.post(
-                `${process.env.REACT_APP_DATABASE_URL}/${name}`,
+                `${process.env.REACT_APP_BACKEND_URL}/${name}`,
                 {
                     userDetails,
                 },

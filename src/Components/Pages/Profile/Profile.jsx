@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import TokenValidity from "../../utilities/TokenValidity";
+import TokenValidity from "../../Authentication/TokenValidity";
 import ImageComponent from "../../utilities/ImageComponent";
 import ProfileCover from "../../../Images/profileCover.jpg";
 import preLoader from '../../../assests/preLoader2.json'
@@ -22,7 +22,7 @@ function Profile() {
   const { userDetails, setUserDetails, getUserDetails, } = useContext(pContext);
   const { products, setProducts } = useContext(productContext);
   const navigate = useNavigate();
-  const [profileState, setProfileState] = useState("1");
+  const [profileState, setProfileState] = useState("2");
   const [spinner, setSpinner] = useState(false);
 
   async function removeProduct(event) {
@@ -36,7 +36,7 @@ function Profile() {
         const { price, quantity, orderid } = event.target.dataset;
         try {
           const response = await axios.post(
-            `${process.env.REACT_APP_DATABASE_URL}/dashboard/product/removeUserProduct`,
+            `${process.env.REACT_APP_BACKEND_URL}/dashboard/product/removeUserProduct`,
             {
               pId: name,
               orderId: orderid,
@@ -75,7 +75,7 @@ function Profile() {
         }
       } else {
         const response = await axios.post(
-          `${process.env.REACT_APP_DATABASE_URL}/dashboard/product/removeUserProduct`,
+          `${process.env.REACT_APP_BACKEND_URL}/dashboard/product/removeUserProduct`,
           {
             pId: name,
             email: userDetails.email,
@@ -112,7 +112,7 @@ function Profile() {
       setSpinner(true);
       try {
         const response = await axios.post(
-          `${process.env.REACT_APP_DATABASE_URL}/dashboard/product/addUserProducts`,
+          `${process.env.REACT_APP_BACKEND_URL}/dashboard/product/addUserProducts`,
           {
             pId: name,
             from: "orders",
@@ -162,7 +162,7 @@ function Profile() {
     const { name, value } = e.target;
     setSpinner(true);
     try {
-      const response = await axios.post(`${process.env.REACT_APP_DATABASE_URL}/dashboard/product/rateProduct`, { name, value }, {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/dashboard/product/rateProduct`, { name, value }, {
         headers: {
           "Content-Type": "application/json",
           "x-access-token": localStorage.getItem("token"),
