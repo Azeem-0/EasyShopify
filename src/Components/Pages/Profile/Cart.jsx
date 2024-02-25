@@ -5,6 +5,9 @@ import { pContext } from '../../ContextApi/ProfileContext';
 import ImageComponent from '../../utilities/ImageComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { socketContextProvider } from '../../ContextApi/SocketContext';
+import axios from 'axios';
+
 
 const CartSlidUp = (props) => {
     const { userDetails: { address } } = useContext(pContext);
@@ -51,12 +54,14 @@ const CartSlidUp = (props) => {
 
 
 function Cart(props) {
-    const { userDetails: { cart } } = useContext(pContext);
+    const { userDetails: { cart }, userDetails: { email, name } } = useContext(pContext);
+    const { socket } = useContext(socketContextProvider);
     const { orderProduct, removeProduct } = props;
     const [slidUp, setSlidUp] = useState(false);
     const [usersWindow, setUsersWindow] = useState(false);
     const [userSearch, setUserSearch] = useState('');
-    const [users, setUsers] = useState([]);
+    const [sendingProduct, setSendingProduct] = useState('');
+    const [users, setUsers] = useState();
     const [sm, setSm] = useState(false);
     const [slidUpDetails, setSlidUpDetails] = useState({
         heading: "",
@@ -82,11 +87,13 @@ function Cart(props) {
 
     const openUsersList = (e) => {
         const { name } = e.target;
+        setSendingProduct(name);
         setUsersWindow(!usersWindow);
     }
 
     const changeUserSearch = (e) => {
         const { value } = e.target;
+        socket.emit('search-user', { userSearch: value, email: email });
     }
 
     useEffect(() => {
@@ -95,7 +102,24 @@ function Cart(props) {
             setSm(true);
         }
     }, []);
+    const submitForm = (e) => {
+        e.preventDefault();
+        socket.emit('search-user', { userSearch: userSearch, email: email });
+    }
+    const sendToFriend = async (e) => {
+        try {
+            const { name } = e.target;
+            socket.emit('send-product', { email, name, sendingProduct });
 
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        socket.on('on-search-user', async (data) => {
+            setUsers(data);
+        });
+    }, [socket]);
     return <React.Fragment>
         {slidUp && <CartSlidUp id={slidUpDetails.id} name={slidUpDetails.heading} description="Good Product" price={slidUpDetails.price} quantity={slidUpDetails.quantity} imageUrl={slidUpDetails.imageUrl}
             orderProduct={orderProduct} ToggleSlid={ToggleSlipException} />}
@@ -123,15 +147,35 @@ function Cart(props) {
             </div>
         </div>
         {usersWindow && <div className='users-listing-section'>
-            <div className='users-listing-section-child'>
-                <form onSubmit={null}>
+            <motion.div
+                initial={{ opacity: .4, scale: .7 }}
+                animate={{ opacity: 1, scale: 1, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s" }}
+                className='users-listing-section-child'
+
+            >
+                <ImCross id="close-slid-up" onClick={() => {
+                    setUsersWindow(false);
+                }} />
+                <form onSubmit={submitForm}>
                     <input className='users-search-input' name='users-search' type="text" placeholder="Enter Your Friend's Email" onChange={changeUserSearch} />
                     <button type='submit'>Search</button>
                 </form>
                 <div className='users-search-results'>
-                    {users.length === 0 ? <p>Search Your Friend.</p> : null}
+                    {!users ? <p>Search Your Friend.</p> : users.length === 0 ? <p>No such users.</p> : users.map((ele, ind) => {
+                        if (ele.email !== email) {
+                            return <div key={ind} className='user-details'>
+                                <ImageComponent src={ele.profileImage} blur="LXCjton$IVbH.TaeR*j[t-WWj[oL" />
+                                <p>{ele.email}</p>
+                                <p>{ele.name}</p>
+                                <button name={ele?.email} onClick={sendToFriend}>Send</button>
+                            </div>
+                        }
+                        else {
+                            return null;
+                        }
+                    })}
                 </div>
-            </div>
+            </motion.div>
         </div>}
     </React.Fragment>
 }

@@ -47,6 +47,7 @@ const MiniNavigation = (props) => {
                 {loggedIn && <button name="/profile" onClick={changePage}>Profile</button>}
                 <button name="/products" onClick={changePage}>Products</button>
                 {loggedIn && <button name='/addproducts' onClick={changePage}>Become Seller</button>}
+                {loggedIn && <button name="/notifications" onClick={changePage}>N</button>}
                 <button name="/faqs" onClick={changePage}>Faqs</button>
                 <button name="log" className="log-button" onClick={changeComponent}>{loggedIn ? "Log Out" : "Log In"}</button>
                 <SearchBar showMiniNavBar={showMiniNavBar} />
@@ -82,6 +83,7 @@ const MaxiNavigation = (props) => {
             {loggedIn && <button className={pathname === '/profile' ? 'current' : null} name="/profile" onClick={changePage}>Profile</button>}
             <button className={pathname === '/products' ? 'current' : null} name="/products" onClick={changePage}>Products</button>
             {loggedIn && <button className={pathname === '/addproducts' ? 'current' : null} name='/addproducts' onClick={changePage}>Become Seller</button>}
+            {loggedIn && <button className="notification" name="/notifications" onClick={changePage}>N</button>}
             <button className={pathname === '/faqs' ? 'current' : null} name="/faqs" onClick={changePage}>Faqs</button>
         </div>
         <div>
@@ -93,6 +95,7 @@ const MaxiNavigation = (props) => {
 
 
 function Navigation() {
+
     const navigate = useNavigate();
 
     const [whichNavigation, setNavigation] = useState(false);
@@ -126,8 +129,9 @@ function Navigation() {
             else {
                 setLoggedIn(false);
             }
-        })
-    }, [location.pathname])
+        });
+    }, [location.pathname]);
+
     return <div id="navigation">
         <Logo />
         {location.pathname !== '/auth' ? whichNavigation === true ?

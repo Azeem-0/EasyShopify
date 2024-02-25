@@ -1,13 +1,14 @@
-import React, { createContext } from 'react';
+import React, { createContext, useMemo } from 'react';
 import io from 'socket.io-client';
 
-export const socketContextProvider = createContext();
+export const socketContextProvider = createContext(null);
+
 const SocketContext = ({ children }) => {
     const socket = io.connect(process.env.REACT_APP_BACKEND_URL);
     return (
-        <socketContextProvider value={{ socket }}>
+        <socketContextProvider.Provider value={{ socket }}>
             {children}
-        </socketContextProvider>
+        </socketContextProvider.Provider>
     )
 }
 

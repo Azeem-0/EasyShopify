@@ -8,7 +8,7 @@ import AddProduct from '../Pages/Seller/AddProduct';
 import Products from '../Pages/Products/Products';
 import Profile from '../Pages/Profile/Profile';
 import ProfileContext from '../ContextApi/ProfileContext';
-
+import Messages from "../Pages/Messages/Messages";
 
 const AnimatePages = () => {
     const location = useLocation();
@@ -18,6 +18,7 @@ const AnimatePages = () => {
                 <Route path="/" exact Component={Dashboard} />
                 <Route path="/profile" exact element={<ProfileContext><Profile /></ProfileContext>} />
                 <Route path="/auth" exact Component={Authentication} />
+                <Route path="/notifications" exact Component={Messages} />
                 <Route path="/faqs" exact Component={Faqs} />
                 <Route path="/addproducts" exact Component={AddProduct} />
                 <Route path="/products" exact Component={Products} />

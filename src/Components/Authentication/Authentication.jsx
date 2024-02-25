@@ -6,8 +6,10 @@ import { ToastContainer } from 'react-toastify';
 import axios from "axios";
 import "./Authentication.css";
 import { nContext } from "../ContextApi/NotificationContext";
+import { socketContextProvider } from "../ContextApi/SocketContext";
 const Regex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32}$/;
 function Authentication() {
+  const { socket } = useContext(socketContextProvider);
   const { notify } = useContext(nContext);
   var location = useLocation();
   const m = (location.state && location.state.m2) || "";
@@ -98,6 +100,7 @@ function Authentication() {
         setLoader(false);
         if (data.user) {
           const user = data.user;
+          socket.emit('join-socket-connection', authInfo.email);
           localStorage.setItem("token", user);
           navigate("/");
         } else if (data.status !== false) {

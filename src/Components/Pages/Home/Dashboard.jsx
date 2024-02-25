@@ -8,8 +8,6 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { motion, useInView } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import TokenValidity from '../../Authentication/TokenValidity';
-import { pContext } from '../../ContextApi/ProfileContext';
-import { useOutlet } from 'react-router-dom';
 import axios from 'axios';
 
 function Toppicks(props) {
@@ -134,7 +132,7 @@ function Dashboard() {
                 setLogged(true);
             }
         })
-    }, [])
+    }, []);
     return <motion.div
         id="dashboard"
         initial={{ opacity: 0 }}

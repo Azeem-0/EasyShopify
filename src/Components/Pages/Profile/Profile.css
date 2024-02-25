@@ -308,17 +308,46 @@
 }
 
 .users-search-results {
-    width: 90%;
+    width: 100%;
     height: 15em;
     background-color: #f3f3f3;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
     border-radius: 5px;
     display: flex;
+    justify-content: flex-start;
     align-items: center;
     padding: 10px;
     overflow-x: auto;
+}
+
+.user-details {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 5px 10px;
+}
+
+.user-details .blur-hash,
+.user-details img {
+    width: 2em !important;
+    height: 2em !important;
+    object-fit: cover;
+}
+
+.user-details button {
+    background: black !important;
+    opacity: 0.8;
+    border-radius: 5px;
+    padding: 5px 1em;
+}
+
+.user-details .blur-hash canvas,
+.user-details img {
+    border-radius: 100% !important;
 }
 
 .extra-details {
@@ -377,8 +406,8 @@
 
 #close-slid-up {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 2%;
+    top: 3%;
     cursor: pointer;
 }
 

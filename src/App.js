@@ -17,9 +17,9 @@ function App() {
     }, 1500);
   }, []);
   return <div className="App">
-    <NotificationContext>
-      {loader ? <PreLoader /> :
-        <SocketContext>
+    <SocketContext>
+      <NotificationContext>
+        {loader ? <PreLoader /> :
           <ProductsContext>
             <BrowserRouter>
               <SearchBarContext>
@@ -28,9 +28,9 @@ function App() {
               </SearchBarContext>
             </BrowserRouter>
           </ProductsContext>
-        </SocketContext>
-      }
-    </NotificationContext>
+        }
+      </NotificationContext>
+    </SocketContext>
   </div >
 }
 export default App;

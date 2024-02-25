@@ -1,0 +1,35 @@
+#messages-block {
+    display: flex;
+    padding-top: 7em;
+    flex-direction: column;
+    width: 100dvw;
+    height: 100dvh;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#messages-block-child {
+    width: fit-content;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#messages-block-child .single-message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2%;
+    margin: 10px;
+}
+
+#messages-block-child .single-message>* {
+    padding: 0em 5px;
+}
+
+#messages-block-child .single-message img {
+    width: 5em;
+    height: 4em;
+    object-fit: cover;
+    border-radius: 100%;
+}
