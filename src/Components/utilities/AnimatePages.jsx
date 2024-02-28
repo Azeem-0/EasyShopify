@@ -9,20 +9,26 @@ import Products from '../Pages/Products/Products';
 import Profile from '../Pages/Profile/Profile';
 import ProfileContext from '../ContextApi/ProfileContext';
 import Messages from "../Pages/Messages/Messages";
+import MessagesContext from '../ContextApi/MessagesContext';
+import { Navigation } from 'swiper/modules';
 
 const AnimatePages = () => {
     const location = useLocation();
     return (
         <AnimatePresence>
+            {/* <ProfileContext> */}
+            {/* <MessagesContext> */}
             <Routes location={location} key={location.pathname}>
                 <Route path="/" exact Component={Dashboard} />
-                <Route path="/profile" exact element={<ProfileContext><Profile /></ProfileContext>} />
+                <Route path="/profile" exact Component={Profile} />
                 <Route path="/auth" exact Component={Authentication} />
                 <Route path="/notifications" exact Component={Messages} />
                 <Route path="/faqs" exact Component={Faqs} />
                 <Route path="/addproducts" exact Component={AddProduct} />
                 <Route path="/products" exact Component={Products} />
             </Routes>
+            {/* </MessagesContext> */}
+            {/* </ProfileContext> */}
         </AnimatePresence>
     )
 }

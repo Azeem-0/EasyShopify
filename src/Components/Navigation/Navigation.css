@@ -127,6 +127,31 @@
     color: white;
 }
 
+#show-new-messages,
+#no-messages {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#show-new-messages::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.notification {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
 .current {
     border: 1.5px solid coral !important;
 }

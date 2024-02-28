@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { IoNotifications } from "react-icons/io5"
 import miniNavBar from "../../assests/mini-navigation.json";
 import { RxCross1 } from "react-icons/rx";
 import Lottie from "lottie-react";
@@ -8,6 +9,7 @@ import TokenValidity from "../Authentication/TokenValidity";
 import { sContext } from "../ContextApi/SearchBarContext";
 import Logo from "./Logo";
 import './Navigation.css';
+import { messageContextProvider } from "../ContextApi/MessagesContext";
 
 const SearchBar = (props) => {
     const { showMiniNavBar } = props;
@@ -29,7 +31,7 @@ const SearchBar = (props) => {
 }
 const MiniNavigation = (props) => {
     const navigate = useNavigate();
-    const { showMiniNavBar, miniBar, loggedIn, changeComponent } = props;
+    const { showMiniNavBar, miniBar, loggedIn, changeComponent, newMessages } = props;
     const changePage = (e) => {
         const { name } = e.target;
         navigate(name);
@@ -47,7 +49,9 @@ const MiniNavigation = (props) => {
                 {loggedIn && <button name="/profile" onClick={changePage}>Profile</button>}
                 <button name="/products" onClick={changePage}>Products</button>
                 {loggedIn && <button name='/addproducts' onClick={changePage}>Become Seller</button>}
-                {loggedIn && <button name="/notifications" onClick={changePage}>N</button>}
+                {loggedIn && <div id={newMessages === true ? 'show-new-messages' : 'no-messages'}><IoNotifications className="notification" name="/notifications" onClick={() => {
+                    navigate("/notifications");
+                }} /></div>}
                 <button name="/faqs" onClick={changePage}>Faqs</button>
                 <button name="log" className="log-button" onClick={changeComponent}>{loggedIn ? "Log Out" : "Log In"}</button>
                 <SearchBar showMiniNavBar={showMiniNavBar} />
@@ -63,7 +67,7 @@ const MaxiNavigation = (props) => {
         once: true
     })
     const navigate = useNavigate();
-    const { loggedIn, changeComponent, showMiniNavBar } = props;
+    const { loggedIn, changeComponent, showMiniNavBar, newMessages } = props;
     const { pathname } = useLocation();
     const changePage = (e) => {
         const { name } = e.target;
@@ -83,7 +87,9 @@ const MaxiNavigation = (props) => {
             {loggedIn && <button className={pathname === '/profile' ? 'current' : null} name="/profile" onClick={changePage}>Profile</button>}
             <button className={pathname === '/products' ? 'current' : null} name="/products" onClick={changePage}>Products</button>
             {loggedIn && <button className={pathname === '/addproducts' ? 'current' : null} name='/addproducts' onClick={changePage}>Become Seller</button>}
-            {loggedIn && <button className="notification" name="/notifications" onClick={changePage}>N</button>}
+            {loggedIn && <div id={newMessages === true ? 'show-new-messages' : 'no-messages'}><IoNotifications className="notification" name="/notifications" onClick={() => {
+                navigate('/notifications');
+            }} /></div>}
             <button className={pathname === '/faqs' ? 'current' : null} name="/faqs" onClick={changePage}>Faqs</button>
         </div>
         <div>
@@ -95,6 +101,10 @@ const MaxiNavigation = (props) => {
 
 
 function Navigation() {
+
+    const { newMessages } = useContext(messageContextProvider);
+
+    console.log(newMessages);
 
     const navigate = useNavigate();
 
@@ -130,15 +140,15 @@ function Navigation() {
                 setLoggedIn(false);
             }
         });
-    }, [location.pathname]);
+    }, [location.pathname, newMessages]);
 
     return <div id="navigation">
         <Logo />
         {location.pathname !== '/auth' ? whichNavigation === true ?
 
-            <MaxiNavigation changeComponent={changeComponent} showMiniNavBar={showMiniNavBar} loggedIn={loggedIn} />
+            <MaxiNavigation newMessages={newMessages} changeComponent={changeComponent} showMiniNavBar={showMiniNavBar} loggedIn={loggedIn} />
             :
-            <MiniNavigation miniBar={miniBar} showMiniNavBar={showMiniNavBar} loggedIn={loggedIn} changeComponent={changeComponent} />
+            <MiniNavigation newMessages={newMessages} miniBar={miniBar} showMiniNavBar={showMiniNavBar} loggedIn={loggedIn} changeComponent={changeComponent} />
             : null}
     </div>
 }

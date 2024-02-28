@@ -9,6 +9,8 @@ import AnimatePages from "./Components/utilities/AnimatePages";
 import SocketContext from "./Components/ContextApi/SocketContext";
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
+import MessagesContext from "./Components/ContextApi/MessagesContext";
+import ProfileContext from "./Components/ContextApi/ProfileContext";
 function App() {
   const [loader, setLoader] = useState(false);
   useEffect(() => {
@@ -23,8 +25,12 @@ function App() {
           <ProductsContext>
             <BrowserRouter>
               <SearchBarContext>
-                <Navigation />
-                <AnimatePages />
+                <ProfileContext>
+                  <MessagesContext>
+                    <Navigation />
+                    <AnimatePages />
+                  </MessagesContext>
+                </ProfileContext>
               </SearchBarContext>
             </BrowserRouter>
           </ProductsContext>

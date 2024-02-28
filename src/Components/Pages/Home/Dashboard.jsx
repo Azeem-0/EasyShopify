@@ -8,7 +8,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { motion, useInView } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import TokenValidity from '../../Authentication/TokenValidity';
-import axios from 'axios';
+import { pContext } from '../../ContextApi/ProfileContext';
 
 function Toppicks(props) {
     const { setSearch } = useContext(sContext);
@@ -39,7 +39,8 @@ const ToppicksHead = (props) => {
         autoplay={{
             delay: 5000,
             disableOnInteraction: true,
-        }}>
+        }}
+    >
         {
             topPicks?.slice(0, 3)?.length !== 0 && <SwiperSlide>
                 <div className="top-picks-cards">
@@ -83,7 +84,7 @@ const ToppicksHead = (props) => {
                 disableOnInteraction: true,
             }}>
             {
-                topPicks?.length !== 0 && topPicks.map((ele, ind) => {
+                topPicks?.length !== 0 && topPicks?.map((ele, ind) => {
                     return <SwiperSlide key={ind}><Toppicks key={ind} heading={ele.name} image={ele.imageUrl} /></SwiperSlide>
                 })
             }
@@ -92,34 +93,26 @@ const ToppicksHead = (props) => {
 
 function Dashboard() {
     const ref = useRef(null);
+    const { userDetails: { orders } } = useContext(pContext);
+    const imageNameOrders = orders?.reduce((uniqueOrders, ele) => {
+        const isDuplicate = uniqueOrders.some(order =>
+            order.imageUrl === ele.product.imageUrl && order.name === ele.product.name
+        );
+        if (!isDuplicate) {
+            uniqueOrders.push({
+                imageUrl: ele.product.imageUrl,
+                name: ele.product.name
+            });
+        }
+        return uniqueOrders;
+    }, []);
     const [screen, setScreen] = useState(false);
     const [logged, setLogged] = useState(false);
-    const [recentlyPurchased, setRecentlyPurchased] = useState([]);
     const isInView = useInView(ref, { once: true });
     const headingStylings = {
         transform: isInView ? "none" : "translateY(50px)",
         opacity: isInView ? 1 : 0,
         transition: "all 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
-    }
-    const updateRecentlyPurchased = async () => {
-        try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/dashboard/product/getOrderedProducts`, {
-                headers: {
-                    authorization: localStorage.getItem('token')
-                }
-            });
-            const data = response.data;
-            if (data.status) {
-                setRecentlyPurchased(data.products);
-                console.log(data.products);
-            }
-            else {
-                console.log("ERROR");
-            }
-        }
-        catch (err) {
-            console.log("ERROR");
-        }
     }
     useEffect(() => {
         const windowWidth = window.innerWidth;
@@ -128,7 +121,6 @@ function Dashboard() {
         }
         TokenValidity().then((res) => {
             if (res) {
-                updateRecentlyPurchased();
                 setLogged(true);
             }
         })
@@ -204,7 +196,7 @@ function Dashboard() {
                     <p>Stay up-to-date with your latest purchases</p>
                 </div>
             </div>
-            <ToppicksHead topPicks={recentlyPurchased} screen={screen} />
+            <ToppicksHead topPicks={imageNameOrders} screen={screen} />
         </div>}
         <div className="dashboard-dynamics">
             <div className="dashboard-dynamics-head">

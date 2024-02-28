@@ -1,21 +1,50 @@
-import React from 'react';
-import { constantData } from '../../../Constants/DummyData';
+import React, { useContext, useEffect } from 'react';
 
+import { messageContextProvider } from '../../ContextApi/MessagesContext';
+import axios from 'axios';
+import { pContext } from '../../ContextApi/ProfileContext';
 import './Messages.css';
 
 const Notifications = () => {
+    const { userDetails: { email } } = useContext(pContext);
+    const { messages, newMessages } = useContext(messageContextProvider)
+    const makeAllMessagesSeen = async () => {
+        try {
+            const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/makeAllMessagesSeen`, { email });
+            console.log(data);
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+    useEffect(() => {
+        makeAllMessagesSeen();
+    }, []);
     return (
         <div id='messages-block'>
 
+            {newMessages && <div id='new-messages'>
+                <h1>New Messages</h1>
+                <div id='new-messages-block'>
+                    {messages?.filter((ele) => ele.newMessage !== false).map((ele, key) => (
+                        <div className='single-message' key={key}>
+                            <img src={ele?.product?.imageUrl} alt="" />
+                            <p>{ele.senderEmail}</p>
+                            <p>{ele.receiverEmail}</p>
+                            {ele?.response ? <p>{ele.response}</p> : <div>Rate</div>}
+                        </div>
+                    ))}
+                </div>
+            </div>}
             <div id='messages-block-child'>
-                {constantData.map((ele, key) => {
-                    return <div className='single-message' key={key}>
-                        <img src="https://imgs.search.brave.com/79T_zjtja5BdmncEXx9mg2tnr6_Jm3sD5PG79dwWTMw/rs:fit:500:0:0/g:ce/aHR0cHM6Ly93d3cu/dGhlbmV3cy5jb20u/cGsvYXNzZXRzL3Vw/bG9hZHMvdXBkYXRl/cy8yMDI0LTAyLTIz/LzExNjA3MDZfMzcz/NDI4NF92aXJhdC1r/b2hsaS1hbnVzaGth/LXNoYXJtYV91cGRh/dGVzLmpwZw" alt="" />
+                <h1>All Messages</h1>
+                {messages?.filter((ele) => ele.newMessage !== true).map((ele, key) => (
+                    <div className='single-message' key={key}>
+                        <img src={ele?.product?.imageUrl} alt="" />
                         <p>{ele.senderEmail}</p>
                         <p>{ele.receiverEmail}</p>
-                        <p>{ele.response}</p>
+                        {ele?.response ? <p>{ele.response}</p> : <div>Rate</div>}
                     </div>
-                })}
+                ))}
             </div>
 
         </div>

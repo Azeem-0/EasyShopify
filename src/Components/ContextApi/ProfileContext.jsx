@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { nContext } from './NotificationContext';
+import TokenValidity from '../Authentication/TokenValidity';
 
 export const pContext = createContext();
 const ProfileContext = ({ children }) => {
@@ -127,7 +128,13 @@ const ProfileContext = ({ children }) => {
         }
         setSpinner(false);
     }
-    console.log(userDetails);
+    useEffect(() => {
+        TokenValidity().then((res) => {
+            if (res) {
+                getUserDetails();
+            }
+        });
+    }, []);
     return (
         <pContext.Provider value={{ userDetails, setUserDetails, getUserDetails, update, state, spinner, change, changeState }}>
             {children}
