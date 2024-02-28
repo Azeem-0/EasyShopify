@@ -1,26 +1,38 @@
 #messages-block {
     display: flex;
-    padding-top: 7em;
+    padding-top: 5em;
     flex-direction: column;
     width: 100dvw;
     height: 100dvh;
     justify-content: center;
     align-items: center;
     position: relative;
+    background-color: #e7e7e7;
 }
 
 #messages-block-child {
+    width: -moz-fit-content;
     width: fit-content;
     height: 100%;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2em;
+    gap: 15px;
 }
 
+
 #messages-block-child .single-message {
+
+    width: fit-content;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2%;
-    margin: 10px;
+    background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 10px;
+    position: relative;
 }
 
 #messages-block-child .single-message>* {
@@ -28,8 +40,27 @@
 }
 
 #messages-block-child .single-message img {
-    width: 5em;
-    height: 4em;
+    width: 10em;
+    height: fit-content;
     object-fit: cover;
-    border-radius: 100%;
+}
+
+#emoji-block {
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: #949494;
+    z-index: 99;
+}
+
+.emoji {
+    padding: 8px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.emoji-icon {
+    cursor: pointer;
 }

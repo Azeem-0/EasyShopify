@@ -23,7 +23,7 @@ const MessagesContext = ({ children }) => {
     }
     useEffect(() => {
         changeMessages();
-    }, [socket, email]);
+    }, [email, socket]);
     return (
         <messageContextProvider.Provider value={{ messages, setMessages, newMessages }}>
             {children}

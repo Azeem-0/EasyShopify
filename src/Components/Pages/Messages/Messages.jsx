@@ -1,16 +1,60 @@
-import React, { useContext, useEffect } from 'react';
-
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { emoji } from '../../../Constants/Emoji';
 import { messageContextProvider } from '../../ContextApi/MessagesContext';
 import axios from 'axios';
 import { pContext } from '../../ContextApi/ProfileContext';
 import './Messages.css';
+import { useInView } from 'framer-motion';
+
+
+function Emoji(props) {
+    const { messageId, toggleEmoji, reactEmojiToMessage } = props;
+    const emojiRef = useRef(null);
+    const isInView = useInView(emojiRef, {
+        once: true
+    });
+    const sendEmoji = (e) => {
+        const emoji = e.target.innerHTML;
+        if (emoji !== '+') {
+            reactEmojiToMessage(emoji, messageId);
+            toggleEmoji();
+        }
+    }
+    return <div
+        style={{
+            opacity: isInView ? '1' : '0.3',
+            transform: isInView ? 'translateY(0px)' : 'translateY(-15px)',
+            scale: isInView ? '1' : '0.7'
+        }}
+        key={messageId}
+        ref={emojiRef}
+        id='emoji-block'
+    >
+        {emoji && emoji.map((ele) => {
+            return <div onClick={sendEmoji} className='emoji'>{ele}</div>
+        })}
+    </div>
+}
 
 const Notifications = () => {
     const { userDetails: { email } } = useContext(pContext);
-    const { messages, newMessages } = useContext(messageContextProvider)
+    const { messages, newMessages } = useContext(messageContextProvider);
+    const [emoji, setEmoji] = useState(false);
     const makeAllMessagesSeen = async () => {
         try {
             const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/makeAllMessagesSeen`, { email });
+            console.log(data);
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+    const toggleEmoji = () => {
+        setEmoji(!emoji);
+    }
+    const reactEmojiToMessage = async (emoji, mId) => {
+        try {
+            console.log(emoji, mId);
+            const { data } = await axios.post(process.env.REACT_APP_BACKEND_URL + "/user/reactToMessage", { mId, emoji });
             console.log(data);
         } catch (error) {
             console.log(error.message);
@@ -42,7 +86,9 @@ const Notifications = () => {
                         <img src={ele?.product?.imageUrl} alt="" />
                         <p>{ele.senderEmail}</p>
                         <p>{ele.receiverEmail}</p>
-                        {ele?.response ? <p>{ele.response}</p> : <div>Rate</div>}
+                        {ele?.reaction === '' ? emoji === false ? <p onClick={() => {
+                            setEmoji(!emoji);
+                        }}>+</p> : <Emoji reactEmojiToMessage={reactEmojiToMessage} messageId={ele._id} toggleEmoji={toggleEmoji} /> : <div>{ele?.reaction}</div>}
                     </div>
                 ))}
             </div>

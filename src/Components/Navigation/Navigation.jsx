@@ -104,8 +104,6 @@ function Navigation() {
 
     const { newMessages } = useContext(messageContextProvider);
 
-    console.log(newMessages);
-
     const navigate = useNavigate();
 
     const [whichNavigation, setNavigation] = useState(false);
