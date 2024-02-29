@@ -1,13 +1,14 @@
 #messages-block {
     display: flex;
-    padding-top: 5em;
+    padding: 7em 0em;
     flex-direction: column;
     width: 100dvw;
-    height: 100dvh;
+    height: 100%;
     justify-content: center;
     align-items: center;
     position: relative;
     background-color: #e7e7e7;
+    overflow-y: auto;
 }
 
 #messages-block-child {
@@ -16,7 +17,8 @@
     height: 100%;
     overflow-y: scroll;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
     align-items: center;
     padding-top: 2em;
     gap: 15px;
@@ -62,5 +64,10 @@
 }
 
 .emoji-icon {
+    cursor: pointer;
+}
+
+.open-emoji,
+.close-emoji {
     cursor: pointer;
 }

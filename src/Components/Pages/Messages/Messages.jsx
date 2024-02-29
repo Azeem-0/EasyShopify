@@ -30,30 +30,34 @@ function Emoji(props) {
         ref={emojiRef}
         id='emoji-block'
     >
-        {emoji && emoji.map((ele) => {
-            return <div onClick={sendEmoji} className='emoji'>{ele}</div>
+        {emoji && emoji.map((ele, key) => {
+            return <div key={key} onClick={sendEmoji} className='emoji'>{ele}</div>
         })}
+        <div className='close-emoji' onClick={toggleEmoji}>-</div>
     </div>
 }
 
 const Notifications = () => {
     const { userDetails: { email } } = useContext(pContext);
-    const { messages, newMessages } = useContext(messageContextProvider);
-    const [emoji, setEmoji] = useState(false);
+    const { messages } = useContext(messageContextProvider);
+    const [openEmoji, setOpenEmoji] = useState({
+        open: false,
+        messageId: null
+    });
     const makeAllMessagesSeen = async () => {
         try {
             const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/makeAllMessagesSeen`, { email });
-            console.log(data);
         } catch (error) {
             console.log(error.message);
         }
     }
     const toggleEmoji = () => {
-        setEmoji(!emoji);
+        setOpenEmoji((prev) => {
+            return { ...prev, open: !prev.open, messageId: null }
+        });
     }
     const reactEmojiToMessage = async (emoji, mId) => {
         try {
-            console.log(emoji, mId);
             const { data } = await axios.post(process.env.REACT_APP_BACKEND_URL + "/user/reactToMessage", { mId, emoji });
             console.log(data);
         } catch (error) {
@@ -62,37 +66,28 @@ const Notifications = () => {
     }
     useEffect(() => {
         makeAllMessagesSeen();
-    }, []);
+    }, [messages]);
     return (
         <div id='messages-block'>
-
-            {newMessages && <div id='new-messages'>
-                <h1>New Messages</h1>
-                <div id='new-messages-block'>
-                    {messages?.filter((ele) => ele.newMessage !== false).map((ele, key) => (
+            <div>
+                <h1>All Messages</h1>
+                <div id='messages-block-child'>
+                    {messages?.map((ele, key) => (
                         <div className='single-message' key={key}>
                             <img src={ele?.product?.imageUrl} alt="" />
                             <p>{ele.senderEmail}</p>
                             <p>{ele.receiverEmail}</p>
-                            {ele?.response ? <p>{ele.response}</p> : <div>Rate</div>}
+                            {ele?.senderEmail === email ? ele?.reaction === '' ? <p>Pending</p> : <div>{ele?.reaction}</div> : null}
+                            {(ele?.senderEmail !== email && ele?.reaction === '') ? (openEmoji.open && openEmoji.messageId === ele?._id) ? <Emoji reactEmojiToMessage={reactEmojiToMessage} messageId={ele._id} toggleEmoji={toggleEmoji} /> : <p className='open-emoji' onClick={() => {
+                                setOpenEmoji((prev) => {
+                                    return { ...prev, open: !prev.open, messageId: ele?._id }
+                                });
+                            }}>+</p> : null}
+                            {(ele?.senderEmail !== email && ele?.reaction !== '' && <div>{ele?.reaction}</div>)}
                         </div>
                     ))}
                 </div>
-            </div>}
-            <div id='messages-block-child'>
-                <h1>All Messages</h1>
-                {messages?.filter((ele) => ele.newMessage !== true).map((ele, key) => (
-                    <div className='single-message' key={key}>
-                        <img src={ele?.product?.imageUrl} alt="" />
-                        <p>{ele.senderEmail}</p>
-                        <p>{ele.receiverEmail}</p>
-                        {ele?.reaction === '' ? emoji === false ? <p onClick={() => {
-                            setEmoji(!emoji);
-                        }}>+</p> : <Emoji reactEmojiToMessage={reactEmojiToMessage} messageId={ele._id} toggleEmoji={toggleEmoji} /> : <div>{ele?.reaction}</div>}
-                    </div>
-                ))}
             </div>
-
         </div>
     )
 }
