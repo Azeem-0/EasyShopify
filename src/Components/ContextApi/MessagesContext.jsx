@@ -8,7 +8,6 @@ const MessagesContext = ({ children }) => {
     const { userDetails: { email } } = useContext(pContext);
     const [messages, setMessages] = useState([]);
     const [newMessages, setNewMessages] = useState(false);
-
     const changeMessages = () => {
         try {
             socket.emit('get-messages', email);

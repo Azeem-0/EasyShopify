@@ -93,7 +93,7 @@ const ToppicksHead = (props) => {
 
 function Dashboard() {
     const ref = useRef(null);
-    const { userDetails: { orders } } = useContext(pContext);
+    const { userDetails: { orders }, getUserDetails } = useContext(pContext);
     const imageNameOrders = orders?.reduce((uniqueOrders, ele) => {
         const isDuplicate = uniqueOrders.some(order =>
             order.imageUrl === ele.product.imageUrl && order.name === ele.product.name
@@ -122,6 +122,7 @@ function Dashboard() {
         TokenValidity().then((res) => {
             if (res) {
                 setLogged(true);
+                getUserDetails();
             }
         })
     }, []);

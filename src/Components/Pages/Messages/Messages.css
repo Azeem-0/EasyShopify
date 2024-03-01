@@ -9,6 +9,7 @@
     position: relative;
     background-color: #e7e7e7;
     overflow-y: auto;
+    min-height: 100dvh;
 }
 
 #messages-block-child {
@@ -24,27 +25,58 @@
     gap: 15px;
 }
 
-
-#messages-block-child .single-message {
-
-    width: fit-content;
+#messages-block-child .single-message-head {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
     background-color: white;
+    border-radius: 2px;
+}
+
+#messages-block-child .single-message {
+    width: -moz-fit-content;
+    width: fit-content;
+    display: flex;
+    align-items: center;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 10px;
     position: relative;
-}
-
-#messages-block-child .single-message>* {
-    padding: 0em 5px;
+    min-width: 30em;
+    gap: 15px;
+    padding: 3%;
 }
 
 #messages-block-child .single-message img {
     width: 10em;
     height: fit-content;
     object-fit: cover;
+}
+
+.open-message-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 30em;
+    padding: 5%;
+    gap: 1em;
+}
+
+.open-message-details .notification-success,
+.single-message .pending,
+.open-message-details .complete {
+    width: 2em !important;
+    object-fit: cover;
+}
+
+.open-message-details button {
+    background-color: black;
+    padding: 1% 3%;
+    font-size: .8em;
+}
+
+.open-message-details p {
+    text-align: center;
+    font-size: 0.8em;
 }
 
 #emoji-block {

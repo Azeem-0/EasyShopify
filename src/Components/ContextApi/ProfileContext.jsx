@@ -14,6 +14,7 @@ const ProfileContext = ({ children }) => {
         Wallet: true,
     });
     const [userDetails, setUserDetails] = useState({
+        email: '',
         profileImg: "",
         name: "",
         phNumber: null,
@@ -135,6 +136,7 @@ const ProfileContext = ({ children }) => {
             }
         });
     }, []);
+    console.log(userDetails);
     return (
         <pContext.Provider value={{ userDetails, setUserDetails, getUserDetails, update, state, spinner, change, changeState }}>
             {children}

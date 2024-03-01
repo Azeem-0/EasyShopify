@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { socketContextProvider } from '../../ContextApi/SocketContext';
 import axios from 'axios';
+import { nContext } from '../../ContextApi/NotificationContext';
 
 
 const CartSlidUp = (props) => {
@@ -54,7 +55,8 @@ const CartSlidUp = (props) => {
 
 
 function Cart(props) {
-    const { userDetails: { cart }, userDetails: { email, name } } = useContext(pContext);
+    const { userDetails: { email, name, cart } } = useContext(pContext);
+    const { notify } = useContext(nContext);
     const { socket } = useContext(socketContextProvider);
     const { orderProduct, removeProduct } = props;
     const [slidUp, setSlidUp] = useState(false);
@@ -110,7 +112,16 @@ function Cart(props) {
         try {
             const { name } = e.target;
             socket.emit('send-product', { email, name, sendingProduct });
+            socket.on('successfully-send-product', async (data) => {
+                if (data) {
+                    notify('Sent Successfully');
 
+                }
+                else {
+                    notify("Error Occured");
+                }
+            });
+            setUsersWindow(false);
         } catch (error) {
             console.log(error);
         }
