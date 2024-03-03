@@ -111,17 +111,21 @@ function Cart(props) {
     const sendToFriend = async (e) => {
         try {
             const { name } = e.target;
+            var message;
             socket.emit('send-product', { email, name, sendingProduct });
-            socket.on('successfully-send-product', async (data) => {
+            socket.once('successfully-send-product', async (data) => {
+                console.log('ehllo');
                 if (data) {
                     notify('Sent Successfully');
 
                 }
                 else {
-                    notify("Error Occured");
+                    notify('Error occured');
                 }
             });
             setUsersWindow(false);
+            setUserSearch('');
+            setUsers();
         } catch (error) {
             console.log(error);
         }

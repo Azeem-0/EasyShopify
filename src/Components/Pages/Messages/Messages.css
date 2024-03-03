@@ -12,6 +12,19 @@
     min-height: 100dvh;
 }
 
+.message-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+#messages-block-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 #messages-block-child {
     width: -moz-fit-content;
     width: fit-content;

@@ -6,6 +6,7 @@ import { pContext } from '../../ContextApi/ProfileContext';
 import notificationImage from '../../../Images/notification.png';
 import pendingImage from '../../../Images/pending.png';
 import completeImage from '../../../Images/complete.png';
+import { motion } from 'framer-motion';
 import './Messages.css';
 import { useInView } from 'framer-motion';
 import { ImCross } from 'react-icons/im';
@@ -24,12 +25,9 @@ function Emoji(props) {
             toggleEmoji();
         }
     }
-    return <div
-        style={{
-            opacity: isInView ? '1' : '0.3',
-            transform: isInView ? 'translateY(0px)' : 'translateY(-15px)',
-            scale: isInView ? '1' : '0.7'
-        }}
+    return <motion.div
+        initial={{ opacity: .4, scale: .7 }}
+        animate={{ opacity: 1, scale: 1, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s" }}
         key={messageId}
         ref={emojiRef}
         id='emoji-block'
@@ -38,7 +36,7 @@ function Emoji(props) {
             return <div key={key} onClick={sendEmoji} className='emoji'>{ele}</div>
         })}
         <div className='close-emoji' onClick={toggleEmoji}>-</div>
-    </div>
+    </motion.div>
 }
 
 const Notifications = () => {
@@ -77,17 +75,33 @@ const Notifications = () => {
     }, [messages]);
     return (
         <div id='messages-block'>
-            <div>
+            <div id='messages-block-2'>
                 <h1>All Messages</h1>
                 <div id='messages-block-child'>
                     {messages?.length === 0 && <p>No messages.</p>}
                     {messages?.map((ele, key) => (
-                        <div className='single-message-head' key={key}>
+                        <motion.div
+                            className='single-message-head'
+                            initial={{ opacity: .4, scale: .7 }}
+                            animate={{ opacity: 1, scale: 1, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s" }}
+                            key={key}>
                             {
-                                (openMessage.open && openMessage.messageId === ele?._id) ? <div className='single-message'>
+                                (openMessage.open && openMessage.messageId === ele?._id) ? <motion.div
+                                    initial={{ opacity: .4, scale: .7 }}
+                                    animate={{ opacity: 1, scale: 1, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s" }}
+                                    className='single-message'
+                                >
+                                    <ImCross id="close-slid-up" onClick={() => {
+                                        setOpenMessage((prev) => {
+                                            return { ...prev, open: false, messageId: null }
+                                        })
+                                    }} />
                                     <img src={ele?.product?.imageUrl} alt="" />
                                     <div className='message-details'>
-                                        {ele?.senderEmail === email ? <p>{ele.receiverEmail}</p> : <p>{ele.senderEmail}</p>}
+                                        {ele?.senderEmail === email ? <p>{ele.receiverEmail}</p> : <p>From : {ele.senderEmail}</p>}
+                                        <h4>{ele?.product?.name}</h4>
+                                        <p>{ele?.product?.description}</p>
+                                        <p>Price : ₹{ele?.product?.price}</p>
                                     </div>
                                     <div className='message-response'>
                                         {ele?.senderEmail === email ? ele?.reaction === '' ? <img className='pending' src={pendingImage} alt="Pending" /> : <div>{ele?.reaction}</div> : null}
@@ -97,13 +111,8 @@ const Notifications = () => {
                                             });
                                         }}>+</p> : null}
                                         {(ele?.senderEmail !== email && ele?.reaction !== '' && <div>{ele?.reaction}</div>)}
-                                        <ImCross id="close-slid-up" onClick={() => {
-                                            setOpenMessage((prev) => {
-                                                return { ...prev, open: false, messageId: null }
-                                            })
-                                        }} />
                                     </div>
-                                </div> : <div className='open-message-details'>
+                                </motion.div> : <div className='open-message-details'>
                                     {ele?.reaction === '' ? <img className='notification-success' src={notificationImage} alt='notification'></img> : <img className='complete' src={completeImage} alt="Complete" />}
                                     {ele?.senderEmail === email ? <p>You sent a message to {ele.receiverEmail}.</p> : <p>You got a message from {ele.senderEmail}.</p>}
                                     <button onClick={() => {
@@ -113,7 +122,7 @@ const Notifications = () => {
                                     }}>Open</button>
                                 </div>
                             }
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>

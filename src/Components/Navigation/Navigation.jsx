@@ -49,15 +49,16 @@ const MiniNavigation = (props) => {
                 {loggedIn && <button name="/profile" onClick={changePage}>Profile</button>}
                 <button name="/products" onClick={changePage}>Products</button>
                 {loggedIn && <button name='/addproducts' onClick={changePage}>Become Seller</button>}
-                {loggedIn && <div id={newMessages === true ? 'show-new-messages' : 'no-messages'}><IoNotifications className="notification" name="/notifications" onClick={() => {
-                    navigate("/notifications");
-                }} /></div>}
+                {loggedIn && <button name="/notifications" onClick={changePage}><p onClick={() => {
+                    navigate('/navigations');
+                }} id={newMessages === true ? 'show-new-messages' : 'mini-no-messages'}>Notifications</p></button>}
                 <button name="/faqs" onClick={changePage}>Faqs</button>
                 <button name="log" className="log-button" onClick={changeComponent}>{loggedIn ? "Log Out" : "Log In"}</button>
                 <SearchBar showMiniNavBar={showMiniNavBar} />
             </div>
-        </motion.div>}
-    </motion.div>
+        </motion.div>
+        }
+    </motion.div >
 }
 
 

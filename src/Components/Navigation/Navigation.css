@@ -110,6 +110,10 @@
     font-family: 'Poppins', sans-serif
 }
 
+#mini-navigation div button p {
+    font-family: 'Poppins', sans-serif;
+}
+
 #mini-navigation div form {
     width: 100%;
     display: flex;
@@ -148,7 +152,7 @@
 }
 
 .notification {
-    font-size: 1.5em;
+    font-size: 1.2em;
     cursor: pointer;
 }
 
@@ -178,4 +182,16 @@
 
 #search-bar button {
     background-color: coral;
+}
+
+
+@media screen and (max-width:1080px) {
+    #show-new-messages {
+        width: fit-content !important;
+    }
+
+    #show-new-messages::after {
+        top: -8px;
+        right: -10px;
+    }
 }

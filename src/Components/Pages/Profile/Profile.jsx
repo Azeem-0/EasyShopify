@@ -22,7 +22,7 @@ function Profile() {
   const { userDetails, setUserDetails, getUserDetails, } = useContext(pContext);
   const { products, setProducts } = useContext(productContext);
   const navigate = useNavigate();
-  const [profileState, setProfileState] = useState("2");
+  const [profileState, setProfileState] = useState("1");
   const [spinner, setSpinner] = useState(false);
 
   async function removeProduct(event) {
