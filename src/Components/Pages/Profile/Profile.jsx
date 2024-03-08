@@ -20,7 +20,7 @@ import { productContext } from "../../ContextApi/ProductsContext";
 function Profile() {
   const { notify } = useContext(nContext)
   const { userDetails, setUserDetails, getUserDetails, } = useContext(pContext);
-  const { products, setProducts } = useContext(productContext);
+  const { setProducts } = useContext(productContext);
   const navigate = useNavigate();
   const [profileState, setProfileState] = useState("1");
   const [spinner, setSpinner] = useState(false);
@@ -193,7 +193,7 @@ function Profile() {
         getUserDetails();
       }
     });
-  }, []);
+  }, [navigate,getUserDetails]);
   return (
     <motion.div
       id="profile-dashboard"

@@ -7,10 +7,7 @@ import Faqs from '../Pages/Faqs/Faqs';
 import AddProduct from '../Pages/Seller/AddProduct';
 import Products from '../Pages/Products/Products';
 import Profile from '../Pages/Profile/Profile';
-import ProfileContext from '../ContextApi/ProfileContext';
 import Messages from "../Pages/Messages/Messages";
-import MessagesContext from '../ContextApi/MessagesContext';
-import { Navigation } from 'swiper/modules';
 
 const AnimatePages = () => {
     const location = useLocation();

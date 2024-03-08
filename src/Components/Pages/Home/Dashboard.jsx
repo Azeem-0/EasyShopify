@@ -36,10 +36,6 @@ const ToppicksHead = (props) => {
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
-        autoplay={{
-            delay: 5000,
-            disableOnInteraction: true,
-        }}
     >
         {
             topPicks?.slice(0, 3)?.length !== 0 && <SwiperSlide>
@@ -79,10 +75,7 @@ const ToppicksHead = (props) => {
             navigation={true}
             modules={[Autoplay, Pagination, Navigation]}
             className="mySwiper"
-            autoplay={{
-                delay: 5000,
-                disableOnInteraction: true,
-            }}>
+        >
             {
                 topPicks?.length !== 0 && topPicks?.map((ele, ind) => {
                     return <SwiperSlide key={ind}><Toppicks key={ind} heading={ele.name} image={ele.imageUrl} /></SwiperSlide>

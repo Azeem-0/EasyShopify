@@ -406,8 +406,8 @@
 
 #close-slid-up {
     position: absolute;
-    right: 2%;
-    top: 3%;
+    right: 1em;
+    top: 1em;
     font-size: .8em;
     cursor: pointer;
     font-weight: lighter;

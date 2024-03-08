@@ -83,6 +83,7 @@
 #top-picks .swiper,
 .dashboard-dynamics .swiper {
     padding: 3em 0em 0em;
+    touch-action: none !important;
 }
 
 .swiper-button-next,
@@ -92,7 +93,7 @@
     color: black !important;
 }
 
-.swiper-backface-hidden .swiper-slide {
+.swiper-slide {
     display: flex !important;
     width: 100% !important;
     justify-content: center !important;

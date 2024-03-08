@@ -7,7 +7,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: #e7e7e7;
+    background-color: #eeeeee;
     overflow-y: auto;
     min-height: 100dvh;
 }
@@ -16,6 +16,10 @@
     display: flex;
     flex-direction: column;
     gap: 1.5em;
+}
+
+.pending {
+    width: 1.5em !important;
 }
 
 #messages-block-2 {
@@ -40,16 +44,30 @@
 
 #messages-block-child .single-message-head {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    flex-direction: column;
     background-color: white;
-    border-radius: 2px;
+    border-radius: 5px;
+}
+
+#messages-block-child .single-message-head .single-message-details {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.single-message-head .blur-hash {
+    width: 10em !important;
+    height: fit-content !important;
+    object-fit: cover;
 }
 
 #messages-block-child .single-message {
     width: -moz-fit-content;
     width: fit-content;
     display: flex;
+    flex-direction: column;
     align-items: center;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 10px;
@@ -57,6 +75,7 @@
     min-width: 30em;
     gap: 15px;
     padding: 3%;
+    padding-top: 8%;
 }
 
 #messages-block-child .single-message img {
@@ -74,9 +93,7 @@
     gap: 1em;
 }
 
-.open-message-details .notification-success,
-.single-message .pending,
-.open-message-details .complete {
+.open-message-details img {
     width: 2em !important;
     object-fit: cover;
 }
@@ -93,12 +110,12 @@
 }
 
 #emoji-block {
+    gap: 10px;
     border-radius: 10px;
     display: flex;
     align-items: center;
-    flex-direction: column;
-    justify-content: space-evenly;
     background-color: #949494;
+    padding: 0em 1em;
     z-index: 99;
 }
 
@@ -115,4 +132,28 @@
 .open-emoji,
 .close-emoji {
     cursor: pointer;
+}
+
+@media screen and (max-width:800px) {
+
+    .open-message-details {
+        width: 80dvw;
+    }
+
+    .open-message-details button {
+        padding: 1% 2%;
+        font-size: .6em;
+    }
+
+    #messages-block-child .single-message {
+        min-width: 80dvw;
+    }
+
+    #messages-block-child .single-message img {
+        width: 25dvw;
+    }
+
+    .message-details {
+        font-size: .8em;
+    }
 }

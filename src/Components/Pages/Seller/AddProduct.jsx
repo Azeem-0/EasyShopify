@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import seller from "../../../Images/seller.jpg";
 import Lottie from "lottie-react";
 import spinner from "../../../assests/imageSpinner.json";

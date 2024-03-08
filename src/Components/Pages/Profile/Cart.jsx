@@ -6,7 +6,6 @@ import ImageComponent from '../../utilities/ImageComponent';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { socketContextProvider } from '../../ContextApi/SocketContext';
-import axios from 'axios';
 import { nContext } from '../../ContextApi/NotificationContext';
 
 
@@ -55,7 +54,7 @@ const CartSlidUp = (props) => {
 
 
 function Cart(props) {
-    const { userDetails: { email, name, cart } } = useContext(pContext);
+    const { userDetails: { email, cart } } = useContext(pContext);
     const { notify } = useContext(nContext);
     const { socket } = useContext(socketContextProvider);
     const { orderProduct, removeProduct } = props;
@@ -111,7 +110,6 @@ function Cart(props) {
     const sendToFriend = async (e) => {
         try {
             const { name } = e.target;
-            var message;
             socket.emit('send-product', { email, name, sendingProduct });
             socket.once('successfully-send-product', async (data) => {
                 console.log('ehllo');

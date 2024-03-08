@@ -8,16 +8,11 @@ import pendingImage from '../../../Images/pending.png';
 import completeImage from '../../../Images/complete.png';
 import { motion } from 'framer-motion';
 import './Messages.css';
-import { useInView } from 'framer-motion';
 import { ImCross } from 'react-icons/im';
-
-
+import { nContext } from '../../ContextApi/NotificationContext';
 function Emoji(props) {
     const { messageId, toggleEmoji, reactEmojiToMessage } = props;
     const emojiRef = useRef(null);
-    const isInView = useInView(emojiRef, {
-        once: true
-    });
     const sendEmoji = (e) => {
         const emoji = e.target.innerHTML;
         if (emoji !== '+') {
@@ -41,6 +36,7 @@ function Emoji(props) {
 
 const Notifications = () => {
     const { userDetails: { email } } = useContext(pContext);
+    const { notify } = useContext(nContext);
     const { messages } = useContext(messageContextProvider);
     const [openEmoji, setOpenEmoji] = useState({
         open: false,
@@ -52,7 +48,7 @@ const Notifications = () => {
     })
     const makeAllMessagesSeen = async () => {
         try {
-            const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/makeAllMessagesSeen`, { email });
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/makeAllMessagesSeen`, { email });
         } catch (error) {
             console.log(error.message);
         }
@@ -66,6 +62,12 @@ const Notifications = () => {
         try {
             const { data } = await axios.post(process.env.REACT_APP_BACKEND_URL + "/user/reactToMessage", { mId, emoji });
             console.log(data);
+            if (data.status) {
+                notify("Reacted Successfully");
+            }
+            else {
+                notify("Something happenned!, Please try again.");
+            }
         } catch (error) {
             console.log(error.message);
         }
@@ -87,7 +89,7 @@ const Notifications = () => {
                             key={key}>
                             {
                                 (openMessage.open && openMessage.messageId === ele?._id) ? <motion.div
-                                    initial={{ opacity: .4, scale: .7 }}
+                                    initial={{ opacity: .4, scale: 1 }}
                                     animate={{ opacity: 1, scale: 1, transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s" }}
                                     className='single-message'
                                 >
@@ -96,21 +98,23 @@ const Notifications = () => {
                                             return { ...prev, open: false, messageId: null }
                                         })
                                     }} />
-                                    <img src={ele?.product?.imageUrl} alt="" />
-                                    <div className='message-details'>
-                                        {ele?.senderEmail === email ? <p>{ele.receiverEmail}</p> : <p>From : {ele.senderEmail}</p>}
-                                        <h4>{ele?.product?.name}</h4>
-                                        <p>{ele?.product?.description}</p>
-                                        <p>Price : ₹{ele?.product?.price}</p>
+                                    <div className='single-message-details'>
+                                        <img src={ele?.product?.imageUrl} alt="" />
+                                        <div className='message-details'>
+                                            {ele?.senderEmail === email ? <p>To : {ele.receiverEmail.substring(0, 15)}...</p> : <p>From : {ele.senderEmail.substring(0, 15)}...</p>}
+                                            <h4>{ele?.product?.name}</h4>
+                                            <p>{ele?.product?.description}</p>
+                                            <p>Price : ₹{ele?.product?.price}</p>
+                                        </div>
                                     </div>
                                     <div className='message-response'>
-                                        {ele?.senderEmail === email ? ele?.reaction === '' ? <img className='pending' src={pendingImage} alt="Pending" /> : <div>{ele?.reaction}</div> : null}
+                                        {ele?.senderEmail === email ? ele?.reaction === '' ? <img className='pending' src={pendingImage} alt="Pending" /> : <div>{ele?.senderEmail.substring(0, 15)}... Reacted with {ele?.reaction}</div> : null}
                                         {(ele?.senderEmail !== email && ele?.reaction === '') ? (openEmoji.open && openEmoji.messageId === ele?._id) ? <Emoji reactEmojiToMessage={reactEmojiToMessage} messageId={ele._id} toggleEmoji={toggleEmoji} /> : <p className='open-emoji' onClick={() => {
                                             setOpenEmoji((prev) => {
                                                 return { ...prev, open: true, messageId: ele?._id }
                                             });
-                                        }}>+</p> : null}
-                                        {(ele?.senderEmail !== email && ele?.reaction !== '' && <div>{ele?.reaction}</div>)}
+                                        }}>💬 Send Reaction</p> : null}
+                                        {(ele?.senderEmail !== email && ele?.reaction !== '' && <div>You reacted with {ele?.reaction}</div>)}
                                     </div>
                                 </motion.div> : <div className='open-message-details'>
                                     {ele?.reaction === '' ? <img className='notification-success' src={notificationImage} alt='notification'></img> : <img className='complete' src={completeImage} alt="Complete" />}

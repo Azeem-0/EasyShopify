@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { nContext } from '../../ContextApi/NotificationContext';
 import axios from "axios";
 import Lottie from "lottie-react";
-import imageSpinner from "../../../assests/imageSpinner.json"
+import imageSpinner from "../../../assests/imageSpinner.json";
 import ImageComponent from "../../utilities/ImageComponent";
 function Product(props) {
   const { notify } = useContext(nContext);

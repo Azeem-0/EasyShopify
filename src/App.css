@@ -71,7 +71,7 @@ button {
 button:hover,
 a:hover {
     transition: .2s ease;
-    scale: 1.01;
+    scale: 1.05;
     opacity: 1;
 }
 

@@ -12,7 +12,7 @@ import './App.css';
 import MessagesContext from "./Components/ContextApi/MessagesContext";
 import ProfileContext from "./Components/ContextApi/ProfileContext";
 function App() {
-  const [loader, setLoader] = useState(true);
+  const [loader, setLoader] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       setLoader(false);
