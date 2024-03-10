@@ -101,8 +101,7 @@ function Orders(props) {
             </div>
             <div id="order-cart-products-section">
                 {!orders ? <p style={{ textAlign: 'center' }}>Loading...</p> : orders.length === 0 ? <p style={{ textAlign: 'center' }}>No Ordered Items....</p> :
-                    orders.map((ele, ind) => {
-                        // console.log(orders);
+                    orders.map((ele, ind) => {                        
                         return (
                             <div key={ind} className="profile-orders-cart">
                                 <div className='profile-orders-cart-innerchild'>

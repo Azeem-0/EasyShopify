@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { nContext } from './NotificationContext';
 import TokenValidity from '../Authentication/TokenValidity';
+import { loadStripe } from '@stripe/stripe-js';
 
 export const pContext = createContext();
 const ProfileContext = ({ children }) => {
@@ -90,11 +91,54 @@ const ProfileContext = ({ children }) => {
         event.preventDefault();
         setSpinner(true);
         const name = event.target.id;
+        if (name === 'updateWallet') {
+            addMoneyToWallet();
+        }
+        else {
+            try {
+                const response = await axios.post(
+                    `${process.env.REACT_APP_BACKEND_URL}/${name}`,
+                    {
+                        userDetails,
+                    },
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    }
+                );
+                const data = response.data;
+                if (data.status === true) {
+                    setState((prevValue) => {
+                        return {
+                            ...prevValue,
+                            Name: true,
+                            PhoneNumber: true,
+                            Wallet: true,
+                            Email: true,
+                        };
+                    });
+                }
+                notify(data.message);
+                if (name === "updatePassword") {
+                    setState((prevValue) => {
+                        return { ...prevValue, Password: true };
+                    });
+                }
+            } catch (error) {
+                notify("There is some issue... Please try again.");
+            }
+            setSpinner(false);
+        }
+    }
+
+    async function addMoneyToWallet() {
         try {
-            const response = await axios.post(
-                `${process.env.REACT_APP_BACKEND_URL}/${name}`,
+            const stripe = await loadStripe(`${process.env.REACT_APP_PUBLISHED_KEY}`);
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/checkoutPage`,
                 {
-                    userDetails,
+                    addWallet: userDetails.addWallet,
+                    email: userDetails.email
                 },
                 {
                     headers: {
@@ -103,31 +147,18 @@ const ProfileContext = ({ children }) => {
                 }
             );
             const data = response.data;
-            if (data.status === true) {
-                const wallet = userDetails.wallet + Number.parseInt(userDetails.addWallet) || userDetails.wallet;
-                setUserDetails((prevValue) => {
-                    return { ...prevValue, wallet: wallet };
-                });
-                setState((prevValue) => {
-                    return {
-                        ...prevValue,
-                        Name: true,
-                        PhoneNumber: true,
-                        Wallet: true,
-                        Email: true,
-                    };
-                });
-            }
-            notify(data.message);
-            if (name === "updatePassword") {
-                setState((prevValue) => {
-                    return { ...prevValue, Password: true };
-                });
-            }
+
+            const res = stripe.redirectToCheckout({
+                sessionId: data.id
+            });
+
+            setUserDetails((prev) => {
+                return { ...prev, wallet: data.userWallet }
+            });
+            
         } catch (error) {
-            notify("There is some issue... Please try again.");
+            console.log(error.message);
         }
-        setSpinner(false);
     }
     useEffect(() => {
         TokenValidity().then((res) => {

@@ -16,6 +16,7 @@ import { pContext } from "../../ContextApi/ProfileContext";
 import { nContext } from "../../ContextApi/NotificationContext";
 import Lottie from "lottie-react";
 import { productContext } from "../../ContextApi/ProductsContext";
+import { loadStripe } from "@stripe/stripe-js";
 
 function Profile() {
   const { notify } = useContext(nContext)
@@ -193,7 +194,7 @@ function Profile() {
         getUserDetails();
       }
     });
-  }, [navigate,getUserDetails]);
+  }, []);
   return (
     <motion.div
       id="profile-dashboard"

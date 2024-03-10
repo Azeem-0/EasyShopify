@@ -8,13 +8,13 @@ import AddProduct from '../Pages/Seller/AddProduct';
 import Products from '../Pages/Products/Products';
 import Profile from '../Pages/Profile/Profile';
 import Messages from "../Pages/Messages/Messages";
+import Success from './Success';
+
 
 const AnimatePages = () => {
     const location = useLocation();
     return (
         <AnimatePresence>
-            {/* <ProfileContext> */}
-            {/* <MessagesContext> */}
             <Routes location={location} key={location.pathname}>
                 <Route path="/" exact Component={Dashboard} />
                 <Route path="/profile" exact Component={Profile} />
@@ -23,9 +23,8 @@ const AnimatePages = () => {
                 <Route path="/faqs" exact Component={Faqs} />
                 <Route path="/addproducts" exact Component={AddProduct} />
                 <Route path="/products" exact Component={Products} />
+                <Route path='/success' exact Component={Success} />
             </Routes>
-            {/* </MessagesContext> */}
-            {/* </ProfileContext> */}
         </AnimatePresence>
     )
 }
