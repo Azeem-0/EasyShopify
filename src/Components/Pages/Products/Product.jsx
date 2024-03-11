@@ -39,7 +39,7 @@ function Product(props) {
       />
       <h2>{name}</h2>
       <p>Available Stock : {quantity}</p>
-      <p>₹ {price}</p>
+      <p>$ {price}</p>
       <p>Rating : {parseFloat(rating.toFixed(1))}/5</p>
       <button name="cart" onClick={addToCart}>
         {spinner ? <Lottie className="image-spinner" animationData={imageSpinner} loop={true} /> : 'Add To Cart'}

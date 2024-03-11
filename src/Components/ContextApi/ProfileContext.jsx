@@ -155,7 +155,7 @@ const ProfileContext = ({ children }) => {
             setUserDetails((prev) => {
                 return { ...prev, wallet: data.userWallet }
             });
-            
+
         } catch (error) {
             console.log(error.message);
         }

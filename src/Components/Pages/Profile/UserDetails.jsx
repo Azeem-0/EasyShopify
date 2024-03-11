@@ -20,7 +20,7 @@ function Details(props) {
     const { changeState } = useContext(pContext);
     return <div className="details">
         <p style={{ color: 'coral' }} className="details-title">{props.title ? props.title : 'Loading...'}</p>
-        <p>{props.title === 'Wallet' && '₹'} {props.name ? props.name : 'Loading...'}</p>
+        <p>{props.title === 'Wallet' && '$'} {props.name ? props.name : 'Loading...'}</p>
         {props.title === 'Email' ? null : <button name={props.title} onClick={changeState}><AiFillEdit className="icons" /></button>}
     </div>
 }

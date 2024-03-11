@@ -36,7 +36,7 @@ const CartSlidUp = (props) => {
             <div id='slid-up-details'>
                 <h1>{name}</h1>
                 <p>{description}</p>
-                <p>Price : ₹{price}</p>
+                <p>Price : ${price}</p>
                 <p>Avaliable Stock : {quantity}</p>
                 <form name={id} data-price={price} data-address={order.address} data-pattern="cart" data-request={order.quantity} data-quantity={quantity} onSubmit={(e) => {
                     ToggleSlid();

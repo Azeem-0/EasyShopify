@@ -104,7 +104,7 @@ const Notifications = () => {
                                             {ele?.senderEmail === email ? <p>To : {ele.receiverEmail.substring(0, 15)}...</p> : <p>From : {ele.senderEmail.substring(0, 15)}...</p>}
                                             <h4>{ele?.product?.name}</h4>
                                             <p>{ele?.product?.description}</p>
-                                            <p>Price : ₹{ele?.product?.price}</p>
+                                            <p>Price : ${ele?.product?.price}</p>
                                         </div>
                                     </div>
                                     <div className='message-response'>

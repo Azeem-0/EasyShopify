@@ -22,7 +22,7 @@ const OrderSlidUp = (props) => {
             <div id='slid-up-details'>
                 <h1>{heading}</h1>
                 <p>{description}</p>
-                <p>Price : ₹{price}</p>
+                <p>Price : ${price}</p>
                 <p>Ordered Quantity : {quantity}</p>
                 <p>Ordered at : {oDate.substring(0, 10)}</p>
                 <p>Delivery date : {dDate.substring(0, 10)}</p>
@@ -97,11 +97,11 @@ function Orders(props) {
         <div id='profile-product-section'>
             <div id='profile-product-heading'>
                 <h2>My Orders</h2>
-                <p>Total : ₹ {ordersPrice}</p>
+                <p>Total : $ {ordersPrice}</p>
             </div>
             <div id="order-cart-products-section">
                 {!orders ? <p style={{ textAlign: 'center' }}>Loading...</p> : orders.length === 0 ? <p style={{ textAlign: 'center' }}>No Ordered Items....</p> :
-                    orders.map((ele, ind) => {                        
+                    orders.map((ele, ind) => {
                         return (
                             <div key={ind} className="profile-orders-cart">
                                 <div className='profile-orders-cart-innerchild'>

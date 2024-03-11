@@ -1,0 +1,44 @@
+.result-head {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+}
+
+.result {
+    display: flex;
+    align-items: center;
+    gap: 1.5em;
+    padding: 10px 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 10px;
+}
+
+.result img {
+    width: 30dvw;
+}
+
+.result-child {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.result-child img {
+    width: 3em;
+    height: 3em;
+    object-fit: contain;
+}
+
+.result-child button {
+    background-color: black;
+    opacity: 0.8;
+    padding: 5px 10px;
+}

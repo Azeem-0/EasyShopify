@@ -8,7 +8,8 @@ import AddProduct from '../Pages/Seller/AddProduct';
 import Products from '../Pages/Products/Products';
 import Profile from '../Pages/Profile/Profile';
 import Messages from "../Pages/Messages/Messages";
-import Success from './Success';
+import Failure from '../Pages/SuccessOrFailure/Failure';
+import Success from '../Pages/SuccessOrFailure/Success';
 
 
 const AnimatePages = () => {
@@ -24,6 +25,7 @@ const AnimatePages = () => {
                 <Route path="/addproducts" exact Component={AddProduct} />
                 <Route path="/products" exact Component={Products} />
                 <Route path='/success' exact Component={Success} />
+                <Route path='/failure' exact Component={Failure} />
             </Routes>
         </AnimatePresence>
     )
