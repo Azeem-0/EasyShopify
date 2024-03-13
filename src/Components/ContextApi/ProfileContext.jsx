@@ -134,27 +134,39 @@ const ProfileContext = ({ children }) => {
 
     async function addMoneyToWallet() {
         try {
-            const stripe = await loadStripe(`${process.env.REACT_APP_PUBLISHED_KEY}`);
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/checkoutPage`,
-                {
-                    addWallet: userDetails.addWallet,
-                    email: userDetails.email
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
+
+            const regularExpression = /^[0-9]+$/;
+
+            if (userDetails.addWallet <= 0) {
+                notify("Please enter a positive number.");
+            }
+            else if (regularExpression.test(userDetails.addWallet) == false) {
+                notify("Please enter a valid number.");
+            }
+            else {
+                const stripe = await loadStripe(`${process.env.REACT_APP_PUBLISHED_KEY}`);
+                const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/checkoutPage`,
+                    {
+                        addWallet: userDetails.addWallet,
+                        email: userDetails.email
                     },
-                }
-            );
-            const data = response.data;
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    }
+                );
+                const data = response.data;
 
-            const res = stripe.redirectToCheckout({
-                sessionId: data.id
-            });
+                const res = stripe.redirectToCheckout({
+                    sessionId: data.id
+                });
 
-            setUserDetails((prev) => {
-                return { ...prev, wallet: data.userWallet }
-            });
+                setUserDetails((prev) => {
+                    return { ...prev, wallet: data.userWallet }
+                });
+            }
+            setSpinner(false);
 
         } catch (error) {
             console.log(error.message);
