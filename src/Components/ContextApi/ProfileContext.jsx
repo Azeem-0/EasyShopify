@@ -162,9 +162,9 @@ const ProfileContext = ({ children }) => {
                     sessionId: data.id
                 });
 
-                setUserDetails((prev) => {
-                    return { ...prev, wallet: data.userWallet }
-                });
+                // setUserDetails((prev) => {
+                //     return { ...prev, wallet: data.userWallet }
+                // });
             }
             setSpinner(false);
 
