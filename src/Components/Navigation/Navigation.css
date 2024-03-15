@@ -42,6 +42,7 @@
     display: flex;
     transition: 0.5s ease-in-outs;
     gap: 20px;
+    align-items: center;
 }
 
 .one-navigation div:first-child>* {
@@ -52,6 +53,22 @@
     background: transparent;
     font-size: 1em;
     font-family: 'Poppins', sans-serif
+}
+
+.cart-on-navi {
+    position: relative;
+}
+
+.cart-on-navi .count-of-cart {
+    position: absolute;
+    top: -0.9em;
+    right: -0.5em;
+    font-size: .8em;
+}
+
+.cart-on-navi .cart-icon {
+    font-size: 1.5em;
+    cursor: pointer;
 }
 
 /* MINI NAVIGATION STYLING */

@@ -4,8 +4,10 @@ import axios from "axios";
 import Lottie from "lottie-react";
 import imageSpinner from "../../../assests/imageSpinner.json";
 import ImageComponent from "../../utilities/ImageComponent";
+import { pContext } from "../../ContextApi/ProfileContext";
 function Product(props) {
   const { notify } = useContext(nContext);
+  const { getUserDetails } = useContext(pContext);
   const [spinner, setSpinner] = useState(false);
   const { name, price, quantity, rating } = props;
   async function addToCart() {
@@ -25,6 +27,7 @@ function Product(props) {
         }
       );
       const data = response.data;
+      getUserDetails();
       notify(data.message);
     } catch (error) {
       notify("Something went wrong. Please refresh the page and try again.");

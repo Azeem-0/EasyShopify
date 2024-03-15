@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { IoNotifications } from "react-icons/io5"
 import miniNavBar from "../../assests/mini-navigation.json";
+import { FaShoppingCart } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
 import Lottie from "lottie-react";
 import { motion, useInView } from "framer-motion";
@@ -10,6 +11,7 @@ import { sContext } from "../ContextApi/SearchBarContext";
 import Logo from "./Logo";
 import './Navigation.css';
 import { messageContextProvider } from "../ContextApi/MessagesContext";
+import { pContext } from "../ContextApi/ProfileContext";
 
 const SearchBar = (props) => {
     const { showMiniNavBar } = props;
@@ -68,12 +70,21 @@ const MaxiNavigation = (props) => {
         once: true
     })
     const navigate = useNavigate();
+    const [cartNumber, setCartNumber] = useState(0);
+    const userDetailsContext = useContext(pContext);
     const { loggedIn, changeComponent, showMiniNavBar, newMessages } = props;
     const { pathname } = useLocation();
     const changePage = (e) => {
         const { name } = e.target;
         navigate(name);
     }
+
+    useEffect(() => {
+        if (loggedIn) {
+            setCartNumber(userDetailsContext?.userDetails?.cart?.length);
+        }
+    }, [loggedIn, userDetailsContext.userDetails]);
+
     return <motion.div
         ref={ref}
         className="one-navigation"
@@ -96,6 +107,13 @@ const MaxiNavigation = (props) => {
         <div>
             <SearchBar showMiniNavBar={showMiniNavBar} />
             <button name="log" className="log-button" onClick={changeComponent}>{loggedIn ? "Log Out" : "Log In"}</button>
+            <div className="cart-on-navi">
+                <p className="count-of-cart">{cartNumber}</p>
+                <FaShoppingCart className="cart-icon" onClick={() => {
+                    navigate('/profile');
+                }} />
+            </div>
+
         </div>
     </motion.div>
 }
