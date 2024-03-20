@@ -107,12 +107,13 @@ const MaxiNavigation = (props) => {
         <div>
             <SearchBar showMiniNavBar={showMiniNavBar} />
             <button name="log" className="log-button" onClick={changeComponent}>{loggedIn ? "Log Out" : "Log In"}</button>
-            <div className="cart-on-navi">
+            {loggedIn && <div className="cart-on-navi">
                 <p className="count-of-cart">{cartNumber}</p>
                 <FaShoppingCart className="cart-icon" onClick={() => {
+                    userDetailsContext.setProfileState("2");
                     navigate('/profile');
                 }} />
-            </div>
+            </div>}
 
         </div>
     </motion.div>

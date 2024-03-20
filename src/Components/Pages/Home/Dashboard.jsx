@@ -182,7 +182,7 @@ function Dashboard() {
             <ToppicksHead topPicks={pData} screen={screen} />
         </div>
         {/* ONLY TO BE SHOWED WHEN THE USER IS LOGGED IN */}
-        {logged && <div className="dashboard-dynamics">
+        {logged && imageNameOrders?.length > 0 && <div className="dashboard-dynamics">
             <div className="dashboard-dynamics-head">
                 <ImageComponent src={image8} blur='LXCjton$IVbH.TaeR*j[t-WWj[oL' />
                 <div>

@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faCircle } from '@fortawesome/free-solid-svg-icons'
 
 const OrderSlidUp = (props) => {
-    const { userDetails: { address } } = useContext(pContext);
-    const { heading, id, orderId, quantity, price, oDate, imageUrl, description, dDate, delivered, cancelled } = props.slidUpDetails;
+    // const { userDetails: { address } } = useContext(pContext);
+    const { heading, id, orderId, quantity, price, oDate, imageUrl, description, dDate, delivered, cancelled, address } = props.slidUpDetails;
     const { ToggleSlid, removeProduct, rateProduct } = props;
     const cancel = cancelled === 'true' ? true : false;
     const deliver = delivered === 'true' ? true : false;

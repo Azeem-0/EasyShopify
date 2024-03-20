@@ -13,6 +13,7 @@ const ProfileContext = ({ children }) => {
         Password: true,
         PhoneNumber: true,
         Wallet: true,
+        Profile: true
     });
     const [userDetails, setUserDetails] = useState({
         email: '',
@@ -28,6 +29,8 @@ const ProfileContext = ({ children }) => {
         orders: null,
         ordersPrice: null
     });
+    const [profileState, setProfileState] = useState("1");
+
     async function change(event) {
         if (event) {
             if (event.target) {
@@ -51,6 +54,7 @@ const ProfileContext = ({ children }) => {
                 Password: true,
                 PhoneNumber: true,
                 Wallet: true,
+                Profile: true,
                 [name]: false,
             };
         });
@@ -116,6 +120,7 @@ const ProfileContext = ({ children }) => {
                             PhoneNumber: true,
                             Wallet: true,
                             Email: true,
+                            Profile: true,
                         };
                     });
                 }
@@ -161,10 +166,6 @@ const ProfileContext = ({ children }) => {
                 const res = stripe.redirectToCheckout({
                     sessionId: data.id
                 });
-
-                // setUserDetails((prev) => {
-                //     return { ...prev, wallet: data.userWallet }
-                // });
             }
             setSpinner(false);
 
@@ -179,9 +180,8 @@ const ProfileContext = ({ children }) => {
             }
         });
     }, []);
-    console.log(userDetails);
     return (
-        <pContext.Provider value={{ userDetails, setUserDetails, getUserDetails, update, state, spinner, change, changeState }}>
+        <pContext.Provider value={{ profileState, setProfileState, userDetails, setUserDetails, getUserDetails, update, state, spinner, change, changeState }}>
             {children}
         </pContext.Provider>
     )

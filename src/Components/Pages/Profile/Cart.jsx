@@ -24,6 +24,7 @@ const CartSlidUp = (props) => {
             return { ...prevValue, [name]: value }
         })
     }
+    console.log(order);
     return <div id="slid-up">
         <motion.div
             id='slid-up-child'

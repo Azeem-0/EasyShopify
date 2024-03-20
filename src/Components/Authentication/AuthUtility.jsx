@@ -23,7 +23,7 @@ const Register = (props) => {
     useEffect(() => {
         if (fileRef.current.value !== '') {
             if (fileRef.current.value.length > 15) {
-                setFileChoosed(fileRef.current.value.substring(12, 35) + '...');
+                setFileChoosed(fileRef.current.value.substring(12, 30) + '...');
             }
             else {
                 setFileChoosed(fileRef.current.value.substring(12));

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import TokenValidity from "../../Authentication/TokenValidity";
 import ImageComponent from "../../utilities/ImageComponent";
-import ProfileCover from "../../../Images/profileCover.jpg";
+import ProfileCover from "../../../Images/coverImage2.jpg";
 import preLoader from '../../../assests/preLoader2.json'
 import { ToastContainer } from 'react-toastify';
 import UserDetails from "./UserDetails";
@@ -20,10 +20,9 @@ import { loadStripe } from "@stripe/stripe-js";
 
 function Profile() {
   const { notify } = useContext(nContext)
-  const { userDetails, setUserDetails, getUserDetails, } = useContext(pContext);
+  const { userDetails, setUserDetails, getUserDetails, profileState, setProfileState } = useContext(pContext);
   const { setProducts } = useContext(productContext);
   const navigate = useNavigate();
-  const [profileState, setProfileState] = useState("1");
   const [spinner, setSpinner] = useState(false);
 
   async function removeProduct(event) {
