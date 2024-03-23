@@ -154,8 +154,31 @@
     position: relative;
 }
 
-.details button,
-.updates button {
+.updates span {
+    border-radius: 5px;
+    gap: 15px;
+    display: flex;
+    align-items: center;
+    font-size: .8em;
+    background: rgb(209 209 209);
+    padding: 4px 10px 4px 5px;
+}
+
+.updates .profile-button img {
+    width: 2em;
+}
+
+.updates .profile-button {
+    background-color: rgb(209 209 209);
+}
+
+.updates .profile-button:hover {
+    background-color: rgb(209 209 209);
+    scale: 1;
+}
+
+.details .details-button,
+.updates .update-button {
     width: 3em;
     height: 2em;
     position: absolute;

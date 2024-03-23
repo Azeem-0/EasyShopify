@@ -38,20 +38,18 @@ function Authentication() {
             data.append("file", pic);
             data.append("upload_preset", "ecommerce");
             data.append("cloud_name", "dlyhm4e8q");
-            fetch("https://api.cloudinary.com/v1_1/dlyhm4e8q/image/upload", {
+            fetch(`${process.env.REACT_APP_CLOUDINARY_KEY}`, {
               method: "post",
               body: data,
-            })
-              .then((res) => res.json())
-              .then((data) => {
-                setAuthInfo((prevValue) => {
-                  return { ...prevValue, profileUrl: data.url.toString() };
-                });
-                setSpinner(false);
-              }).catch((err) => {
-                setSpinner(false);
-                notify(err);
+            }).then((res) => res.json()).then((data) => {
+              setAuthInfo((prevValue) => {
+                return { ...prevValue, profileUrl: data.url.toString() };
               });
+              setSpinner(false);
+            }).catch((err) => {
+              setSpinner(false);
+              notify(err);
+            });
           } else {
             setAuthInfo((prevValue) => {
               return { ...prevValue, [name]: value };

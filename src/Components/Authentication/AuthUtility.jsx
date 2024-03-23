@@ -67,13 +67,6 @@ function AuthUtility(props) {
             {type === 'REGISTER' ? <Register functionality={functionality} type={type} spinner={spinner} change={change} /> : <Login functionality={functionality} type={type} change={change} />}
             <div className="change-authentication">{type === "LOGIN" ? "New Here ? " : "Already Registered ?  "} <button onClick={changeAuth}>{to}</button>
             </div>
-            {/* {type !== "LOGIN" && <React.Fragment><div id="or-section">
-                <div className="underline"></div>
-                <div>Or</div>
-                <div className="underline"></div>
-            </div>
-                <Oauth />
-            </React.Fragment>} */}
         </div>
     </div>
 }

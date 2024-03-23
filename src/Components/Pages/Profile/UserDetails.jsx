@@ -7,10 +7,13 @@ import profileImage from '../../../Images/profile.png';
 import LoadingSpinnner from "../../../assests/imageSpinner.json";
 import { pContext } from "../../ContextApi/ProfileContext";
 import { nContext } from "../../ContextApi/NotificationContext";
+import axios from "axios";
 
 function Updates(props) {
     const { notify } = useContext(nContext);
-    const [fileChoosed, setFileChoosed] = useState('');
+    const [fileChoosed, setFileChoosed] = useState('Choose Profile Picture');
+    const { userDetails, setUserDetails, changeState, change, update, spinner, setState, setSpinner } = useContext(pContext);
+    const [formData, setFromData] = useState();
     const fileRef = useRef();
     const fileActivate = () => {
         fileRef.current.click();
@@ -26,45 +29,60 @@ function Updates(props) {
 
         }
     }, [fileRef && fileRef.current && fileRef.current?.value]);
-    function changeInput(event) {
+
+    async function updateProfile(event) {
         try {
-            const { name, value } = event.target;
+            event.preventDefault();
+            setSpinner(true);
+            const imageData = formData.data;
+            console.log(process.env.REACT_APP_CLOUDINARY_KEY);
+            fetch(`${process.env.REACT_APP_CLOUDINARY_KEY}`, {
+                method: "post",
+                body: formData,
+            }).then((res) => res.json()).then(async (data) => {
+                const email = userDetails?.email;
+                const profileImage = data?.url?.toString();
+                const response2 = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/updateProfile`, { profileImage, email });
+                const result = response2.data;
+                if (result) {
+                    setUserDetails((prev) => {
+                        return { ...prev, profileImg: profileImage }
+                    });
+                }
+                notify(result.message);
+                setState((prev) => {
+                    return { ...prev, Profile: true }
+                });
+                setSpinner(false);
+            }).catch((err) => { notify(err); setSpinner(false); });
+        } catch (error) {
+            notify(error.message);
+            setSpinner(false);
+        }
+    }
+    async function changeInput(event) {
+        try {
             const pic = event.target.files[0];
             const data = new FormData();
             data.append("file", pic);
             data.append("upload_preset", "ecommerce");
             data.append("cloud_name", "dlyhm4e8q");
-            fetch("https://api.cloudinary.com/v1_1/dlyhm4e8q/image/upload", {
-                method: "post",
-                body: data,
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    // setAuthInfo((prevValue) => {
-                    //     return { ...prevValue, profileUrl: data.url.toString() };
-                    // });
-                    setFileChoosed((prev) => {
-                        return { ...prev, profileUrl: data.url.toString() };
-                    })
-                }).catch((err) => {
-                    notify(err);
-                });
+            setFromData(data);
         }
         catch (err) {
             notify(err.message);
         }
     }
-    const { change, update, spinner } = useContext(pContext);
-    return <form id={props.route} className="updates" onSubmit={update}>
+    return <form id={props.route} className="updates" onSubmit={props.tar === 'profileImage' ? updateProfile : update}>
         <div className={props.tar === 'newPassword' ? 'password-class-for-styling' : 'no-styling'}>
-            {props.tar === 'updateProfile' && <div>
-                <span><button type="button" onClick={fileActivate}><img src={profileImage} alt="profile" /></button><p>{fileChoosed}</p></span>
+            {props.tar === 'profileImage' && <div>
+                <span><button className="profile-button" type="button" onClick={fileActivate}><img src={profileImage} alt="profile" /></button><p>{fileChoosed}</p></span>
                 <input ref={fileRef} style={{ display: 'none' }} name="image" placeholder="Choose profile" type="file" onChange={changeInput}></input>
             </div>}
-            {props.tar !== 'updateProfile' && (props.tar === 'newPassword' ? <input name="oldPassword" type="text" placeholder="Old password" onChange={change} autoFocus required></input> : null)}
-            {props.tar !== 'updateProfile' && (props.tar === 'phNumber' ? <PhoneInput className="PhoneInput" name={props.tar} defaultCountry="IN" placeholder="Enter Mobile Number" autoFocus onChange={change} /> : <input className={props.route} name={props.tar} type="text" placeholder={props.name} onChange={change} autoFocus required></input>)}
+            {props.tar !== 'profileImage' && (props.tar === 'newPassword' ? <input name="oldPassword" type="text" placeholder="Old password" onChange={change} autoFocus required></input> : null)}
+            {props.tar !== 'profileImage' && (props.tar === 'phNumber' ? <PhoneInput className="PhoneInput" name={props.tar} defaultCountry="IN" placeholder="Enter Mobile Number" autoFocus onChange={change} /> : <input className={props.route} name={props.tar} type="text" placeholder={props.name} onChange={change} autoFocus required></input>)}
         </div>
-        <button type="submit">{spinner ? <Lottie className="image-spinner" animationData={LoadingSpinnner} loop={true} /> : <MdOutlineDone className="icons" />}</button>
+        <button className="update-button" type="submit">{spinner ? <Lottie className="image-spinner" animationData={LoadingSpinnner} loop={true} /> : <MdOutlineDone className="icons" />}</button>
     </form>
 }
 function Details(props) {
@@ -72,14 +90,17 @@ function Details(props) {
     return <div className="details">
         <p style={{ color: 'coral' }} className="details-title">{props.title ? props.title : 'Loading...'}</p>
         <p>{props.title === 'Wallet' && '$'} {props.name ? props.name : 'Loading...'}</p>
-        {props.title === 'Email' ? null : <button name={props.title} onClick={changeState}><AiFillEdit className="icons" /></button>}
+        {props.title === 'Email' ? null : <button className="details-button" name={props.title} onClick={changeState}><AiFillEdit className="icons" /></button>}
     </div>
 }
 const UserDetails = () => {
-    const { userDetails, state, changeState, } = useContext(pContext);
+    const { userDetails, state } = useContext(pContext);
+    useEffect(() => {
+
+    }, [state, userDetails]);
     return (
         <div id="profile-details-edit">
-            <Details title="Email" name={userDetails.email} changeState={changeState} />
+            <Details title="Email" name={userDetails.email} />
             {state.Name === true ? <Details title="Name" name={userDetails.name} /> : <Updates tar="name" name="Update Name" route="updateName" />}
 
             {state.PhoneNumber === true ? <Details title="PhoneNumber" name={userDetails.phNumber} /> : <Updates tar="phNumber" name="Update Phone Number" route="updatePhNumber" />}
@@ -88,7 +109,7 @@ const UserDetails = () => {
 
             {state.Password === true ? <Details title="Password" name='Change Password' /> : <Updates tar="newPassword" name="Enter New Password" prev="Old Password" route="updatePassword" />}
 
-            {state.Profile === true ? <Details title="Profile Image" name="Change DP" /> : <Updates tar="profileImage" name="Update Profile Image" route="updateProfile" />}
+            {state.Profile === true ? <Details title="Profile" name="Change DP" /> : <Updates tar="profileImage" name="Update Profile Image" route="updateProfile" />}
         </div>
     )
 };

@@ -180,8 +180,9 @@ const ProfileContext = ({ children }) => {
             }
         });
     }, []);
+    console.log(userDetails);
     return (
-        <pContext.Provider value={{ profileState, setProfileState, userDetails, setUserDetails, getUserDetails, update, state, spinner, change, changeState }}>
+        <pContext.Provider value={{ profileState, setProfileState, userDetails, setUserDetails, getUserDetails, update, state, setState, setSpinner, spinner, change, changeState }}>
             {children}
         </pContext.Provider>
     )
