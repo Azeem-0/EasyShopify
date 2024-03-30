@@ -1,4 +1,4 @@
-import { React, useContext, useNavigate, Footer, pData, image1, image2, image3, image4, image5, image6, image7, image8, ImageComponent, sContext, summerData, winterData, electronicData } from './DashboardImports';
+import { React, useContext, useNavigate, Footer, pData, image1, image2, image3, image4, image5, image6, image7, image8, ImageComponent, sContext } from './DashboardImports';
 import './Dashboard.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -9,6 +9,7 @@ import { motion, useInView } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import TokenValidity from '../../Authentication/TokenValidity';
 import { pContext } from '../../ContextApi/ProfileContext';
+import { productContext } from '../../ContextApi/ProductsContext';
 
 function Toppicks(props) {
     const { setSearch } = useContext(sContext);
@@ -86,7 +87,18 @@ const ToppicksHead = (props) => {
 
 function Dashboard() {
     const ref = useRef(null);
+    const { products } = useContext(productContext);
     const { userDetails: { orders }, getUserDetails } = useContext(pContext);
+
+    const topPicks = [...products]?.sort((a, b) => {
+        return b.totalPurchases - a.totalPurchases;
+    }).slice(0, 10).map((ele) => {
+        return {
+            imageUrl: ele?.imageUrl,
+            name: ele?.name
+        }
+    });
+
     const imageNameOrders = orders?.reduce((uniqueOrders, ele) => {
         const isDuplicate = uniqueOrders.some(order =>
             order.imageUrl === ele.product.imageUrl && order.name === ele.product.name
@@ -99,6 +111,36 @@ function Dashboard() {
         }
         return uniqueOrders;
     }, []);
+    const summerWear = products?.reduce((summerPicks, ele) => {
+        if (ele?.category?.startsWith("Summer")) {
+            summerPicks.push({
+                imageUrl: ele?.imageUrl,
+                name: ele?.name
+            });
+        }
+        return summerPicks;
+    }, []);
+
+    const winterWear = products?.reduce((winterPicks, ele) => {
+        if (ele?.category?.startsWith("Winter")) {
+            winterPicks.push({
+                imageUrl: ele?.imageUrl,
+                name: ele?.name
+            });
+        }
+        return winterPicks;
+    }, [])
+
+    const electronics = products?.reduce((electronicsPicks, ele) => {
+        if (ele?.category?.startsWith("Electronics")) {
+            electronicsPicks.push({
+                imageUrl: ele?.imageUrl,
+                name: ele?.name
+            });
+        }
+        return electronicsPicks;
+    }, [])
+
     const [screen, setScreen] = useState(false);
     const [logged, setLogged] = useState(false);
     const isInView = useInView(ref, { once: true });
@@ -107,6 +149,8 @@ function Dashboard() {
         opacity: isInView ? 1 : 0,
         transition: "all 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
     }
+
+
     useEffect(() => {
         const windowWidth = window.innerWidth;
         if (windowWidth < 1000) {
@@ -169,7 +213,7 @@ function Dashboard() {
         </div>
         <div id="top-picks">
             <h1>TOP PICKS!</h1>
-            <ToppicksHead topPicks={pData} screen={screen} />
+            <ToppicksHead topPicks={topPicks} screen={screen} />
         </div>
         <div className="dashboard-dynamics">
             <div className="dashboard-dynamics-head">
@@ -201,7 +245,7 @@ function Dashboard() {
                 </div>
             </div>
             <div id="top-picks">
-                <ToppicksHead topPicks={summerData} screen={screen} />
+                <ToppicksHead topPicks={summerWear} screen={screen} />
             </div>
         </div>
         <div className="dashboard-dynamics">
@@ -213,7 +257,7 @@ function Dashboard() {
                 </div>
             </div>
             <div id="top-picks">
-                <ToppicksHead topPicks={winterData} screen={screen} />
+                <ToppicksHead topPicks={winterWear} screen={screen} />
             </div>
         </div>
         <div className="dashboard-dynamics">
@@ -225,7 +269,7 @@ function Dashboard() {
                 </div>
             </div>
             <div id="top-picks">
-                <ToppicksHead topPicks={electronicData} screen={screen} />
+                <ToppicksHead topPicks={electronics} screen={screen} />
             </div>
         </div>
         <Footer />

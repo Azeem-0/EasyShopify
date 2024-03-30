@@ -27,10 +27,12 @@ function Product(props) {
         }
       );
       const data = response.data;
-      getUserDetails();
+      if (data.status === true) {
+        getUserDetails();
+      }
       notify(data.message);
     } catch (error) {
-      notify("Something went wrong. Please refresh the page and try again.");
+      notify("Something went wrong, Please refresh the page and try again.");
     }
     setSpinner(false);
   }
