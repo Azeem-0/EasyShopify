@@ -99,6 +99,17 @@ function Dashboard() {
         }
     });
 
+    const latestProducts = [...products]?.sort((a, b) => {
+        const DateA = new Date(a.timeStamps);
+        const DateB = new Date(b.timeStamps);
+        return DateB - DateA;
+    }).slice(0, 10).map((ele) => {
+        return {
+            imageUrl: ele?.imageUrl,
+            name: ele?.name
+        }
+    });
+
     const imageNameOrders = orders?.reduce((uniqueOrders, ele) => {
         const isDuplicate = uniqueOrders.some(order =>
             order.imageUrl === ele.product.imageUrl && order.name === ele.product.name
@@ -111,6 +122,7 @@ function Dashboard() {
         }
         return uniqueOrders;
     }, []);
+
     const summerWear = products?.reduce((summerPicks, ele) => {
         if (ele?.category?.startsWith("Summer")) {
             summerPicks.push({
@@ -121,6 +133,7 @@ function Dashboard() {
         return summerPicks;
     }, []);
 
+
     const winterWear = products?.reduce((winterPicks, ele) => {
         if (ele?.category?.startsWith("Winter")) {
             winterPicks.push({
@@ -129,7 +142,7 @@ function Dashboard() {
             });
         }
         return winterPicks;
-    }, [])
+    }, []);
 
     const electronics = products?.reduce((electronicsPicks, ele) => {
         if (ele?.category?.startsWith("Electronics")) {
@@ -223,7 +236,7 @@ function Dashboard() {
                     <p>Explore our latest collection of new arrivals.</p>
                 </div>
             </div>
-            <ToppicksHead topPicks={pData} screen={screen} />
+            <ToppicksHead topPicks={latestProducts} screen={screen} />
         </div>
         {/* ONLY TO BE SHOWED WHEN THE USER IS LOGGED IN */}
         {logged && imageNameOrders?.length > 0 && <div className="dashboard-dynamics">
