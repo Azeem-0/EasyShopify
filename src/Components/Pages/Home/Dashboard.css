@@ -83,7 +83,6 @@
 #top-picks .swiper,
 .dashboard-dynamics .swiper {
     padding: 3em 0em 0em;
-    touch-action: none !important;
 }
 
 .swiper-button-next,

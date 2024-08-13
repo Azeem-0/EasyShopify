@@ -52,7 +52,8 @@ const MiniNavigation = (props) => {
                 <button name="/products" onClick={changePage}>Products</button>
                 {loggedIn && <button name='/addproducts' onClick={changePage}>Become Seller</button>}
                 {loggedIn && <button name="/notifications" onClick={changePage}><p onClick={() => {
-                    navigate('/navigations');
+                    console.log('hell');
+                    window.location.href = '/notifications';
                 }} id={newMessages === true ? 'show-new-messages' : 'mini-no-messages'}>Notifications</p></button>}
                 <button name="/faqs" onClick={changePage}>Faqs</button>
                 <button name="log" className="log-button" onClick={changeComponent}>{loggedIn ? "Log Out" : "Log In"}</button>

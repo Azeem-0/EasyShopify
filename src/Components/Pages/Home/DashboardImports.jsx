@@ -6,7 +6,7 @@ import image1 from "../../../Images/Dashboard1.jpg";
 import image2 from "../../../Images/Dashboard2.jpg";
 import image3 from "../../../Images/Dashboard3.jpg";
 import image4 from "../../../Images/Dashboard4.jpg";
-import image5 from "../../../Images/Dashboard5.jpg";
+import image5 from "../../../Images/Dashboard9.jpg";
 import image6 from '../../../Images/Dashboard6.jpg';
 import image7 from '../../../Images/Dashboard7.jpg';
 import image8 from '../../../Images/Dashboard8.jpg';
