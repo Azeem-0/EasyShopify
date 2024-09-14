@@ -59,6 +59,18 @@ const ProfileContext = ({ children }) => {
             };
         });
     }
+
+    function resetEverything() {
+        setState(() => {
+            return {
+                Name: true,
+                Password: true,
+                PhoneNumber: true,
+                Wallet: true,
+                Profile: true
+            }
+        });
+    }
     async function getUserDetails() {
         try {
             const response = await axios.get(
@@ -182,7 +194,7 @@ const ProfileContext = ({ children }) => {
     }, []);
     console.log(userDetails);
     return (
-        <pContext.Provider value={{ profileState, setProfileState, userDetails, setUserDetails, getUserDetails, update, state, setState, setSpinner, spinner, change, changeState }}>
+        <pContext.Provider value={{ resetEverything, profileState, setProfileState, userDetails, setUserDetails, getUserDetails, update, state, setState, setSpinner, spinner, change, changeState }}>
             {children}
         </pContext.Provider>
     )

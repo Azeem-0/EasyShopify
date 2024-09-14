@@ -45,6 +45,13 @@
     border-radius: 10px;
 }
 
+#update-terminate-section {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+}
+
 /* USER DETAILS SECTION STYLING */
 #profile-info-head {
     width: 100%;
@@ -145,6 +152,11 @@
     margin: 1em 20px;
 }
 
+.close-update-button {
+    font-size: .7em;
+    opacity: .8;
+    cursor: pointer;
+}
 
 .details,
 .updates {
@@ -152,6 +164,12 @@
     width: 20em;
     justify-content: center;
     position: relative;
+}
+
+.updates {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
 }
 
 .updates span {

@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { MdOutlineDone } from "react-icons/md";
+import { ImCross } from 'react-icons/im';
 import PhoneInput from 'react-phone-number-input';
 import Lottie from "lottie-react";
 import profileImage from '../../../Images/profile.png';
@@ -12,7 +13,8 @@ import axios from "axios";
 function Updates(props) {
     const { notify } = useContext(nContext);
     const [fileChoosed, setFileChoosed] = useState('Choose Profile Picture');
-    const { userDetails, setUserDetails, changeState, change, update, spinner, setState, setSpinner } = useContext(pContext);
+    const { userDetails, setUserDetails, changeState, change, update, spinner, resetEverything, setState, setSpinner } = useContext(pContext);
+    const [close, setClose] = useState();
     const [formData, setFromData] = useState();
     const fileRef = useRef();
     const fileActivate = () => {
@@ -35,7 +37,6 @@ function Updates(props) {
             event.preventDefault();
             setSpinner(true);
             const imageData = formData.data;
-            console.log(process.env.REACT_APP_CLOUDINARY_KEY);
             fetch(`${process.env.REACT_APP_CLOUDINARY_KEY}`, {
                 method: "post",
                 body: formData,
@@ -82,7 +83,10 @@ function Updates(props) {
             {props.tar !== 'profileImage' && (props.tar === 'newPassword' ? <input name="oldPassword" type="text" placeholder="Old password" onChange={change} autoFocus required></input> : null)}
             {props.tar !== 'profileImage' && (props.tar === 'phNumber' ? <PhoneInput className="PhoneInput" name={props.tar} defaultCountry="IN" placeholder="Enter Mobile Number" autoFocus onChange={change} /> : <input className={props.route} name={props.tar} type="text" placeholder={props.name} onChange={change} autoFocus required></input>)}
         </div>
-        <button className="update-button" type="submit">{spinner ? <Lottie className="image-spinner" animationData={LoadingSpinnner} loop={true} /> : <MdOutlineDone className="icons" />}</button>
+        <div id="update-terminate-section">
+            <ImCross className="close-update-button" onClick={resetEverything} />
+            <button className="update-button" type="submit">{spinner ? <Lottie className="image-spinner" animationData={LoadingSpinnner} loop={true} /> : <MdOutlineDone className="icons" />}</button>
+        </div>
     </form>
 }
 function Details(props) {
